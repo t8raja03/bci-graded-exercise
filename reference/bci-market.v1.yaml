@@ -19,8 +19,16 @@ paths:
       responses:
         '201':
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
       description: 'Register a new user. '
       requestBody:
         content:
@@ -50,6 +58,10 @@ paths:
           headers: {}
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
       operationId: users-login-GET
       description: Get authentication token from server
       parameters:
@@ -80,8 +92,16 @@ paths:
                 $ref: '#/components/schemas/User'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
         '404':
           description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
       operationId: users-userId-GET
       description: Get the information of a specific user
       parameters:
@@ -113,8 +133,16 @@ paths:
                   $ref: '#/components/schemas/Item'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
         '404':
           description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
       operationId: users-idUser-items-GET
       description: List all postings of a user identified by idUser
       parameters:
@@ -150,10 +178,22 @@ paths:
                 $ref: '#/components/schemas/Item'
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
         '404':
           description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
       description: Update the information of an item posted by logged in user
       parameters:
         - schema:
@@ -166,12 +206,24 @@ paths:
       summary: ''
       operationId: users-idUser-items-idItem-DELETE
       responses:
-        '200':
-          description: OK
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
         '404':
           description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
       parameters:
         - schema:
             type: string
@@ -193,7 +245,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/Item'
         '404':
-          description: No items matching parameters
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
       operationId: items-GET
       parameters:
         - schema:
@@ -295,3 +351,11 @@ components:
           description: Whether the seller is willing to ship the item
         idUser:
           type: integer
+    Status:
+      title: Status
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
