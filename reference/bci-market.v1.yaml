@@ -1,0 +1,296 @@
+openapi: 3.0.0
+info:
+  title: bci-market
+  version: '1.0'
+  contact:
+    name: Jarno Rankinen
+    email: t8raja03@students.oamk.fi
+  description: 'Building Cloud Integration, spring 2021, graded exercise'
+servers:
+  - url: 'http://localhost:42010'
+    description: local development
+  - url: 'http://portforward.ipt.oamk.fi:42010'
+    description: public deployment
+paths:
+  /users:
+    post:
+      summary: Register a user
+      operationId: post-users
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+      description: 'Register a new user. '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: ''
+    parameters: []
+  /users/login:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '"token"':
+                    type: string
+                    description: Java Web Token for authentication
+                  idUser:
+                    type: integer
+                    description: idUser of the logged in user
+          headers: {}
+        '401':
+          description: Unauthorized
+      operationId: get-users-login
+      description: Get authentication token from server
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: HTTP Basic authentication
+          required: true
+    parameters: []
+  '/users/{idUser}':
+    parameters:
+      - schema:
+          type: string
+        name: idUser
+        in: path
+        required: true
+        description: idUser of a user
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-users-userId
+      description: Get the information of a specific user
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer token
+          required: true
+  '/users/{idUser}/items':
+    parameters:
+      - schema:
+          type: string
+        name: idUser
+        in: path
+        required: true
+        description: idUser of the user which items are fetched
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-users-idUser-items
+      description: List all postings of a user identified by idUser
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer token
+          required: true
+  '/users/{idUser}/items/{idItem}':
+    parameters:
+      - schema:
+          type: string
+        name: idUser
+        in: path
+        required: true
+        description: idUser of the user
+      - schema:
+          type: string
+        name: idItem
+        in: path
+        required: true
+        description: idItem of the user's item
+    put:
+      summary: ''
+      operationId: put-users-idUser-items-idItem
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: Update the information of an item
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer token
+          required: true
+    delete:
+      summary: ''
+      operationId: delete-users-idUser-items-idItem
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer token
+  /items:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+        '404':
+          description: Not Found
+      operationId: get-items
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: category
+          description: List items of category only
+        - schema:
+            type: string
+          in: query
+          name: location
+          description: List items by location
+        - schema:
+            type: integer
+          in: query
+          name: date
+          description: List items posted on date (UNIX epoch)
+      description: 'List items for sale, the query can be narrowed by category, location or date of item posted.'
+    parameters: []
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      x-examples:
+        example-1:
+          id: 243546
+          firstName: Olli
+          lastName: Ostaja
+          email: olli.ostaja@posti.com
+          dateCreated: 1613413844
+          dateModified: 1613413844
+          tel: '+35881234567'
+        example-2:
+          idUser: 132435
+          firstName: Myy
+          lastName: Myyjätär
+          email: myy@myynti.net
+          dateCreated: 1613413844
+          dateModified: 1613500255
+          tel: '0505556677'
+      description: User of bci-market
+      properties:
+        idUser:
+          type: integer
+          description: 'The unique identifier of the user, automatically generated'
+        firstName:
+          type: string
+          description: First name of the user
+        lastName:
+          type: string
+          description: Last name of the user
+        email:
+          type: string
+          description: Email address of the user
+        dateCreated:
+          type: integer
+          description: 'Creation date of the user (UNIX epoch, automatically generated)'
+        dateModified:
+          type: integer
+          description: 'The date of last modification of the user (UNIX epoch, automatically updated)'
+        tel:
+          type: string
+          description: 'Telephone number of the user (optional, may contain country codes e.g. +358101234567)'
+        password:
+          type: string
+          description: password of the user (hash)
+    Item:
+      title: Item
+      type: object
+      description: Item for sale
+      properties:
+        idItem:
+          type: integer
+          description: 'The unique identifier of the item, automatically generated'
+        title:
+          type: string
+          description: The title of the item for sale
+        description:
+          type: string
+          description: The description of the item
+        category:
+          type: string
+          description: 'Category of the item for sale (cars, clothing, electronics etc.)'
+        location:
+          type: string
+          description: 'The location of the item (city, country etc)'
+        askingPrice:
+          type: number
+          description: The asking price of the item
+        datePosted:
+          type: integer
+          description: Date the item was first posted (UNIX epoch)
+        dateModified:
+          type: integer
+          description: The date the item was last modified (UNIX epoch)
+        canShip:
+          type: boolean
+          description: Whether the seller is willing to ship the item
+        user:
+          $ref: '#/components/schemas/User'
