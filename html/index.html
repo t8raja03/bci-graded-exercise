@@ -742,8 +742,8 @@
       "type" : "boolean",
       "description" : "Whether the seller is willing to ship the item"
     },
-    "user" : {
-      "$ref" : "#/components/schemas/User"
+    "idUser" : {
+      "type" : "integer"
     }
   },
   "description" : "Item for sale"
@@ -824,26 +824,26 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="deleteUsersIdUserItemsIdItem" class="">
-                      <a href="#api-Default-deleteUsersIdUserItemsIdItem">deleteUsersIdUserItemsIdItem</a>
+                    <li data-group="Default" data-name="itemsGET" class="">
+                      <a href="#api-Default-itemsGET">itemsGET</a>
                     </li>
-                    <li data-group="Default" data-name="getItems" class="">
-                      <a href="#api-Default-getItems">getItems</a>
+                    <li data-group="Default" data-name="usersIdUserItemsGET" class="">
+                      <a href="#api-Default-usersIdUserItemsGET">usersIdUserItemsGET</a>
                     </li>
-                    <li data-group="Default" data-name="getUsersIdUserItems" class="">
-                      <a href="#api-Default-getUsersIdUserItems">getUsersIdUserItems</a>
+                    <li data-group="Default" data-name="usersIdUserItemsIdItemDELETE" class="">
+                      <a href="#api-Default-usersIdUserItemsIdItemDELETE">usersIdUserItemsIdItemDELETE</a>
                     </li>
-                    <li data-group="Default" data-name="getUsersLogin" class="">
-                      <a href="#api-Default-getUsersLogin">getUsersLogin</a>
+                    <li data-group="Default" data-name="usersIdUserItemsIdItemPUT" class="">
+                      <a href="#api-Default-usersIdUserItemsIdItemPUT">usersIdUserItemsIdItemPUT</a>
                     </li>
-                    <li data-group="Default" data-name="getUsersUserId" class="">
-                      <a href="#api-Default-getUsersUserId">getUsersUserId</a>
+                    <li data-group="Default" data-name="usersLoginGET" class="">
+                      <a href="#api-Default-usersLoginGET">usersLoginGET</a>
                     </li>
-                    <li data-group="Default" data-name="postUsers" class="">
-                      <a href="#api-Default-postUsers">postUsers</a>
+                    <li data-group="Default" data-name="usersPOST" class="">
+                      <a href="#api-Default-usersPOST">usersPOST</a>
                     </li>
-                    <li data-group="Default" data-name="putUsersIdUserItemsIdItem" class="">
-                      <a href="#api-Default-putUsersIdUserItemsIdItem">putUsersIdUserItemsIdItem</a>
+                    <li data-group="Default" data-name="usersUserIdGET" class="">
+                      <a href="#api-Default-usersUserIdGET">usersUserIdGET</a>
                     </li>
           </ul>
         </nav>
@@ -858,344 +858,19 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.0</div>
+              <div class="app-desc">Version: 0.2</div>
             <hr>
-            <div>Building Cloud Integration, spring 2021, graded exercise</div>
+            <div>Building Cloud Integration, spring 2021, graded exercise
+Rankinen Jarno TVT19KMO</div>
           </div>
         </div>
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-deleteUsersIdUserItemsIdItem">
-                      <article id="api-Default-deleteUsersIdUserItemsIdItem-0" data-group="User" data-name="deleteUsersIdUserItemsIdItem" data-version="0">
+                    <div id="api-Default-itemsGET">
+                      <article id="api-Default-itemsGET-0" data-group="User" data-name="itemsGET" data-version="0">
                         <div class="pull-left">
-                          <h1>deleteUsersIdUserItemsIdItem</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/users/{idUser}/items/{idItem}</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-deleteUsersIdUserItemsIdItem-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-deleteUsersIdUserItemsIdItem-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
-"http://localhost:42010/users/{idUser}/items/{idItem}"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of the user
-        String idItem = idItem_example; // String | idItem of the user's item
-        String authorization = authorization_example; // String | Bearer token
-        try {
-            apiInstance.deleteUsersIdUserItemsIdItem(idUser, idItem, authorization);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#deleteUsersIdUserItemsIdItem");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of the user
-        String idItem = idItem_example; // String | idItem of the user's item
-        String authorization = authorization_example; // String | Bearer token
-        try {
-            apiInstance.deleteUsersIdUserItemsIdItem(idUser, idItem, authorization);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#deleteUsersIdUserItemsIdItem");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of the user
-String *idItem = idItem_example; // idItem of the user's item
-String *authorization = authorization_example; // Bearer token (optional)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-[apiInstance deleteUsersIdUserItemsIdItemWith:idUser
-    idItem:idItem
-    authorization:authorization
-              completionHandler: ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
-
-var api = new BciMarket.DefaultApi()
-var idUser = idUser_example; // {{String}} idUser of the user
-var idItem = idItem_example; // {{String}} idItem of the user's item
-var opts = { 
-  'authorization': authorization_example // {{String}} Bearer token
-};
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.deleteUsersIdUserItemsIdItem(idUser, idItem, opts, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class deleteUsersIdUserItemsIdItemExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var idUser = idUser_example;  // String | idUser of the user
-            var idItem = idItem_example;  // String | idItem of the user's item
-            var authorization = authorization_example;  // String | Bearer token (optional) 
-
-            try
-            {
-                apiInstance.deleteUsersIdUserItemsIdItem(idUser, idItem, authorization);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.deleteUsersIdUserItemsIdItem: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$idUser = idUser_example; // String | idUser of the user
-$idItem = idItem_example; // String | idItem of the user's item
-$authorization = authorization_example; // String | Bearer token
-
-try {
-    $api_instance->deleteUsersIdUserItemsIdItem($idUser, $idItem, $authorization);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->deleteUsersIdUserItemsIdItem: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $idUser = idUser_example; # String | idUser of the user
-my $idItem = idItem_example; # String | idItem of the user's item
-my $authorization = authorization_example; # String | Bearer token
-
-eval { 
-    $api_instance->deleteUsersIdUserItemsIdItem(idUser => $idUser, idItem => $idItem, authorization => $authorization);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->deleteUsersIdUserItemsIdItem: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-deleteUsersIdUserItemsIdItem-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-idUser = idUser_example # String | idUser of the user
-idItem = idItem_example # String | idItem of the user's item
-authorization = authorization_example # String | Bearer token (optional)
-
-try: 
-    api_instance.delete_users_id_user_items_id_item(idUser, idItem, authorization=authorization)
-except ApiException as e:
-    print("Exception when calling DefaultApi->deleteUsersIdUserItemsIdItem: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">idUser*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_deleteUsersIdUserItemsIdItem_idUser">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          idUser of the user
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">idItem*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_deleteUsersIdUserItemsIdItem_idItem">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          idItem of the user&#x27;s item
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-                            <div class="methodsubtabletitle">Header parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                  <tr><td style="width:150px;">Authorization</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_deleteUsersIdUserItemsIdItem_authorization">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          Bearer token
-                                                      </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                            <h3> Status: 401 - Unauthorized </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                            <h3> Status: 404 - Not Found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-getItems">
-                      <article id="api-Default-getItems-0" data-group="User" data-name="getItems" data-version="0">
-                        <div class="pull-left">
-                          <h1>getItems</h1>
+                          <h1>itemsGET</h1>
                           <p>Your GET endpoint</p>
                         </div>
                         <div class="pull-right"></div>
@@ -1209,26 +884,26 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-getItems-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-getItems-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-getItems-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-getItems-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-getItems-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-getItems-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-getItems-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-getItems-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-getItems-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-getItems-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-getItems-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-itemsGET-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-itemsGET-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-itemsGET-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemsGET-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-itemsGET-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-itemsGET-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemsGET-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-itemsGET-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-itemsGET-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-itemsGET-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-itemsGET-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-getItems-0-curl">
+                          <div class="tab-pane active" id="examples-Default-itemsGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://localhost:42010/items?category=&location=&date="</code></pre>
+"http://portforward.ipt.oamk.fi:42010/items?category=&location=&date="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-getItems-0-java">
+                          <div class="tab-pane" id="examples-Default-itemsGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1246,17 +921,17 @@ public class DefaultApiExample {
         String location = location_example; // String | List items by location
         Integer date = 56; // Integer | List items posted on date (UNIX epoch)
         try {
-            array[Item] result = apiInstance.getItems(category, location, date);
+            array[Item] result = apiInstance.itemsGET(category, location, date);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getItems");
+            System.err.println("Exception when calling DefaultApi#itemsGET");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-getItems-0-android">
+                          <div class="tab-pane" id="examples-Default-itemsGET-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -1267,20 +942,20 @@ public class DefaultApiExample {
         String location = location_example; // String | List items by location
         Integer date = 56; // Integer | List items posted on date (UNIX epoch)
         try {
-            array[Item] result = apiInstance.getItems(category, location, date);
+            array[Item] result = apiInstance.itemsGET(category, location, date);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getItems");
+            System.err.println("Exception when calling DefaultApi#itemsGET");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-getItems-0-groovy">
+  <div class="tab-pane" id="examples-Default-itemsGET-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-getItems-0-objc">
+                            <div class="tab-pane" id="examples-Default-itemsGET-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">String *category = category_example; // List items of category only (optional)
 String *location = location_example; // List items by location (optional)
 Integer *date = 56; // List items posted on date (UNIX epoch) (optional)
@@ -1288,7 +963,7 @@ Integer *date = 56; // List items posted on date (UNIX epoch) (optional)
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Your GET endpoint
-[apiInstance getItemsWith:category
+[apiInstance itemsGETWith:category
     location:location
     date:date
               completionHandler: ^(array[Item] output, NSError* error) {
@@ -1302,7 +977,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getItems-0-javascript">
+                            <div class="tab-pane" id="examples-Default-itemsGET-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
@@ -1318,14 +993,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getItems(opts, callback);
+api.itemsGET(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-getItems-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-itemsGET-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-getItems-0-csharp">
+                            <div class="tab-pane" id="examples-Default-itemsGET-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1334,7 +1009,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class getItemsExample
+    public class itemsGETExample
     {
         public void main()
         {
@@ -1347,12 +1022,12 @@ namespace Example
             try
             {
                 // Your GET endpoint
-                array[Item] result = apiInstance.getItems(category, location, date);
+                array[Item] result = apiInstance.itemsGET(category, location, date);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.getItems: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.itemsGET: " + e.Message );
             }
         }
     }
@@ -1360,7 +1035,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getItems-0-php">
+                            <div class="tab-pane" id="examples-Default-itemsGET-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1370,15 +1045,15 @@ $location = location_example; // String | List items by location
 $date = 56; // Integer | List items posted on date (UNIX epoch)
 
 try {
-    $result = $api_instance->getItems($category, $location, $date);
+    $result = $api_instance->itemsGET($category, $location, $date);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->getItems: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->itemsGET: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getItems-0-perl">
+                            <div class="tab-pane" id="examples-Default-itemsGET-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -1389,15 +1064,15 @@ my $location = location_example; # String | List items by location
 my $date = 56; # Integer | List items posted on date (UNIX epoch)
 
 eval { 
-    my $result = $api_instance->getItems(category => $category, location => $location, date => $date);
+    my $result = $api_instance->itemsGET(category => $category, location => $location, date => $date);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->getItems: $@\n";
+    warn "Exception when calling DefaultApi->itemsGET: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getItems-0-python">
+                            <div class="tab-pane" id="examples-Default-itemsGET-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1412,10 +1087,10 @@ date = 56 # Integer | List items posted on date (UNIX epoch) (optional)
 
 try: 
     # Your GET endpoint
-    api_response = api_instance.get_items(category=category, location=location, date=date)
+    api_response = api_instance.items_get(category=category, location=location, date=date)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->getItems: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->itemsGET: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1435,7 +1110,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_getItems_category">
+                                    <div id="d2e199_itemsGET_category">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -1454,7 +1129,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_getItems_location">
+                                    <div id="d2e199_itemsGET_location">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -1473,7 +1148,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_getItems_date">
+                                    <div id="d2e199_itemsGET_date">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -1495,14 +1170,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getItems-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-itemsGET-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getItems-200-schema">
-                                  <div id='responses-getItems-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-itemsGET-200-schema">
+                                  <div id='responses-itemsGET-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1532,18 +1207,18 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getItems-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getItems-200-schema-200');
+                                        $('#responses-itemsGET-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemsGET-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getItems-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-itemsGET-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
-                            <h3> Status: 404 - Not Found </h3>
+                            <h3> Status: 404 - No items matching parameters </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                             </ul>
@@ -1554,10 +1229,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-getUsersIdUserItems">
-                      <article id="api-Default-getUsersIdUserItems-0" data-group="User" data-name="getUsersIdUserItems" data-version="0">
+                    <div id="api-Default-usersIdUserItemsGET">
+                      <article id="api-Default-usersIdUserItemsGET-0" data-group="User" data-name="usersIdUserItemsGET" data-version="0">
                         <div class="pull-left">
-                          <h1>getUsersIdUserItems</h1>
+                          <h1>usersIdUserItemsGET</h1>
                           <p>Your GET endpoint</p>
                         </div>
                         <div class="pull-right"></div>
@@ -1571,26 +1246,26 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-getUsersIdUserItems-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-getUsersIdUserItems-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-getUsersIdUserItems-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-getUsersIdUserItems-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-getUsersIdUserItems-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-getUsersIdUserItems-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-getUsersIdUserItems-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-getUsersIdUserItems-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-getUsersIdUserItems-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-getUsersIdUserItems-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-getUsersIdUserItems-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-usersIdUserItemsGET-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsGET-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsGET-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersIdUserItemsGET-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-usersIdUserItemsGET-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsGET-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersIdUserItemsGET-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-usersIdUserItemsGET-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsGET-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsGET-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsGET-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-getUsersIdUserItems-0-curl">
+                          <div class="tab-pane active" id="examples-Default-usersIdUserItemsGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://localhost:42010/users/{idUser}/items"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-java">
+                          <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1607,17 +1282,17 @@ public class DefaultApiExample {
         String idUser = idUser_example; // String | idUser of the user which items are fetched
         String authorization = authorization_example; // String | Bearer token
         try {
-            array[Item] result = apiInstance.getUsersIdUserItems(idUser, authorization);
+            array[Item] result = apiInstance.usersIdUserItemsGET(idUser, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getUsersIdUserItems");
+            System.err.println("Exception when calling DefaultApi#usersIdUserItemsGET");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-android">
+                          <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -1627,27 +1302,27 @@ public class DefaultApiExample {
         String idUser = idUser_example; // String | idUser of the user which items are fetched
         String authorization = authorization_example; // String | Bearer token
         try {
-            array[Item] result = apiInstance.getUsersIdUserItems(idUser, authorization);
+            array[Item] result = apiInstance.usersIdUserItemsGET(idUser, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getUsersIdUserItems");
+            System.err.println("Exception when calling DefaultApi#usersIdUserItemsGET");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-groovy">
+  <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-objc">
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of the user which items are fetched
 String *authorization = authorization_example; // Bearer token
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Your GET endpoint
-[apiInstance getUsersIdUserItemsWith:idUser
+[apiInstance usersIdUserItemsGETWith:idUser
     authorization:authorization
               completionHandler: ^(array[Item] output, NSError* error) {
                             if (output) {
@@ -1660,7 +1335,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-javascript">
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
@@ -1674,14 +1349,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getUsersIdUserItems(idUser, authorization, callback);
+api.usersIdUserItemsGET(idUser, authorization, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-csharp">
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1690,7 +1365,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class getUsersIdUserItemsExample
+    public class usersIdUserItemsGETExample
     {
         public void main()
         {
@@ -1702,12 +1377,12 @@ namespace Example
             try
             {
                 // Your GET endpoint
-                array[Item] result = apiInstance.getUsersIdUserItems(idUser, authorization);
+                array[Item] result = apiInstance.usersIdUserItemsGET(idUser, authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.getUsersIdUserItems: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.usersIdUserItemsGET: " + e.Message );
             }
         }
     }
@@ -1715,7 +1390,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-php">
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1724,15 +1399,15 @@ $idUser = idUser_example; // String | idUser of the user which items are fetched
 $authorization = authorization_example; // String | Bearer token
 
 try {
-    $result = $api_instance->getUsersIdUserItems($idUser, $authorization);
+    $result = $api_instance->usersIdUserItemsGET($idUser, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->getUsersIdUserItems: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->usersIdUserItemsGET: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-perl">
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -1742,15 +1417,15 @@ my $idUser = idUser_example; # String | idUser of the user which items are fetch
 my $authorization = authorization_example; # String | Bearer token
 
 eval { 
-    my $result = $api_instance->getUsersIdUserItems(idUser => $idUser, authorization => $authorization);
+    my $result = $api_instance->usersIdUserItemsGET(idUser => $idUser, authorization => $authorization);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->getUsersIdUserItems: $@\n";
+    warn "Exception when calling DefaultApi->usersIdUserItemsGET: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getUsersIdUserItems-0-python">
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1764,10 +1439,10 @@ authorization = authorization_example # String | Bearer token
 
 try: 
     # Your GET endpoint
-    api_response = api_instance.get_users_id_user_items(idUser, authorization)
+    api_response = api_instance.users_id_user_items_get(idUser, authorization)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->getUsersIdUserItems: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->usersIdUserItemsGET: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1783,7 +1458,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_getUsersIdUserItems_idUser">
+                                      <div id="d2e199_usersIdUserItemsGET_idUser">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -1813,7 +1488,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_getUsersIdUserItems_authorization">
+                                      <div id="d2e199_usersIdUserItemsGET_authorization">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -1841,14 +1516,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getUsersIdUserItems-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-usersIdUserItemsGET-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getUsersIdUserItems-200-schema">
-                                  <div id='responses-getUsersIdUserItems-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-usersIdUserItemsGET-200-schema">
+                                  <div id='responses-usersIdUserItemsGET-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1878,14 +1553,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getUsersIdUserItems-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getUsersIdUserItems-200-schema-200');
+                                        $('#responses-usersIdUserItemsGET-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-usersIdUserItemsGET-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getUsersIdUserItems-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-usersIdUserItemsGET-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -1908,10 +1583,722 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-getUsersLogin">
-                      <article id="api-Default-getUsersLogin-0" data-group="User" data-name="getUsersLogin" data-version="0">
+                    <div id="api-Default-usersIdUserItemsIdItemDELETE">
+                      <article id="api-Default-usersIdUserItemsIdItemDELETE-0" data-group="User" data-name="usersIdUserItemsIdItemDELETE" data-version="0">
                         <div class="pull-left">
-                          <h1>getUsersLogin</h1>
+                          <h1>usersIdUserItemsIdItemDELETE</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Delete an item posted by logged in user</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/users/{idUser}/items/{idItem}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemDELETE-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-usersIdUserItemsIdItemDELETE-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items/{idItem}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String idUser = idUser_example; // String | idUser of the user
+        String idItem = idItem_example; // String | idItem of the user's item
+        String authorization = authorization_example; // String | Bearer token
+        try {
+            apiInstance.usersIdUserItemsIdItemDELETE(idUser, idItem, authorization);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#usersIdUserItemsIdItemDELETE");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String idUser = idUser_example; // String | idUser of the user
+        String idItem = idItem_example; // String | idItem of the user's item
+        String authorization = authorization_example; // String | Bearer token
+        try {
+            apiInstance.usersIdUserItemsIdItemDELETE(idUser, idItem, authorization);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#usersIdUserItemsIdItemDELETE");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of the user
+String *idItem = idItem_example; // idItem of the user's item
+String *authorization = authorization_example; // Bearer token (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance usersIdUserItemsIdItemDELETEWith:idUser
+    idItem:idItem
+    authorization:authorization
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
+
+var api = new BciMarket.DefaultApi()
+var idUser = idUser_example; // {{String}} idUser of the user
+var idItem = idItem_example; // {{String}} idItem of the user's item
+var opts = { 
+  'authorization': authorization_example // {{String}} Bearer token
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.usersIdUserItemsIdItemDELETE(idUser, idItem, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class usersIdUserItemsIdItemDELETEExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var idUser = idUser_example;  // String | idUser of the user
+            var idItem = idItem_example;  // String | idItem of the user's item
+            var authorization = authorization_example;  // String | Bearer token (optional) 
+
+            try
+            {
+                apiInstance.usersIdUserItemsIdItemDELETE(idUser, idItem, authorization);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.usersIdUserItemsIdItemDELETE: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$idUser = idUser_example; // String | idUser of the user
+$idItem = idItem_example; // String | idItem of the user's item
+$authorization = authorization_example; // String | Bearer token
+
+try {
+    $api_instance->usersIdUserItemsIdItemDELETE($idUser, $idItem, $authorization);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->usersIdUserItemsIdItemDELETE: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $idUser = idUser_example; # String | idUser of the user
+my $idItem = idItem_example; # String | idItem of the user's item
+my $authorization = authorization_example; # String | Bearer token
+
+eval { 
+    $api_instance->usersIdUserItemsIdItemDELETE(idUser => $idUser, idItem => $idItem, authorization => $authorization);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->usersIdUserItemsIdItemDELETE: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+idUser = idUser_example # String | idUser of the user
+idItem = idItem_example # String | idItem of the user's item
+authorization = authorization_example # String | Bearer token (optional)
+
+try: 
+    api_instance.users_id_user_items_id_item_delete(idUser, idItem, authorization=authorization)
+except ApiException as e:
+    print("Exception when calling DefaultApi->usersIdUserItemsIdItemDELETE: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">idUser*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_usersIdUserItemsIdItemDELETE_idUser">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          idUser of the user
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">idItem*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_usersIdUserItemsIdItemDELETE_idItem">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          idItem of the user&#x27;s item
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Authorization</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_usersIdUserItemsIdItemDELETE_authorization">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Bearer token
+                                                      </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 401 - Unauthorized </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Not Found </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-usersIdUserItemsIdItemPUT">
+                      <article id="api-Default-usersIdUserItemsIdItemPUT-0" data-group="User" data-name="usersIdUserItemsIdItemPUT" data-version="0">
+                        <div class="pull-left">
+                          <h1>usersIdUserItemsIdItemPUT</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Update the information of an item posted by logged in user</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/users/{idUser}/items/{idItem}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-usersIdUserItemsIdItemPUT-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-usersIdUserItemsIdItemPUT-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
+-H "Accept: application/json"\
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items/{idItem}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String idUser = idUser_example; // String | idUser of the user
+        String idItem = idItem_example; // String | idItem of the user's item
+        String authorization = authorization_example; // String | Bearer token
+        try {
+            Item result = apiInstance.usersIdUserItemsIdItemPUT(idUser, idItem, authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#usersIdUserItemsIdItemPUT");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String idUser = idUser_example; // String | idUser of the user
+        String idItem = idItem_example; // String | idItem of the user's item
+        String authorization = authorization_example; // String | Bearer token
+        try {
+            Item result = apiInstance.usersIdUserItemsIdItemPUT(idUser, idItem, authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#usersIdUserItemsIdItemPUT");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of the user
+String *idItem = idItem_example; // idItem of the user's item
+String *authorization = authorization_example; // Bearer token
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance usersIdUserItemsIdItemPUTWith:idUser
+    idItem:idItem
+    authorization:authorization
+              completionHandler: ^(Item output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
+
+var api = new BciMarket.DefaultApi()
+var idUser = idUser_example; // {{String}} idUser of the user
+var idItem = idItem_example; // {{String}} idItem of the user's item
+var authorization = authorization_example; // {{String}} Bearer token
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.usersIdUserItemsIdItemPUT(idUser, idItem, authorization, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class usersIdUserItemsIdItemPUTExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var idUser = idUser_example;  // String | idUser of the user
+            var idItem = idItem_example;  // String | idItem of the user's item
+            var authorization = authorization_example;  // String | Bearer token
+
+            try
+            {
+                Item result = apiInstance.usersIdUserItemsIdItemPUT(idUser, idItem, authorization);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.usersIdUserItemsIdItemPUT: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$idUser = idUser_example; // String | idUser of the user
+$idItem = idItem_example; // String | idItem of the user's item
+$authorization = authorization_example; // String | Bearer token
+
+try {
+    $result = $api_instance->usersIdUserItemsIdItemPUT($idUser, $idItem, $authorization);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->usersIdUserItemsIdItemPUT: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $idUser = idUser_example; # String | idUser of the user
+my $idItem = idItem_example; # String | idItem of the user's item
+my $authorization = authorization_example; # String | Bearer token
+
+eval { 
+    my $result = $api_instance->usersIdUserItemsIdItemPUT(idUser => $idUser, idItem => $idItem, authorization => $authorization);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->usersIdUserItemsIdItemPUT: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+idUser = idUser_example # String | idUser of the user
+idItem = idItem_example # String | idItem of the user's item
+authorization = authorization_example # String | Bearer token
+
+try: 
+    api_response = api_instance.users_id_user_items_id_item_put(idUser, idItem, authorization)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->usersIdUserItemsIdItemPUT: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">idUser*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_usersIdUserItemsIdItemPUT_idUser">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          idUser of the user
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">idItem*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_usersIdUserItemsIdItemPUT_idItem">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          idItem of the user&#x27;s item
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Authorization*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_usersIdUserItemsIdItemPUT_authorization">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Bearer token
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 202 - Accepted </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-usersIdUserItemsIdItemPUT-202-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-usersIdUserItemsIdItemPUT-202-schema">
+                                  <div id='responses-usersIdUserItemsIdItemPUT-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Accepted",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Item"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-usersIdUserItemsIdItemPUT-202-schema-data').val(stringify(schema));
+                                        var result = $('#responses-usersIdUserItemsIdItemPUT-202-schema-202');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-usersIdUserItemsIdItemPUT-202-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Bad Request </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 401 - Unauthorized </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Not Found </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-usersLoginGET">
+                      <article id="api-Default-usersLoginGET-0" data-group="User" data-name="usersLoginGET" data-version="0">
+                        <div class="pull-left">
+                          <h1>usersLoginGET</h1>
                           <p>Your GET endpoint</p>
                         </div>
                         <div class="pull-right"></div>
@@ -1925,26 +2312,26 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-getUsersLogin-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-getUsersLogin-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-getUsersLogin-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-getUsersLogin-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-getUsersLogin-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-getUsersLogin-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-getUsersLogin-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-getUsersLogin-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-getUsersLogin-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-getUsersLogin-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-getUsersLogin-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-usersLoginGET-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-usersLoginGET-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-usersLoginGET-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersLoginGET-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-usersLoginGET-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-usersLoginGET-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersLoginGET-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-usersLoginGET-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-usersLoginGET-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-usersLoginGET-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-usersLoginGET-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-getUsersLogin-0-curl">
+                          <div class="tab-pane active" id="examples-Default-usersLoginGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://localhost:42010/users/login"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/login"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-getUsersLogin-0-java">
+                          <div class="tab-pane" id="examples-Default-usersLoginGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1960,17 +2347,17 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String authorization = authorization_example; // String | HTTP Basic authentication
         try {
-            inline_response_202 result = apiInstance.getUsersLogin(authorization);
+            inline_response_202 result = apiInstance.usersLoginGET(authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getUsersLogin");
+            System.err.println("Exception when calling DefaultApi#usersLoginGET");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-getUsersLogin-0-android">
+                          <div class="tab-pane" id="examples-Default-usersLoginGET-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -1979,26 +2366,26 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String authorization = authorization_example; // String | HTTP Basic authentication
         try {
-            inline_response_202 result = apiInstance.getUsersLogin(authorization);
+            inline_response_202 result = apiInstance.usersLoginGET(authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getUsersLogin");
+            System.err.println("Exception when calling DefaultApi#usersLoginGET");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-getUsersLogin-0-groovy">
+  <div class="tab-pane" id="examples-Default-usersLoginGET-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-getUsersLogin-0-objc">
+                            <div class="tab-pane" id="examples-Default-usersLoginGET-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // HTTP Basic authentication
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Your GET endpoint
-[apiInstance getUsersLoginWith:authorization
+[apiInstance usersLoginGETWith:authorization
               completionHandler: ^(inline_response_202 output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -2010,7 +2397,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getUsersLogin-0-javascript">
+                            <div class="tab-pane" id="examples-Default-usersLoginGET-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
@@ -2023,14 +2410,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getUsersLogin(authorization, callback);
+api.usersLoginGET(authorization, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-getUsersLogin-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-usersLoginGET-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-getUsersLogin-0-csharp">
+                            <div class="tab-pane" id="examples-Default-usersLoginGET-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2039,7 +2426,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class getUsersLoginExample
+    public class usersLoginGETExample
     {
         public void main()
         {
@@ -2050,12 +2437,12 @@ namespace Example
             try
             {
                 // Your GET endpoint
-                inline_response_202 result = apiInstance.getUsersLogin(authorization);
+                inline_response_202 result = apiInstance.usersLoginGET(authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.getUsersLogin: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.usersLoginGET: " + e.Message );
             }
         }
     }
@@ -2063,7 +2450,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getUsersLogin-0-php">
+                            <div class="tab-pane" id="examples-Default-usersLoginGET-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2071,15 +2458,15 @@ $api_instance = new Swagger\Client\ApiDefaultApi();
 $authorization = authorization_example; // String | HTTP Basic authentication
 
 try {
-    $result = $api_instance->getUsersLogin($authorization);
+    $result = $api_instance->usersLoginGET($authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->getUsersLogin: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->usersLoginGET: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getUsersLogin-0-perl">
+                            <div class="tab-pane" id="examples-Default-usersLoginGET-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -2088,15 +2475,15 @@ my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 my $authorization = authorization_example; # String | HTTP Basic authentication
 
 eval { 
-    my $result = $api_instance->getUsersLogin(authorization => $authorization);
+    my $result = $api_instance->usersLoginGET(authorization => $authorization);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->getUsersLogin: $@\n";
+    warn "Exception when calling DefaultApi->usersLoginGET: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-getUsersLogin-0-python">
+                            <div class="tab-pane" id="examples-Default-usersLoginGET-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -2109,10 +2496,10 @@ authorization = authorization_example # String | HTTP Basic authentication
 
 try: 
     # Your GET endpoint
-    api_response = api_instance.get_users_login(authorization)
+    api_response = api_instance.users_login_get(authorization)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->getUsersLogin: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->usersLoginGET: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -2129,7 +2516,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_getUsersLogin_authorization">
+                                      <div id="d2e199_usersLoginGET_authorization">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -2157,14 +2544,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getUsersLogin-202-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-usersLoginGET-202-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getUsersLogin-202-schema">
-                                  <div id='responses-getUsersLogin-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-usersLoginGET-202-schema">
+                                  <div id='responses-usersLoginGET-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2190,14 +2577,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getUsersLogin-202-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getUsersLogin-202-schema-202');
+                                        $('#responses-usersLoginGET-202-schema-data').val(stringify(schema));
+                                        var result = $('#responses-usersLoginGET-202-schema-202');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getUsersLogin-202-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-usersLoginGET-202-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -2212,360 +2599,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-getUsersUserId">
-                      <article id="api-Default-getUsersUserId-0" data-group="User" data-name="getUsersUserId" data-version="0">
+                    <div id="api-Default-usersPOST">
+                      <article id="api-Default-usersPOST-0" data-group="User" data-name="usersPOST" data-version="0">
                         <div class="pull-left">
-                          <h1>getUsersUserId</h1>
-                          <p>Your GET endpoint</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Get the information of a specific user</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/{idUser}</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-getUsersUserId-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-getUsersUserId-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-getUsersUserId-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-getUsersUserId-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-getUsersUserId-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-getUsersUserId-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-getUsersUserId-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-getUsersUserId-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-getUsersUserId-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-getUsersUserId-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-getUsersUserId-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-getUsersUserId-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"http://localhost:42010/users/{idUser}"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-getUsersUserId-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of a user
-        String authorization = authorization_example; // String | Bearer token
-        try {
-            User result = apiInstance.getUsersUserId(idUser, authorization);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getUsersUserId");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-getUsersUserId-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of a user
-        String authorization = authorization_example; // String | Bearer token
-        try {
-            User result = apiInstance.getUsersUserId(idUser, authorization);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getUsersUserId");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-getUsersUserId-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-getUsersUserId-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of a user
-String *authorization = authorization_example; // Bearer token
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Your GET endpoint
-[apiInstance getUsersUserIdWith:idUser
-    authorization:authorization
-              completionHandler: ^(User output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-getUsersUserId-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
-
-var api = new BciMarket.DefaultApi()
-var idUser = idUser_example; // {{String}} idUser of a user
-var authorization = authorization_example; // {{String}} Bearer token
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.getUsersUserId(idUser, authorization, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-getUsersUserId-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-getUsersUserId-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class getUsersUserIdExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var idUser = idUser_example;  // String | idUser of a user
-            var authorization = authorization_example;  // String | Bearer token
-
-            try
-            {
-                // Your GET endpoint
-                User result = apiInstance.getUsersUserId(idUser, authorization);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.getUsersUserId: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-getUsersUserId-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$idUser = idUser_example; // String | idUser of a user
-$authorization = authorization_example; // String | Bearer token
-
-try {
-    $result = $api_instance->getUsersUserId($idUser, $authorization);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->getUsersUserId: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-getUsersUserId-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $idUser = idUser_example; # String | idUser of a user
-my $authorization = authorization_example; # String | Bearer token
-
-eval { 
-    my $result = $api_instance->getUsersUserId(idUser => $idUser, authorization => $authorization);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->getUsersUserId: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-getUsersUserId-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-idUser = idUser_example # String | idUser of a user
-authorization = authorization_example # String | Bearer token
-
-try: 
-    # Your GET endpoint
-    api_response = api_instance.get_users_user_id(idUser, authorization)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->getUsersUserId: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">idUser*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_getUsersUserId_idUser">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          idUser of a user
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-                            <div class="methodsubtabletitle">Header parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                  <tr><td style="width:150px;">Authorization*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_getUsersUserId_authorization">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          Bearer token
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-getUsersUserId-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getUsersUserId-200-schema">
-                                  <div id='responses-getUsersUserId-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "OK",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/User"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getUsersUserId-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getUsersUserId-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-getUsersUserId-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 401 - Unauthorized </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                            <h3> Status: 404 - Not Found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-postUsers">
-                      <article id="api-Default-postUsers-0" data-group="User" data-name="postUsers" data-version="0">
-                        <div class="pull-left">
-                          <h1>postUsers</h1>
+                          <h1>usersPOST</h1>
                           <p>Register a user</p>
                         </div>
                         <div class="pull-right"></div>
@@ -2579,26 +2616,26 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-postUsers-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-postUsers-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-postUsers-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-postUsers-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-postUsers-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-postUsers-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-postUsers-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-postUsers-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-postUsers-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-postUsers-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-postUsers-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-usersPOST-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-usersPOST-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-usersPOST-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersPOST-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-usersPOST-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-usersPOST-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersPOST-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-usersPOST-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-usersPOST-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-usersPOST-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-usersPOST-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-postUsers-0-curl">
+                          <div class="tab-pane active" id="examples-Default-usersPOST-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Content-Type: application/json"\
-"http://localhost:42010/users"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-postUsers-0-java">
+                          <div class="tab-pane" id="examples-Default-usersPOST-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2614,16 +2651,16 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         User body = ; // User | 
         try {
-            apiInstance.postUsers(body);
+            apiInstance.usersPOST(body);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#postUsers");
+            System.err.println("Exception when calling DefaultApi#usersPOST");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-postUsers-0-android">
+                          <div class="tab-pane" id="examples-Default-usersPOST-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -2632,25 +2669,25 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         User body = ; // User | 
         try {
-            apiInstance.postUsers(body);
+            apiInstance.usersPOST(body);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#postUsers");
+            System.err.println("Exception when calling DefaultApi#usersPOST");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-postUsers-0-groovy">
+  <div class="tab-pane" id="examples-Default-usersPOST-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-postUsers-0-objc">
+                            <div class="tab-pane" id="examples-Default-usersPOST-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">User *body = ; //  (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Register a user
-[apiInstance postUsersWith:body
+[apiInstance usersPOSTWith:body
               completionHandler: ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
@@ -2659,7 +2696,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-postUsers-0-javascript">
+                            <div class="tab-pane" id="examples-Default-usersPOST-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
@@ -2673,14 +2710,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.postUsers(opts, callback);
+api.usersPOST(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-postUsers-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-usersPOST-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-postUsers-0-csharp">
+                            <div class="tab-pane" id="examples-Default-usersPOST-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2689,7 +2726,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class postUsersExample
+    public class usersPOSTExample
     {
         public void main()
         {
@@ -2700,11 +2737,11 @@ namespace Example
             try
             {
                 // Register a user
-                apiInstance.postUsers(body);
+                apiInstance.usersPOST(body);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.postUsers: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.usersPOST: " + e.Message );
             }
         }
     }
@@ -2712,7 +2749,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-postUsers-0-php">
+                            <div class="tab-pane" id="examples-Default-usersPOST-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2720,14 +2757,14 @@ $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // User | 
 
 try {
-    $api_instance->postUsers($body);
+    $api_instance->usersPOST($body);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->postUsers: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->usersPOST: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-postUsers-0-perl">
+                            <div class="tab-pane" id="examples-Default-usersPOST-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -2736,14 +2773,14 @@ my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 my $body = WWW::SwaggerClient::Object::User->new(); # User | 
 
 eval { 
-    $api_instance->postUsers(body => $body);
+    $api_instance->usersPOST(body => $body);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->postUsers: $@\n";
+    warn "Exception when calling DefaultApi->usersPOST: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-postUsers-0-python">
+                            <div class="tab-pane" id="examples-Default-usersPOST-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -2756,9 +2793,9 @@ body =  # User |  (optional)
 
 try: 
     # Register a user
-    api_instance.post_users(body=body)
+    api_instance.users_post(body=body)
 except ApiException as e:
-    print("Exception when calling DefaultApi->postUsers: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->usersPOST: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -2799,12 +2836,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_postUsers_body');
+                                  var result = $('#d2e199_usersPOST_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_postUsers_body"></div>
+                                <div id="d2e199_usersPOST_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -2812,7 +2849,7 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
+                            <h3> Status: 201 - Created </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                             </ul>
@@ -2831,43 +2868,43 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-putUsersIdUserItemsIdItem">
-                      <article id="api-Default-putUsersIdUserItemsIdItem-0" data-group="User" data-name="putUsersIdUserItemsIdItem" data-version="0">
+                    <div id="api-Default-usersUserIdGET">
+                      <article id="api-Default-usersUserIdGET-0" data-group="User" data-name="usersUserIdGET" data-version="0">
                         <div class="pull-left">
-                          <h1>putUsersIdUserItemsIdItem</h1>
-                          <p></p>
+                          <h1>usersUserIdGET</h1>
+                          <p>Your GET endpoint</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Update the information of an item</p>
+                        <p class="marked">Get the information of a specific user</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/users/{idUser}/items/{idItem}</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/{idUser}</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-putUsersIdUserItemsIdItem-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-putUsersIdUserItemsIdItem-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-usersUserIdGET-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-usersUserIdGET-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-usersUserIdGET-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersUserIdGET-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-usersUserIdGET-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-usersUserIdGET-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-usersUserIdGET-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-usersUserIdGET-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-usersUserIdGET-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-usersUserIdGET-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-usersUserIdGET-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-putUsersIdUserItemsIdItem-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
+                          <div class="tab-pane active" id="examples-Default-usersUserIdGET-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://localhost:42010/users/{idUser}/items/{idItem}"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-java">
+                          <div class="tab-pane" id="examples-Default-usersUserIdGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2881,55 +2918,52 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         
         DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of the user
-        String idItem = idItem_example; // String | idItem of the user's item
+        String idUser = idUser_example; // String | idUser of a user
         String authorization = authorization_example; // String | Bearer token
         try {
-            Item result = apiInstance.putUsersIdUserItemsIdItem(idUser, idItem, authorization);
+            User result = apiInstance.usersUserIdGET(idUser, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#putUsersIdUserItemsIdItem");
+            System.err.println("Exception when calling DefaultApi#usersUserIdGET");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-android">
+                          <div class="tab-pane" id="examples-Default-usersUserIdGET-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of the user
-        String idItem = idItem_example; // String | idItem of the user's item
+        String idUser = idUser_example; // String | idUser of a user
         String authorization = authorization_example; // String | Bearer token
         try {
-            Item result = apiInstance.putUsersIdUserItemsIdItem(idUser, idItem, authorization);
+            User result = apiInstance.usersUserIdGET(idUser, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#putUsersIdUserItemsIdItem");
+            System.err.println("Exception when calling DefaultApi#usersUserIdGET");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-groovy">
+  <div class="tab-pane" id="examples-Default-usersUserIdGET-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of the user
-String *idItem = idItem_example; // idItem of the user's item
+                            <div class="tab-pane" id="examples-Default-usersUserIdGET-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of a user
 String *authorization = authorization_example; // Bearer token
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance putUsersIdUserItemsIdItemWith:idUser
-    idItem:idItem
+// Your GET endpoint
+[apiInstance usersUserIdGETWith:idUser
     authorization:authorization
-              completionHandler: ^(Item output, NSError* error) {
+              completionHandler: ^(User output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -2940,12 +2974,11 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-javascript">
+                            <div class="tab-pane" id="examples-Default-usersUserIdGET-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
-var idUser = idUser_example; // {{String}} idUser of the user
-var idItem = idItem_example; // {{String}} idItem of the user's item
+var idUser = idUser_example; // {{String}} idUser of a user
 var authorization = authorization_example; // {{String}} Bearer token
 
 var callback = function(error, data, response) {
@@ -2955,14 +2988,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.putUsersIdUserItemsIdItem(idUser, idItem, authorization, callback);
+api.usersUserIdGET(idUser, authorization, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-usersUserIdGET-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-csharp">
+                            <div class="tab-pane" id="examples-Default-usersUserIdGET-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2971,24 +3004,24 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class putUsersIdUserItemsIdItemExample
+    public class usersUserIdGETExample
     {
         public void main()
         {
 
             var apiInstance = new DefaultApi();
-            var idUser = idUser_example;  // String | idUser of the user
-            var idItem = idItem_example;  // String | idItem of the user's item
+            var idUser = idUser_example;  // String | idUser of a user
             var authorization = authorization_example;  // String | Bearer token
 
             try
             {
-                Item result = apiInstance.putUsersIdUserItemsIdItem(idUser, idItem, authorization);
+                // Your GET endpoint
+                User result = apiInstance.usersUserIdGET(idUser, authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.putUsersIdUserItemsIdItem: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.usersUserIdGET: " + e.Message );
             }
         }
     }
@@ -2996,44 +3029,42 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-php">
+                            <div class="tab-pane" id="examples-Default-usersUserIdGET-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$idUser = idUser_example; // String | idUser of the user
-$idItem = idItem_example; // String | idItem of the user's item
+$idUser = idUser_example; // String | idUser of a user
 $authorization = authorization_example; // String | Bearer token
 
 try {
-    $result = $api_instance->putUsersIdUserItemsIdItem($idUser, $idItem, $authorization);
+    $result = $api_instance->usersUserIdGET($idUser, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->putUsersIdUserItemsIdItem: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->usersUserIdGET: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-perl">
+                            <div class="tab-pane" id="examples-Default-usersUserIdGET-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $idUser = idUser_example; # String | idUser of the user
-my $idItem = idItem_example; # String | idItem of the user's item
+my $idUser = idUser_example; # String | idUser of a user
 my $authorization = authorization_example; # String | Bearer token
 
 eval { 
-    my $result = $api_instance->putUsersIdUserItemsIdItem(idUser => $idUser, idItem => $idItem, authorization => $authorization);
+    my $result = $api_instance->usersUserIdGET(idUser => $idUser, authorization => $authorization);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->putUsersIdUserItemsIdItem: $@\n";
+    warn "Exception when calling DefaultApi->usersUserIdGET: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-putUsersIdUserItemsIdItem-0-python">
+                            <div class="tab-pane" id="examples-Default-usersUserIdGET-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -3042,15 +3073,15 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-idUser = idUser_example # String | idUser of the user
-idItem = idItem_example # String | idItem of the user's item
+idUser = idUser_example # String | idUser of a user
 authorization = authorization_example # String | Bearer token
 
 try: 
-    api_response = api_instance.put_users_id_user_items_id_item(idUser, idItem, authorization)
+    # Your GET endpoint
+    api_response = api_instance.users_user_id_get(idUser, authorization)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->putUsersIdUserItemsIdItem: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->usersUserIdGET: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -3066,7 +3097,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_putUsersIdUserItemsIdItem_idUser">
+                                      <div id="d2e199_usersUserIdGET_idUser">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -3074,29 +3105,7 @@ except ApiException as e:
                                                   </span>
                                   
                                                       <div class="inner description">
-                                                          idUser of the user
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">idItem*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_putUsersIdUserItemsIdItem_idItem">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          idItem of the user&#x27;s item
+                                                          idUser of a user
                                                       </div>
                                               </div>
                                                   <div class="inner required">
@@ -3118,7 +3127,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_putUsersIdUserItemsIdItem_authorization">
+                                      <div id="d2e199_usersUserIdGET_authorization">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -3146,14 +3155,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-putUsersIdUserItemsIdItem-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-usersUserIdGET-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-putUsersIdUserItemsIdItem-200-schema">
-                                  <div id='responses-putUsersIdUserItemsIdItem-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-usersUserIdGET-200-schema">
+                                  <div id='responses-usersUserIdGET-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3161,7 +3170,7 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/Item"
+        "$ref" : "#/components/schemas/User"
       }
     }
   }
@@ -3179,23 +3188,15 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-putUsersIdUserItemsIdItem-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-putUsersIdUserItemsIdItem-200-schema-200');
+                                        $('#responses-usersUserIdGET-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-usersUserIdGET-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-putUsersIdUserItemsIdItem-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-usersUserIdGET-200-schema-data' type='hidden' value=''></input>
                                 </div>
-                            </div>
-
-                            <h3> Status: 400 - Bad Request </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
                             </div>
 
                             <h3> Status: 401 - Unauthorized </h3>
