@@ -1,24 +1,24 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: '1.0'
+  version: '0.2'
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
-  description: 'Building Cloud Integration, spring 2021, graded exercise'
+  description: |-
+    Building Cloud Integration, spring 2021, graded exercise
+    Rankinen Jarno TVT19KMO
 servers:
-  - url: 'http://localhost:42010'
-    description: local development
   - url: 'http://portforward.ipt.oamk.fi:42010'
     description: public deployment
 paths:
   /users:
     post:
       summary: Register a user
-      operationId: post-users
+      operationId: users-POST
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
         '400':
           description: Bad Request
       description: 'Register a new user. '
@@ -50,7 +50,7 @@ paths:
           headers: {}
         '401':
           description: Unauthorized
-      operationId: get-users-login
+      operationId: users-login-GET
       description: Get authentication token from server
       parameters:
         - schema:
@@ -82,7 +82,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
-      operationId: get-users-userId
+      operationId: users-userId-GET
       description: Get the information of a specific user
       parameters:
         - schema:
@@ -115,7 +115,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
-      operationId: get-users-idUser-items
+      operationId: users-idUser-items-GET
       description: List all postings of a user identified by idUser
       parameters:
         - schema:
@@ -140,10 +140,10 @@ paths:
         description: idItem of the user's item
     put:
       summary: ''
-      operationId: put-users-idUser-items-idItem
+      operationId: users-idUser-items-idItem-PUT
       responses:
-        '200':
-          description: OK
+        '202':
+          description: Accepted
           content:
             application/json:
               schema:
@@ -154,7 +154,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
-      description: Update the information of an item
+      description: Update the information of an item posted by logged in user
       parameters:
         - schema:
             type: string
@@ -164,7 +164,7 @@ paths:
           required: true
     delete:
       summary: ''
-      operationId: delete-users-idUser-items-idItem
+      operationId: users-idUser-items-idItem-DELETE
       responses:
         '200':
           description: OK
@@ -178,6 +178,7 @@ paths:
           in: header
           name: Authorization
           description: Bearer token
+      description: Delete an item posted by logged in user
   /items:
     get:
       summary: Your GET endpoint
@@ -192,8 +193,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/Item'
         '404':
-          description: Not Found
-      operationId: get-items
+          description: No items matching parameters
+      operationId: items-GET
       parameters:
         - schema:
             type: string
@@ -292,5 +293,5 @@ components:
         canShip:
           type: boolean
           description: Whether the seller is willing to ship the item
-        user:
-          $ref: '#/components/schemas/User'
+        idUser:
+          type: integer
