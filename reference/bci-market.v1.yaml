@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: '0.3'
+  version: '0.4'
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -39,7 +39,7 @@ paths:
     parameters: []
   /users/login:
     get:
-      summary: Your GET endpoint
+      summary: Authenticate a user to the API
       tags: []
       responses:
         '202':
@@ -81,7 +81,7 @@ paths:
         required: true
         description: idUser of a user
     get:
-      summary: Your GET endpoint
+      summary: Show user information
       tags: []
       responses:
         '200':
@@ -120,7 +120,7 @@ paths:
         required: true
         description: idUser of the user which items are fetched
     get:
-      summary: Your GET endpoint
+      summary: Show a users posted items
       tags: []
       responses:
         '200':
@@ -167,7 +167,7 @@ paths:
         required: true
         description: idItem of the user's item
     put:
-      summary: ''
+      summary: Modify or delete an item
       operationId: users-idUser-items-idItem-PUT
       responses:
         '202':
@@ -233,7 +233,7 @@ paths:
       description: Delete an item posted by logged in user
   /items:
     get:
-      summary: Your GET endpoint
+      summary: List items for sale
       tags: []
       responses:
         '200':
@@ -359,3 +359,4 @@ components:
           type: string
         message:
           type: string
+      description: A status message with more details about success or failure of a request
