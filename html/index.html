@@ -758,7 +758,8 @@
     "message" : {
       "type" : "string"
     }
-  }
+  },
+  "description" : "A status message with more details about success or failure of a request"
 };
             defs["User"] = {
   "title" : "User",
@@ -870,7 +871,7 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 0.3</div>
+              <div class="app-desc">Version: 0.4</div>
             <hr>
             <div>Building Cloud Integration, spring 2021, graded exercise
 Rankinen Jarno TVT19KMO</div>
@@ -883,7 +884,7 @@ Rankinen Jarno TVT19KMO</div>
                       <article id="api-Default-itemsGET-0" data-group="User" data-name="itemsGET" data-version="0">
                         <div class="pull-left">
                           <h1>itemsGET</h1>
-                          <p>Your GET endpoint</p>
+                          <p>List items for sale</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -974,7 +975,7 @@ Integer *date = 56; // List items posted on date (UNIX epoch) (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-// Your GET endpoint
+// List items for sale
 [apiInstance itemsGETWith:category
     location:location
     date:date
@@ -1033,7 +1034,7 @@ namespace Example
 
             try
             {
-                // Your GET endpoint
+                // List items for sale
                 array[Item] result = apiInstance.itemsGET(category, location, date);
                 Debug.WriteLine(result);
             }
@@ -1098,7 +1099,7 @@ location = location_example # String | List items by location (optional)
 date = 56 # Integer | List items posted on date (UNIX epoch) (optional)
 
 try: 
-    # Your GET endpoint
+    # List items for sale
     api_response = api_instance.items_get(category=category, location=location, date=date)
     pprint(api_response)
 except ApiException as e:
@@ -1285,7 +1286,7 @@ except ApiException as e:
                       <article id="api-Default-usersIdUserItemsGET-0" data-group="User" data-name="usersIdUserItemsGET" data-version="0">
                         <div class="pull-left">
                           <h1>usersIdUserItemsGET</h1>
-                          <p>Your GET endpoint</p>
+                          <p>Show a users posted items</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -1373,7 +1374,7 @@ String *authorization = authorization_example; // Bearer token
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-// Your GET endpoint
+// Show a users posted items
 [apiInstance usersIdUserItemsGETWith:idUser
     authorization:authorization
               completionHandler: ^(array[Item] output, NSError* error) {
@@ -1428,7 +1429,7 @@ namespace Example
 
             try
             {
-                // Your GET endpoint
+                // Show a users posted items
                 array[Item] result = apiInstance.usersIdUserItemsGET(idUser, authorization);
                 Debug.WriteLine(result);
             }
@@ -1490,7 +1491,7 @@ idUser = idUser_example # String | idUser of the user which items are fetched
 authorization = authorization_example # String | Bearer token
 
 try: 
-    # Your GET endpoint
+    # Show a users posted items
     api_response = api_instance.users_id_user_items_get(idUser, authorization)
     pprint(api_response)
 except ApiException as e:
@@ -2175,7 +2176,7 @@ except ApiException as e:
                       <article id="api-Default-usersIdUserItemsIdItemPUT-0" data-group="User" data-name="usersIdUserItemsIdItemPUT" data-version="0">
                         <div class="pull-left">
                           <h1>usersIdUserItemsIdItemPUT</h1>
-                          <p></p>
+                          <p>Modify or delete an item</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -2266,6 +2267,7 @@ String *authorization = authorization_example; // Bearer token
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
+// Modify or delete an item
 [apiInstance usersIdUserItemsIdItemPUTWith:idUser
     idItem:idItem
     authorization:authorization
@@ -2323,6 +2325,7 @@ namespace Example
 
             try
             {
+                // Modify or delete an item
                 Item result = apiInstance.usersIdUserItemsIdItemPUT(idUser, idItem, authorization);
                 Debug.WriteLine(result);
             }
@@ -2387,6 +2390,7 @@ idItem = idItem_example # String | idItem of the user's item
 authorization = authorization_example # String | Bearer token
 
 try: 
+    # Modify or delete an item
     api_response = api_instance.users_id_user_items_id_item_put(idUser, idItem, authorization)
     pprint(api_response)
 except ApiException as e:
@@ -2681,7 +2685,7 @@ except ApiException as e:
                       <article id="api-Default-usersLoginGET-0" data-group="User" data-name="usersLoginGET" data-version="0">
                         <div class="pull-left">
                           <h1>usersLoginGET</h1>
-                          <p>Your GET endpoint</p>
+                          <p>Authenticate a user to the API</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -2766,7 +2770,7 @@ public class DefaultApiExample {
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-// Your GET endpoint
+// Authenticate a user to the API
 [apiInstance usersLoginGETWith:authorization
               completionHandler: ^(inline_response_202 output, NSError* error) {
                             if (output) {
@@ -2818,7 +2822,7 @@ namespace Example
 
             try
             {
-                // Your GET endpoint
+                // Authenticate a user to the API
                 inline_response_202 result = apiInstance.usersLoginGET(authorization);
                 Debug.WriteLine(result);
             }
@@ -2877,7 +2881,7 @@ api_instance = swagger_client.DefaultApi()
 authorization = authorization_example # String | HTTP Basic authentication
 
 try: 
-    # Your GET endpoint
+    # Authenticate a user to the API
     api_response = api_instance.users_login_get(authorization)
     pprint(api_response)
 except ApiException as e:
@@ -3384,7 +3388,7 @@ except ApiException as e:
                       <article id="api-Default-usersUserIdGET-0" data-group="User" data-name="usersUserIdGET" data-version="0">
                         <div class="pull-left">
                           <h1>usersUserIdGET</h1>
-                          <p>Your GET endpoint</p>
+                          <p>Show user information</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -3472,7 +3476,7 @@ String *authorization = authorization_example; // Bearer token
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-// Your GET endpoint
+// Show user information
 [apiInstance usersUserIdGETWith:idUser
     authorization:authorization
               completionHandler: ^(User output, NSError* error) {
@@ -3527,7 +3531,7 @@ namespace Example
 
             try
             {
-                // Your GET endpoint
+                // Show user information
                 User result = apiInstance.usersUserIdGET(idUser, authorization);
                 Debug.WriteLine(result);
             }
@@ -3589,7 +3593,7 @@ idUser = idUser_example # String | idUser of a user
 authorization = authorization_example # String | Bearer token
 
 try: 
-    # Your GET endpoint
+    # Show user information
     api_response = api_instance.users_user_id_get(idUser, authorization)
     pprint(api_response)
 except ApiException as e:
