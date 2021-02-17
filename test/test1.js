@@ -7,8 +7,10 @@ chai.use(require('chai-json-schema-ajv'))
 const testURL = 'http://localhost:42010'
 const userInfoSchema = require('../schemas/userInfoSchema.json')
 const tokenResponseSchema = require('../schemas/tokenResponseSchema.json')
+const itemSchema = require('../schemas/itemSchema.json')
 const secrets = require('./secrets.json')
 const authHeader = Buffer.from(`olli.ostaja@posti.com:${secrets.password}`, 'utf-8').toString('base64')
+var authToken = ''
 
 
 
@@ -29,6 +31,7 @@ describe('Response tests', function() {
                 .then(response => {
                 expect(response).to.have.status(202)
                 expect(response.body).to.be.jsonSchema(tokenResponseSchema)
+                authToken = response.body.token
             })
             .catch(error => {
                 throw error
@@ -44,6 +47,21 @@ describe('Response tests', function() {
             .then(response => {
                 expect(response).to.have.status(200)
                 expect(response.body).to.be.jsonSchema(userInfoSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+    })
+
+    describe('Test item listing', function() {
+        it('should return an array "Item" JSON objects', async function() {
+            // Lähetetään http-pyyntö
+            await chai.request(testURL)
+            .get('/items')
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body).to.be.jsonSchema(itemSchema)
             })
             .catch(error => {
                 throw error
