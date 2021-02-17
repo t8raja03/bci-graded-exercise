@@ -44,12 +44,22 @@ describe('Response tests', function() {
             // Lähetetään http-pyyntö
             await chai.request(testURL)
             .get('/users/0')
+            .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(200)
                 expect(response.body).to.be.jsonSchema(userInfoSchema)
             })
             .catch(error => {
                 throw error
+            })
+        })
+        it('should return 401 for other users\' info', async function() {
+            await chai.request(testURL)
+            .get('/users/1')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(401)
+                expect(response).to.be.json
             })
         })
     })

@@ -233,15 +233,19 @@ app.get('/items', (req, res) => {
 
 
 
-let serverInstance = null
+let serverInstance = null       // Tähän muuttujaan tallenetaan app.listen()
+                                // palauttama objekti
 
+// näihin funktioihin päästään käsiksi muista tiedostoista,                                
 module.exports = {
-    start: () => {    
+    start: () => {
+        // rajapinnan käynnistys:
         serverInstance = app.listen(listenPort, () => {
             // console.log(`BCI-market API listening at ${baseURL}`)
         })
     },
     close: () => {
+        // rajapinnan lopetus:
         serverInstance.close()
     }
 }
