@@ -190,27 +190,43 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
 
 
 // Käyttäjän _omien_ tietojen katselu
-// TÄSTÄ PUUTTUU VIELÄ VARMISTUS, ETTEI VOI KATSOA MUIDEN TIETOJA
-app.get('/users/:id', (req, res) => {
+app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+
     // Tarkistetaan ensin, onko käyttäjä olemassa   
     user = users.find( ({idUser}) => idUser == req.params.id)
-    if (user != undefined) {    // jos on olemassa
-        res.status(200)
-        res.json(user)
+
+    // Haetaan idUser auth. tokenista
+    tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    idUser = decodedToken.user.idUser                   // otetaan idUser datasta
+
+    if (user == undefined) {    // jos ei ole olemassa
+        statusCode = 404
+        res.status(statusCode)
+        res.json({
+            "status": statusCode,
+            "message": `User ${req.params.id} not found`
+        })
+        return
+    }
+    else if (idUser != req.params.id) {     // jos yrittää katsoa muiden käyttäjien
+        statusCode = 401                    // tietoja
+        res.status(statusCode)
+        res.json({
+            "status": statusCode,
+            "message": `You are only authorized to view your own user information`
+        })
         return
     }
 
-    // Jos ei ole olemassa
-    statusCode = 404
-    res.status(statusCode)
-    res.json({
-        "status": statusCode,
-        "message": `User ${req.params.id} not found`
-    })
+    // Jos käyttäjä on olemassa ja katsoo omia tietojaan
+    res.status(200)
+    res.json(user)
 })
 
 
 // Kaikkien myytävien listaus
+// TÄSTÄ PUUTTUU HAKUEHTOJEN TOTEUTUS
 app.get('/items', (req, res) => {
     res.json(items)
 })
