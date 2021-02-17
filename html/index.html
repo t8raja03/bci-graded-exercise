@@ -692,7 +692,7 @@
             defs["inline_response_202"] = {
   "type" : "object",
   "properties" : {
-    "\"token\"" : {
+    "token" : {
       "type" : "string",
       "description" : "Java Web Token for authentication"
     },
@@ -802,7 +802,7 @@
   "description" : "User of bci-market",
   "x-examples" : {
     "example-1 (password MyPassWord4321)" : {
-      "idUser" : 243546,
+      "idUser" : 0,
       "firstName" : "Olli",
       "lastName" : "Ostaja",
       "email" : "olli.ostaja@posti.com",
@@ -812,7 +812,7 @@
       "password" : "$2y$10$9nlCG7OwYW9QqE5/Ofd/UeUvvIvArY22BjM7SphFuaXhJ4QYw42je"
     },
     "example-2 (password salasana1234)" : {
-      "idUser" : 132435,
+      "idUser" : 1,
       "firstName" : "Myy",
       "lastName" : "Myyjätär",
       "email" : "myy@myynti.net",
@@ -917,7 +917,7 @@ Rankinen Jarno TVT19KMO</div>
                           <div class="tab-pane active" id="examples-Default-itemsGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/items?category=&location=&date="</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/items?category=&location=&date="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemsGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1319,7 +1319,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersIdUserItemsGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/{idUser}/items"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1753,7 +1753,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersIdUserItemsIdItemDELETE-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items/{idItem}"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/{idUser}/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2209,7 +2209,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersIdUserItemsIdItemPUT-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items/{idItem}"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/{idUser}/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2718,7 +2718,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersLoginGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/login"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/login"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersLoginGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2936,6 +2936,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-usersLoginGET-202-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-usersLoginGET-202-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -2949,6 +2952,14 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/inline_response_202"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "token" : "string",
+            "idUser" : 0
+          }
+        }
       }
     }
   }
@@ -2974,6 +2985,9 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-usersLoginGET-202-schema-data' type='hidden' value=''></input>
+                                </div>
+                                  <div class="tab-pane" id="responses-usersLoginGET-202-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;token&quot;:&quot;string&quot;,&quot;idUser&quot;:0}</code></pre>
                                 </div>
                             </div>
 
@@ -3063,7 +3077,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersPOST-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3421,7 +3435,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersUserIdGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/{idUser}"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/{idUser}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersUserIdGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
