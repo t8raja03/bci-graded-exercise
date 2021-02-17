@@ -1,4 +1,4 @@
-// requirements
+/************** Requirements *******************/
 const express = require('express')
 const Ajv = require('ajv').default
 const bodyParser = require('body-parser')
@@ -12,7 +12,7 @@ const jwtSecretKey = require('./secrets.json')
 const createUserJsonSchema = require('./schemas/createUserSchema.json') // Käyttäjän luomiseen käytettävä schema
 
 
-// variables
+/**************** Variables *********************/
 const listenPort = 42010
 const baseURL = `http://portforward.ipt.oamk.fi:${listenPort}`
 let options = {}    // JWT options
@@ -20,7 +20,7 @@ let options = {}    // JWT options
 
 
 
-// data
+/**************** Data **************************/
 
 users = [
     {
@@ -74,7 +74,7 @@ items = [
 
 
 
-// Middlewaret
+/************************ Middlewaret *******************************/
   
 const app = express()
 app.use(express.json())
@@ -121,14 +121,18 @@ passport.use(new JwtStrategy(options, function(jwt_payload, done) {
 
 
 
-// Reitit::
+/************************  Reitit: *****************************/
 
 app.get('/', (req, res) => {
-    res.json('BCI Graded Exercise')
+    res.json({
+        app: 'BCI Graded Exercise',
+        author: 'Rankinen Jarno TVT19KMO'
+    })
 })
 
 
-
+// Uuden käyttäjän luominen
+// TÄSTÄ PUUTTUU VIELÄ VARSINAINEN KÄYTTÄJÄN LUOMINEN
 app.post('/users', (req, res) => {
     
     const ajv = new Ajv()                               // Käytetään ajv:ta varmistamaan
@@ -152,13 +156,15 @@ app.post('/users', (req, res) => {
 })
 
 
-
+// Palvelimelle kirjautuminen, ts. tokenin hakeminen
 app.get('/users/login', passport.authenticate('basic', { session: false }),
         (req, res) => {
 
+            // Haetaan ensin käyttäjän idUser sähköpostiosoitteen perusteella
             userIndex = users.findIndex( ({email}) => email === req.user.email)
             idUser = users[userIndex].idUser
 
+            // Muodostetaan token
             const body = {
                 email: req.user.email,
                 idUser: idUser
@@ -174,6 +180,7 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
 
             const tkn = jwt.sign(payload, jwtSecretKey.key, options)
 
+            // Vastauksena token ja käyttäjän idUser
             res.status(202)
             return res.json({ 
                 "token": tkn,
@@ -182,26 +189,28 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
         })
 
 
-
+// Käyttäjän _omien_ tietojen katselu
+// TÄSTÄ PUUTTUU VIELÄ VARMISTUS, ETTEI VOI KATSOA MUIDEN TIETOJA
 app.get('/users/:id', (req, res) => {
-    
+    // Tarkistetaan ensin, onko käyttäjä olemassa   
     user = users.find( ({idUser}) => idUser == req.params.id)
-    if (user != undefined) {
+    if (user != undefined) {    // jos on olemassa
         res.status(200)
         res.json(user)
         return
     }
 
+    // Jos ei ole olemassa
     statusCode = 404
     res.status(statusCode)
     res.json({
-        "status": statusCode,                       // vastataan lyhyellä
+        "status": statusCode,
         "message": `User ${req.params.id} not found`
     })
 })
 
 
-
+// Kaikkien myytävien listaus
 app.get('/items', (req, res) => {
     res.json(items)
 })
