@@ -1,0 +1,107 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "idUser": 243546,
+            "firstName": "Olli",
+            "lastName": "Ostaja",
+            "email": "olli.ostaja@posti.com",
+            "dateCreated": 1613413844,
+            "dateModified": 1613413844,
+            "tel": "+35881234567",
+            "password": "$2y$10$9nlCG7OwYW9QqE5/Ofd/UeUvvIvArY22BjM7SphFuaXhJ4QYw42je"
+        }
+    ],
+    "required": [
+        "email",
+        "password"
+    ],
+    "properties": {
+        "idUser": {
+            "$id": "#/properties/idUser",
+            "type": "integer",
+            "title": "The idUser schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                243546
+            ]
+        },
+        "firstName": {
+            "$id": "#/properties/firstName",
+            "type": "string",
+            "title": "The firstName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Olli"
+            ]
+        },
+        "lastName": {
+            "$id": "#/properties/lastName",
+            "type": "string",
+            "title": "The lastName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Ostaja"
+            ]
+        },
+        "email": {
+            "$id": "#/properties/email",
+            "type": "string",
+            "title": "The email schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "olli.ostaja@posti.com"
+            ]
+        },
+        "dateCreated": {
+            "$id": "#/properties/dateCreated",
+            "type": "integer",
+            "title": "The dateCreated schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                1613413844
+            ]
+        },
+        "dateModified": {
+            "$id": "#/properties/dateModified",
+            "type": "integer",
+            "title": "The dateModified schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                1613413844
+            ]
+        },
+        "tel": {
+            "$id": "#/properties/tel",
+            "type": "string",
+            "title": "The tel schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "+35881234567"
+            ]
+        },
+        "password": {
+            "$id": "#/properties/password",
+            "type": "string",
+            "title": "The password schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "$2y$10$9nlCG7OwYW9QqE5/Ofd/UeUvvIvArY22BjM7SphFuaXhJ4QYw42je"
+            ]
+        }
+    },
+    "additionalProperties": false
+}
