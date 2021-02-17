@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "tokenResponseSchema",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "token": "string",
+            "idUser": 0
+        }
+    ],
+    "required": [
+        "token",
+        "idUser"
+    ],
+    "properties": {
+        "token": {
+            "$id": "#/properties/token",
+            "type": "string",
+            "title": "The token schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "string"
+            ]
+        },
+        "idUser": {
+            "$id": "#/properties/idUser",
+            "type": "integer",
+            "title": "The idUser schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                0
+            ]
+        }
+    },
+    "additionalProperties": false
+}
