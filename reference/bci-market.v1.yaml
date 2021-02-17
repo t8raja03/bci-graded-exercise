@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: '0.4.1'
+  version: 0.4.1
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -49,12 +49,17 @@ paths:
               schema:
                 type: object
                 properties:
-                  '"token"':
+                  token:
                     type: string
                     description: Java Web Token for authentication
                   idUser:
                     type: integer
                     description: idUser of the logged in user
+              examples:
+                example-1:
+                  value:
+                    token: string
+                    idUser: 0
           headers: {}
         '401':
           description: Unauthorized
@@ -276,7 +281,7 @@ components:
       type: object
       x-examples:
         example-1 (password MyPassWord4321):
-          idUser: 243546
+          idUser: 0
           firstName: Olli
           lastName: Ostaja
           email: olli.ostaja@posti.com
@@ -285,7 +290,7 @@ components:
           tel: '+35881234567'
           password: $2y$10$9nlCG7OwYW9QqE5/Ofd/UeUvvIvArY22BjM7SphFuaXhJ4QYw42je
         example-2 (password salasana1234):
-          idUser: 132435
+          idUser: 1
           firstName: Myy
           lastName: Myyjätär
           email: myy@myynti.net
