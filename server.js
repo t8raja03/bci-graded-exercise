@@ -2,7 +2,7 @@
 const express = require('express')
 const Ajv = require('ajv').default
 const bodyParser = require('body-parser')
-const userJsonSchema = require('./schemas/createUserSchema.json')
+const createUserJsonSchema = require('./schemas/createUserSchema.json') // Käyttäjän luomiseen käytettävä schema
 
 const app = express()
 app.use(bodyParser.json())
@@ -23,22 +23,24 @@ app.get('/', (req, res) => {
 
 app.post('/users', (req, res) => {
     
-    const ajv = new Ajv()
-    const validate = ajv.compile(userJsonSchema)
-    const valid = validate(req.body)
-    
-    if (!valid) {
-        console.log(validate.errors)
-        res.status(400)
-        res.json(validate.errors)
+    const ajv = new Ajv()                               // Käytetään ajv:ta varmistamaan
+    const validate = ajv.compile(createUserJsonSchema)  // pyynnön bodyn oikea muoto
+    const valid = validate(req.body)    
+
+    if (!valid) {                                       // Jos pyynnön body on muotoiltu
+        console.log(validate.errors)                    // väärin, lähetetään status 400
+        res.status(400)                                 // ja AJV:n virheviestips 
+        res.json(validate.errors)                       // vastauksena
         return
     }
     
-    res.status(201)
-    res.json({
-        "status": 201,
-        "message": "User registered successfully"
+    statusCode = 201
+    res.status(statusCode)                          // Jos pyyntö onnistuu,
+    res.json({                                      // status = 201 ja
+        "status": statusCode,                       // vastataan lyhyellä
+        "message": "User registered successfully"   // JSON-viestillä.
     })
+    
 })
 
 
