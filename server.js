@@ -45,7 +45,32 @@ users = [
     }
 ]
 
-items = []
+items = [
+    {
+        "idItem": 0,
+        "title": "Opel Corsa, good condition",
+        "description": "Opel Corsa m.y. 1998, must be inspected until the end of the month",
+        "category": "Cars",
+        "location": "Rovaniemi",
+        "askingPrice": 200,
+        "datePosted": 1613592071,
+        "dateModified": 1613592071,
+        "canShip": false,
+        "idUser": 1
+      },
+      {
+        "idItem": 1,
+        "title": "A painting",
+        "description": "A beatiful painting of the ocean floor",
+        "category": "Art",
+        "location": "Strasbourg",
+        "askingPrice": 2000,
+        "datePosted": 1613593071,
+        "dateModified": 1613594071,
+        "canShip": false,
+        "idUser": 0
+      }
+]
 
 
 
@@ -173,6 +198,12 @@ app.get('/users/:id', (req, res) => {
         "status": statusCode,                       // vastataan lyhyellä
         "message": `User ${req.params.id} not found`
     })
+})
+
+
+
+app.get('/items', (req, res) => {
+    res.json(items)
 })
 
 

@@ -7,7 +7,7 @@ chai.use(require('chai-json-schema-ajv'))
 const testURL = 'http://localhost:42010'
 const userInfoSchema = require('../schemas/userInfoSchema.json')
 const tokenResponseSchema = require('../schemas/tokenResponseSchema.json')
-const itemSchema = require('../schemas/itemSchema.json')
+const itemListSchema = require('../schemas/itemListSchema.json')
 const secrets = require('./secrets.json')
 const authHeader = Buffer.from(`olli.ostaja@posti.com:${secrets.password}`, 'utf-8').toString('base64')
 var authToken = ''
@@ -55,13 +55,13 @@ describe('Response tests', function() {
     })
 
     describe('Test item listing', function() {
-        it('should return an array "Item" JSON objects', async function() {
+        it('should return an array of "Item" JSON objects', async function() {
             // Lähetetään http-pyyntö
             await chai.request(testURL)
             .get('/items')
             .then(response => {
                 expect(response).to.have.status(200)
-                expect(response.body).to.be.jsonSchema(itemSchema)
+                expect(response.body).to.be.jsonSchema(itemListSchema)
             })
             .catch(error => {
                 throw error
