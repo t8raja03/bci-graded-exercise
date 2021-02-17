@@ -62,6 +62,24 @@ describe('Response tests', function() {
                 expect(response).to.be.json
             })
         })
+        it('should return an array of user\'s own postings', async function() {
+            await chai.request(testURL)
+            .get('/users/0/items')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body).to.be.jsonSchema(itemListSchema)
+            })
+        })
+        it('should return 401 for other users\' item listing', async function() {
+            await chai.request(testURL)
+            .get('/users/1')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(401)
+                expect(response).to.be.json
+            })
+        })
     })
 
     describe('Test item listing', function() {

@@ -257,7 +257,6 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
 
     // Jos käyttäjä on olemassa ja katsoo omia tietojaan
     userItems = items.filter( ({idUser}) => idUser == req.params.id)
-    console.log(userItems)
 
     res.status(200)
     res.json(userItems)
