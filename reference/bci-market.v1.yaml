@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: '0.4'
+  version: '0.4.1'
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -275,15 +275,16 @@ components:
       title: User
       type: object
       x-examples:
-        example-1:
-          id: 243546
+        example-1 (password MyPassWord4321):
+          idUser: 243546
           firstName: Olli
           lastName: Ostaja
           email: olli.ostaja@posti.com
           dateCreated: 1613413844
           dateModified: 1613413844
           tel: '+35881234567'
-        example-2:
+          password: $2y$10$9nlCG7OwYW9QqE5/Ofd/UeUvvIvArY22BjM7SphFuaXhJ4QYw42je
+        example-2 (password salasana1234):
           idUser: 132435
           firstName: Myy
           lastName: Myyjätär
@@ -291,6 +292,7 @@ components:
           dateCreated: 1613413844
           dateModified: 1613500255
           tel: '0505556677'
+          password: $2y$10$ZQg5T28.f0/oirjuInEZlefrBVdClfzlan9BqCvoUmaQXITzMExSC
       description: User of bci-market
       properties:
         idUser:
@@ -317,6 +319,8 @@ components:
         password:
           type: string
           description: password of the user (hash)
+      required:
+        - email
     Item:
       title: Item
       type: object
