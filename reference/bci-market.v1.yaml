@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: 0.4.1
+  version: '0.4.1'
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
