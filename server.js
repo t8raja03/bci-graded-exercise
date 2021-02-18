@@ -10,6 +10,7 @@ const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 const jwtSecretKey = require('./secrets.json')
 const createUserJsonSchema = require('./schemas/createUserSchema.json') // Käyttäjän luomiseen käytettävä schema
+const itemSchema = require('./schemas/itemSchema.json')
 
 
 /**************** Variables *********************/
@@ -421,6 +422,52 @@ app.get('/items', (req, res) => {
         res.status(200)
         res.json(itemsList)
     })
+
+app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const ajv = new Ajv()                               // Käytetään ajv:ta varmistamaan
+    const validate = ajv.compile(itemSchema)            // pyynnön bodyn oikea muoto
+    const valid = validate(req.body)    
+
+    if (!valid) {                                       // Jos pyynnön body on muotoiltu
+        //console.log(validate.errors)                  // väärin, lähetetään status 400
+        statusCode = 400
+        res.status(statusCode).json(statusMessage(statusCode, 'Invalid request'))
+        return
+    }
+
+    // Date().valueOf() palauttaa millisekunteja UNIX epochista,
+    // joten jotta saadaan varsinainen UNIX epoch-aika, täytyy
+    // jakaa 1000 ja pyöristää alaspäin
+    var today = new Date().valueOf()
+    epoch = Math.floor(today / 1000)
+    
+    // Haetaan idUser auth. tokenista
+    tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    idUser = decodedToken.user.idUser                   // otetaan idUser datasta
+
+    // Luodaan uusi item-objekti
+    var newItem = {
+        idItem: items.length,
+        title: req.body.title,
+        description: req.body.description,
+        category: req.body.category,
+        location: req.body.location,
+        askingPrice: Number(req.body.askingPrice),
+        datePosted: epoch,
+        dateModified: epoch,
+        canShip: Boolean(req.body.canShip),
+        idUser: idUser
+    }
+    
+    items.push(newItem)     // Lisätään newUser users-arrayhin
+    
+    // Jos pyyntö onnistuu, status = 201
+    statusCode = 201
+    res.status(statusCode)
+    .json(statusMessage(statusCode, 'Item posted succesfully'))
+    // })
+})
 
 
 app.use(jsonServerError)
