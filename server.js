@@ -225,9 +225,15 @@ app.get('/', (req, res) => {
     })
 })
 
+/********************
+ * TESTAUSTA VARTEN * 
+ * käyttäjien listaus*
+ ********************/
+app.get('/users', (req, res) => {
+    res.json(users)
+})
 
 // Uuden käyttäjän luominen
-// TÄSTÄ PUUTTUU VIELÄ VARSINAINEN KÄYTTÄJÄN LUOMINEN
 app.post('/users', (req, res) => {
     
     const ajv = new Ajv()                               // Käytetään ajv:ta varmistamaan
@@ -235,11 +241,44 @@ app.post('/users', (req, res) => {
     const valid = validate(req.body)    
 
     if (!valid) {                                       // Jos pyynnön body on muotoiltu
-        console.log(validate.errors)                    // väärin, lähetetään status 400
-        res.status(400)                                 // ja AJV:n virheviestips 
-        res.json(validate.errors)                       // vastauksena
+        //console.log(validate.errors)                  // väärin, lähetetään status 400
+        statusCode = 400
+        res.status(statusCode)                          // ja AJV:n virheviesti 
+        res.json({                                      // vastauksena
+            status: statusCode,
+            message: "Invalid request"
+        })
         return
     }
+
+    // Date().valueOf() palauttaa millisekunteja UNIX epochista,
+    // joten jotta saadaan varsinainen UNIX epoch-aika, täytyy
+    // jakaa 1000 ja pyöristää alaspäin
+    var today = new Date().valueOf()
+    epoch = Math.floor(today / 1000)    
+
+    // Luodaan uusi user-objekti johon esitäytetään pakolliset arvot
+    var newUser = {
+        id: users.length,
+        firstName: '',
+        lastName: '',
+        email: req.body.email,
+        dateCreated: epoch,
+        dateModified: epoch,
+        tel: '',
+        password: ''
+    }
+
+    // Luetaan muut kentät pyynnöstä, jos ne on määritelty
+    if (req.body.firstName != undefined) newUser.firstName = req.body.firstName
+    if (req.body.lastName != undefined) newUser.lastName = req.body.lastName
+    if (req.body.tel != undefined) newUser.tel = req.body.tel
+
+    // Salasanan hash ja lisäys newUseriin
+    userPassword = bcrypt.hashSync(req.body.password)
+    newUser.password = userPassword
+    
+    users.push(newUser)     // Lisätään newUser users-arrayhin
     
     statusCode = 201
     res.status(statusCode)                          // Jos pyyntö onnistuu,
@@ -270,7 +309,7 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
             }
 
             const options = {
-                expiresIn: '5min'
+                expiresIn: '8h'
             }
 
             const tkn = jwt.sign(payload, jwtSecretKey.key, options)
@@ -367,17 +406,14 @@ app.get('/items', (req, res) => {
     // lähde: https://holycoders.com/javscript-copy-array/
     itemsList = [...items]
 
-        // Suodatetaan itemsListiä parametrien mukaan:
-        // Jos query-parametrina on category:
-        if(req.query.category != undefined) {
+        // Suodatetaan itemsListiä parametrien mukaan:        
+        if(req.query.category != undefined) {   // Jos query-parametrina on category:
             itemsList = itemsList.filter( ({category}) => category === req.query.category)
-        }
-        // Jos location:
-        if(req.query.location != undefined) {
+        }        
+        if(req.query.location != undefined) {   // Jos location:
             itemsList = itemsList.filter( ({location}) => location === req.query.location)
-        }
-        // Jos date:
-        if(req.query.date != undefined) {
+        }        
+        if(req.query.date != undefined) {       // Jos date:
             var qDay = epochToDate(req.query.date)  // Pyynnön päivämäärä
             // suodatetaan pyynnön päivämäärän perusteella
             itemsList = itemsList.filter( ({datePosted}) => epochToDate(datePosted) === qDay)
