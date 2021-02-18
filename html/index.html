@@ -746,20 +746,40 @@
       "type" : "integer"
     }
   },
-  "description" : "Item for sale"
+  "description" : "Item for sale",
+  "x-examples" : {
+    "example-1" : {
+      "idItem" : 0,
+      "title" : "Opel Corsa, good condition",
+      "description" : "Opel Corsa m.y. 1998, must be inspected until the end of the month",
+      "category" : "Cars",
+      "location" : "Rovaniemi",
+      "askingPrice" : 200,
+      "datePosted" : 1613592071,
+      "dateModified" : 1613592071,
+      "canShip" : false,
+      "idUser" : 1
+    }
+  }
 };
             defs["Status"] = {
   "title" : "Status",
   "type" : "object",
   "properties" : {
     "status" : {
-      "type" : "string"
+      "type" : "integer"
     },
     "message" : {
       "type" : "string"
     }
   },
-  "description" : "A status message with more details about success or failure of a request"
+  "description" : "A status message with more details about success or failure of a request",
+  "x-examples" : {
+    "example-1" : {
+      "status" : 404,
+      "message" : "Not Found"
+    }
+  }
 };
             defs["User"] = {
   "title" : "User",
@@ -874,7 +894,7 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 0.4.1</div>
+              <div class="app-desc">Version: 0.4.2</div>
             <hr>
             <div>Building Cloud Integration, spring 2021, graded exercise
 Rankinen Jarno TVT19KMO</div>
@@ -892,7 +912,12 @@ Rankinen Jarno TVT19KMO</div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">List items for sale, the query can be narrowed by category, location or date of item posted.</p>
+                        <p class="marked">List items for sale, the query can be narrowed by category, location or date of item posted.
+
+Query parameters:
+- category: There are some items prefilled to &quot;database&quot;, good categories to test item search/query parameters are &#x27;Cars&#x27;, &#x27;Art&#x27; and &#x27;Clothing&#x27;.
+- location: Prefilled items have locations &#x27;Paris&#x27;, &#x27;Strasborough&#x27;, &#x27;Oulu&#x27;, &#x27;Oslo&#x27; and &#x27;Rovaniemi&#x27;
+- date must be supplied in UNIX epoch format, the backend parses the date so that the time does not matter, only date</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/items</span></code></pre>
@@ -917,7 +942,7 @@ Rankinen Jarno TVT19KMO</div>
                           <div class="tab-pane active" id="examples-Default-itemsGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/items?category=&location=&date="</code></pre>
+"http://portforward.ipt.oamk.fi:42010/items?category=&location=&date="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemsGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1319,7 +1344,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersIdUserItemsGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/{idUser}/items"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersIdUserItemsGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1753,7 +1778,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersIdUserItemsIdItemDELETE-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/{idUser}/items/{idItem}"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemDELETE-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2209,7 +2234,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersIdUserItemsIdItemPUT-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/{idUser}/items/{idItem}"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersIdUserItemsIdItemPUT-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2718,7 +2743,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersLoginGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/login"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/login"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersLoginGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3077,7 +3102,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersPOST-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3435,7 +3460,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-usersUserIdGET-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.4.1/users/{idUser}"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-usersUserIdGET-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
