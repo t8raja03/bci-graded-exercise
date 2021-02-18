@@ -65,8 +65,8 @@ items = [
         "category": "Art",
         "location": "Strasbourg",
         "askingPrice": 2000,
-        "datePosted": 1613593071,
-        "dateModified": 1613594071,
+        "datePosted": 1613647147,
+        "dateModified": 1613647147,
         "canShip": false,
         "idUser": 0
       }
@@ -132,6 +132,16 @@ passport.use(new JwtStrategy(options, function(jwt_payload, done) {
     // console.log(jwt_payload)
     done(null, jwt_payload.user)
 }))
+
+
+///// Ei middleware, mutta muuten tarvittu funktio
+// Muuntaa parametrina saadun UNIX-epoch -kellonajan stringiksi,
+// jossa on vain päivämäärä
+function epochToDate (epoch) {
+    var queryDate = new Date(0)     // Luodaan ensin uusi Date hetkeen 1.1.1970 00:00
+    queryDate.setUTCSeconds(epoch)  // asetetaan Date parametrina saatuun arvoon
+    return queryDate.toDateString() // Palautetaan pelkkä päivämäärä stringinä
+}
 
 
 
@@ -296,11 +306,11 @@ app.get('/items', (req, res) => {
         if(req.query.location != undefined) {
             itemsList = itemsList.filter( ({location}) => location === req.query.location)
         }
-        // Jos date: HUOM! päivämäärä pitäisi lähettää UNIX-epoch muodossa,
-        // siitä suodatetaan sekunnit, minuutit ja tunnit pois tässä
+        // Jos date:
         if(req.query.date != undefined) {
-            // EPOCH-KÄSITTELY PUUTTUU
-            itemsList = itemsList.filter( ({datePosted}) => datePosted === parseInt(req.query.date))
+            var qDay = epochToDate(req.query.date)  // Pyynnön päivämäärä
+            // suodatetaan pyynnön päivämäärän perusteella
+            itemsList = itemsList.filter( ({datePosted}) => epochToDate(datePosted) === qDay)
         }
 
         res.json(itemsList)
