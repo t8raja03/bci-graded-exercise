@@ -23,19 +23,7 @@ describe('Response tests', function() {
     before(() => server.start())        // Käynnistää APIn ennen testejä
     after(() => server.close())         // Pysäyttää APIn testien jälkeen
 
-    describe('Check 404 response format', function() {
-        it('should return 404 with body in JSON format', async function() {
-            await chai.request(testURL)
-            .get('/thisroutedoesnotexist')
-            .then(response => {
-                expect(response).to.have.status(404)
-                expect(response).to.be.json
-            })
-            .catch(error => {
-                throw error
-            })
-        })
-    })
+    
     describe('Get bearer token', function() {
         it('should return an access token', async function() {
             await chai.request(testURL)
@@ -108,8 +96,37 @@ describe('Response tests', function() {
                 throw error
             })
         })
+        it('should return a filtered array of "Item" JSON objects', async function() {
+            await chai.request(testURL)
+            .get('/items')
+            .query({
+                category: 'Cars',
+                location: 'Rovaniemi',
+                date: '1613591900'
+            })
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body).to.be.jsonSchema(itemListSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
     })
 
+    describe('Check 404 response format', function() {
+        it('should return 404 with body in JSON format', async function() {
+            await chai.request(testURL)
+            .get('/thisroutedoesnotexist')
+            .then(response => {
+                expect(response).to.have.status(404)
+                expect(response).to.be.json
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+    })
 
 
 
