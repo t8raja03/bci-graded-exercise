@@ -24,6 +24,19 @@ describe('Response tests', function() {
     before(() => server.start())        // Käynnistää APIn ennen testejä
     after(() => server.close())         // Pysäyttää APIn testien jälkeen
 
+    describe('Check 404 response format', function() {
+        it('should return 404 JSON object', async function() {
+            await chai.request(testURL)
+            .get('/thisroutedoesnotexist')
+            .then(response => {
+                expect(response).to.have.status(404)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+    })
     
     describe('Get bearer token', function() {
         it('should return an access token', async function() {
@@ -84,7 +97,7 @@ describe('Response tests', function() {
         })
     })
 
-    describe('Test item listing', function() {
+    describe('Test item listing and posting', function() {
         it('should return an array of "Item" JSON objects', async function() {
             // Lähetetään http-pyyntö
             await chai.request(testURL)
@@ -128,14 +141,39 @@ describe('Response tests', function() {
                     throw error
                 })
             })
-    })
-
-    describe('Check 404 response format', function() {
-        it('should return 404 JSON object', async function() {
+        it('should return a 200 JSON object when posting items', async function() {
             await chai.request(testURL)
-            .get('/thisroutedoesnotexist')
+            .post('/items')
+            .set('Authorization', `Bearer ${authToken}`)
+            .send({
+                "title": "A magical object for testing purposes",
+                "description": "The object starts to glow as you send it in a HTTP request",
+                "category": "Art",
+                "location": "Atlantis",
+                "askingPrice": 1,
+                "canShip": true
+            })
             .then(response => {
-                expect(response).to.have.status(404)
+                expect(response).to.have.status(201)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should return a 400 JSON object when posting an invalid request', async function() {
+            await chai.request(testURL)
+            .post('/items')
+            .set('Authorization', `Bearer ${authToken}`)
+            .send({
+                "title": "A magical object for testing purposes",
+                "description": "The object starts to glow as you send it in a HTTP request",
+                "category": "Art",
+                "location": "Atlantis",
+                "askingPrice": 1
+            })
+            .then(response => {
+                expect(response).to.have.status(400)
                 expect(response.body).to.be.jsonSchema(statusSchema)
             })
             .catch(error => {
