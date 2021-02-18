@@ -301,8 +301,7 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
 
 
 
-// Kaikkien myytävien listaus
-// TÄSTÄ PUUTTUU HAKUEHTOJEN TOTEUTUS
+// Kaikkien myytävien listaus ja rajaus
 app.get('/items', (req, res) => {
 
     // Kopioidaan ensin items-array,
@@ -325,7 +324,17 @@ app.get('/items', (req, res) => {
             // suodatetaan pyynnön päivämäärän perusteella
             itemsList = itemsList.filter( ({datePosted}) => epochToDate(datePosted) === qDay)
         }
+        if (itemsList.length === 0) {
+            statusCode = 404
+            res.status(statusCode)
+            res.json({
+                status: statusCode,
+                message: "No items found with query parameters"
+            })
+            return
+        }
 
+        res.status(200)
         res.json(itemsList)
     })
 
