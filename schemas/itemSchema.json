@@ -25,8 +25,7 @@
         "category",
         "location",
         "askingPrice",
-        "canShip",
-        "idUser"
+        "canShip"
     ],
     "properties": {
         "idItem": {
