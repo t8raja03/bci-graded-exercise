@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: '0.4.1'
+  version: '0.4.2'
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -272,7 +272,13 @@ paths:
           in: query
           name: date
           description: List items posted on date (UNIX epoch)
-      description: 'List items for sale, the query can be narrowed by category, location or date of item posted.'
+      description: |-
+        List items for sale, the query can be narrowed by category, location or date of item posted.
+
+        Query parameters:
+        - category: There are some items prefilled to "database", good categories to test item search/query parameters are 'Cars', 'Art' and 'Clothing'.
+        - location: Prefilled items have locations 'Paris', 'Strasborough', 'Oulu', 'Oslo' and 'Rovaniemi'
+        - date must be supplied in UNIX epoch format, the backend parses the date so that the time does not matter, only date
     parameters: []
 components:
   schemas:
@@ -360,12 +366,28 @@ components:
           description: Whether the seller is willing to ship the item
         idUser:
           type: integer
+      x-examples:
+        example-1:
+          idItem: 0
+          title: 'Opel Corsa, good condition'
+          description: 'Opel Corsa m.y. 1998, must be inspected until the end of the month'
+          category: Cars
+          location: Rovaniemi
+          askingPrice: 200
+          datePosted: 1613592071
+          dateModified: 1613592071
+          canShip: false
+          idUser: 1
     Status:
       title: Status
       type: object
+      description: A status message with more details about success or failure of a request
+      x-examples:
+        example-1:
+          status: 404
+          message: Not Found
       properties:
         status:
-          type: string
+          type: integer
         message:
           type: string
-      description: A status message with more details about success or failure of a request
