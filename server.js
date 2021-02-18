@@ -281,8 +281,31 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
 // Kaikkien myytävien listaus
 // TÄSTÄ PUUTTUU HAKUEHTOJEN TOTEUTUS
 app.get('/items', (req, res) => {
-    res.json(items)
-})
+
+    // Kopioidaan ensin items-array,
+    // jotta ei tehdä muutoksia siihen:
+    // lähde: https://holycoders.com/javscript-copy-array/
+    itemsList = [...items]
+
+        // Suodatetaan itemsListiä parametrien mukaan:
+        // Jos query-parametrina on category:
+        if(req.query.category != undefined) {
+            itemsList = itemsList.filter( ({category}) => category === req.query.category)
+        }
+        // Jos location:
+        if(req.query.location != undefined) {
+            itemsList = itemsList.filter( ({location}) => location === req.query.location)
+        }
+        // Jos date: HUOM! päivämäärä pitäisi lähettää UNIX-epoch muodossa,
+        // siitä suodatetaan sekunnit, minuutit ja tunnit pois tässä
+        if(req.query.date != undefined) {
+            // EPOCH-KÄSITTELY PUUTTUU
+            itemsList = itemsList.filter( ({datePosted}) => datePosted === parseInt(req.query.date))
+        }
+
+        res.json(itemsList)
+    })
+
 
 app.use(jsonRouteNotFound)
 
