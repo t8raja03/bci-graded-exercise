@@ -42,6 +42,16 @@ users = [
         "dateModified": 1613500255,
         "tel": "0505556677",
         "password": "$2y$10$ZQg5T28.f0/oirjuInEZlefrBVdClfzlan9BqCvoUmaQXITzMExSC"
+    },
+    {
+        "idUser": 2,
+        "firstName": "Kauko",
+        "lastName": "Katselija",
+        "email": "kauko.katselija@gmail.com",
+        "dateCreated": 1613654361,
+        "dateModified": 1613654361,
+        "tel": "0501235678",
+        "password": "$2y$10$ZQg5T28.f0/oirjuInEZlefrBVdClfzlan9BqCvoUmaQXITzMExSC"
     }
 ]
 
@@ -69,6 +79,54 @@ items = [
         "dateModified": 1613647147,
         "canShip": false,
         "idUser": 0
+      },
+      {
+        "idItem": 2,
+        "title": "Children's winter overalls",
+        "description": "A very thick overall for children under 90cm. Holes only in the knees, elbows and sitting area.",
+        "category": "Clothing",
+        "location": "Oslo",
+        "askingPrice": 50,
+        "datePosted": 1613654361,
+        "dateModified": 1613654361,
+        "canShip": true,
+        "idUser": 1
+      },
+      {
+        "idItem": 3,
+        "title": "A dog's collar",
+        "description": "Very good leather collar.",
+        "category": "Clothing",
+        "location": "Oulu",
+        "askingPrice": 5,
+        "datePosted": 1613654161,
+        "dateModified": 1613654161,
+        "canShip": true,
+        "idUser": 0
+      },
+      {
+        "idItem": 4,
+        "title": "Fiat Punto 2014 16 valve",
+        "description": "Good car. Small car. Leaks oil slightly.",
+        "category": "Cars",
+        "location": "Strasborough",
+        "askingPrice": 150,
+        "datePosted": 1613654161,
+        "dateModified": 1613654161,
+        "canShip": true,
+        "idUser": 3
+      },
+      {
+        "idItem": 3,
+        "title": "Kaj Stenvalls painting of a famous duck",
+        "description": "Nice painting to keep in a safe somewhere",
+        "category": "Art",
+        "location": "Paris",
+        "askingPrice": 10000,
+        "datePosted": 1613340000,
+        "dateModified": 1613340000,
+        "canShip": true,
+        "idUser": 1
       }
 ]
 
