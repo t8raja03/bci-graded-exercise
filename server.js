@@ -251,7 +251,7 @@ app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, re
         res.status(statusCode)
         res.json({
             "status": statusCode,
-            "message": `You are only authorized to view your own user information`
+            "message": 'You are only authorized to view your own user information'
         })
         return
     }

@@ -8,6 +8,7 @@ const testURL = 'http://localhost:42010'
 const userInfoSchema = require('../schemas/userInfoSchema.json')
 const tokenResponseSchema = require('../schemas/tokenResponseSchema.json')
 const itemListSchema = require('../schemas/itemListSchema.json')
+const statusSchema = require('../schemas/statusSchema.json')
 const secrets = require('./secrets.json')
 const authHeader = Buffer.from(`olli.ostaja@posti.com:${secrets.password}`, 'utf-8').toString('base64')
 var authToken = ''
@@ -60,7 +61,7 @@ describe('Response tests', function() {
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(401)
-                expect(response).to.be.json
+                expect(response.body).to.be.jsonSchema(statusSchema)
             })
         })
         it('should return an array of user\'s own postings', async function() {
@@ -78,7 +79,7 @@ describe('Response tests', function() {
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(401)
-                expect(response).to.be.json
+                expect(response.body).to.be.jsonSchema(statusSchema)
             })
         })
     })
@@ -112,6 +113,21 @@ describe('Response tests', function() {
                 throw error
             })
         })
+        it('should return a JSON status message instead of empty array if no items match query parameters',
+            async function() {
+                await chai.request(testURL)
+                .get('/items')
+                .query({
+                    date: '0'
+                })
+                .then(response => {
+                    expect(response).to.have.status(404)
+                    expect(response.body).to.be.jsonSchema(statusSchema)
+                })
+                .catch(error => {
+                    throw error
+                })
+            })
     })
 
     describe('Check 404 response format', function() {
@@ -120,7 +136,7 @@ describe('Response tests', function() {
             .get('/thisroutedoesnotexist')
             .then(response => {
                 expect(response).to.have.status(404)
-                expect(response).to.be.json
+                expect(response.body).to.be.jsonSchema(statusSchema)
             })
             .catch(error => {
                 throw error

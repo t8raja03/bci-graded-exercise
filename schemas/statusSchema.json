@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "statusSchema",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "status": 404,
+            "message": "Not Found"
+        }
+    ],
+    "required": [
+        "status",
+        "message"
+    ],
+    "properties": {
+        "status": {
+            "$id": "#/properties/status",
+            "type": "integer",
+            "title": "The status schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                404
+            ]
+        },
+        "message": {
+            "$id": "#/properties/message",
+            "type": "string",
+            "title": "The message schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Not Found"
+            ]
+        }
+    },
+    "additionalProperties": false
+}
