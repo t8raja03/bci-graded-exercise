@@ -37,7 +37,7 @@ describe('Response tests', function() {
             })
         })
     })
-    
+
     describe('Get bearer token', function() {
         it('should return an access token', async function() {
             await chai.request(testURL)
@@ -76,6 +76,9 @@ describe('Response tests', function() {
                 expect(response).to.have.status(401)
                 expect(response.body).to.be.jsonSchema(statusSchema)
             })
+            .catch(error => {
+                throw error
+            })
         })
         it('should return an array of user\'s own postings', async function() {
             await chai.request(testURL)
@@ -84,6 +87,9 @@ describe('Response tests', function() {
             .then(response => {
                 expect(response).to.have.status(200)
                 expect(response.body).to.be.jsonSchema(itemListSchema)
+            })
+            .catch(error => {
+                throw error
             })
         })
         it('should return 401 for other users\' item listing', async function() {
@@ -94,7 +100,34 @@ describe('Response tests', function() {
                 expect(response).to.have.status(401)
                 expect(response.body).to.be.jsonSchema(statusSchema)
             })
+            .catch(error => {
+                throw error
+            })
         })
+        it('should be able to delete items', async function() {
+            await chai.request(testURL)
+            .delete('/users/0/items/1')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(202)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should actually delete items', async function() {
+            await chai.request(testURL)
+            .get('/items')
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body.length).to.equal(server.items.length - 1)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+
     })
 
     describe('Test item listing and posting', function() {
@@ -186,7 +219,6 @@ describe('Response tests', function() {
         it('should return a status 200 JSON object', async function() {
             await chai.request(testURL)
             .post('/users')
-            .set('Authorization', `Bearer ${authToken}`)
             .send({
                 email: 'chai@tests.com',
                 password: 'salasana'
@@ -194,6 +226,17 @@ describe('Response tests', function() {
             .then(response => {
                 expect(response).to.have.status(201)
                 expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should actually create a user', async function() {
+            await chai.request(testURL)
+            .get('/users')
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body.length).to.equal(server.users.length + 1)
             })
             .catch(error => {
                 throw error
