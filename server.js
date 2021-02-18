@@ -85,11 +85,24 @@ app.use(bodyParser.json())
 // Expressin oletus HTML-vastauksen sijasta.
 // Tämä täytyy olla määritetty viimeiseksi ketjussa (reittien jälkeen!)
 // Lähde: https://ourcodeworld.com/articles/read/261/how-to-create-an-http-server-with-express-in-node-js
-function jsonRouteNotFound(req, res, next) {
+function jsonRouteNotFound (req, res, next) {
     res.status(404).json({
         status: 404,
         message: `Cannot ${req.method} ${req.originalUrl}`
-    })}
+    })
+}
+
+
+///// Myös palvelimen virheilmoitukset JSON-muodossa
+// Tämä myös käyttöön vasta reittien jälkeen
+function jsonServerError (err, req, res, next) {
+    statusCode = 500
+    console.error(err.stack)
+    res.status(statusCode).json({
+        status: statusCode,
+        message: "Server error: " + err.stack.split('\n')[0]
+    })
+}
 
 
 ///// Passportin HTML Basic - autentikointi    
@@ -315,6 +328,9 @@ app.get('/items', (req, res) => {
 
         res.json(itemsList)
     })
+
+
+app.use(jsonServerError)
 
 
 app.use(jsonRouteNotFound)
