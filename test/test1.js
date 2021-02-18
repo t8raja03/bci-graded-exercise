@@ -113,7 +113,7 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        it('should return a JSON status message instead of empty array if no items match query parameters',
+        it('should return a 404 JSON object instead of an empty array',
             async function() {
                 await chai.request(testURL)
                 .get('/items')
@@ -131,7 +131,7 @@ describe('Response tests', function() {
     })
 
     describe('Check 404 response format', function() {
-        it('should return 404 with body in JSON format', async function() {
+        it('should return 404 JSON object', async function() {
             await chai.request(testURL)
             .get('/thisroutedoesnotexist')
             .then(response => {
