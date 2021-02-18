@@ -81,7 +81,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 
 
-// Jos määritettyä reittiä ei ole, palautetaan vastaus JSON-muodossa
+///// Jos määritettyä reittiä ei ole, palautetaan vastaus JSON-muodossa
 // Expressin oletus HTML-vastauksen sijasta.
 // Tämä täytyy olla määritetty viimeiseksi ketjussa (reittien jälkeen!)
 // Lähde: https://ourcodeworld.com/articles/read/261/how-to-create-an-http-server-with-express-in-node-js
@@ -91,6 +91,8 @@ function jsonRouteNotFound(req, res, next) {
         message: `Cannot ${req.method} ${req.originalUrl}`
     })}
 
+
+///// Passportin HTML Basic - autentikointi    
 passport.use(new BasicStrategy(
     function(username, password, done) {
         // Tässä määritellään mitä tehdään, kun tulee Basic Auth-pyyntö
@@ -118,7 +120,8 @@ passport.use(new BasicStrategy(
     }
 ))
 
-// Määritellään, että token kulkee headerissa Bearer Tokenina:
+///// JWT asetukset
+// Määritellään, että JWT kulkee headerissa Bearer Tokenina:
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
 // Luetaan salasana secrets.json -tiedostosta
 options.secretOrKey = jwtSecretKey.key
