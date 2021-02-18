@@ -144,6 +144,41 @@ describe('Response tests', function() {
         })
     })
 
+    describe('Test user registration', function() {
+        it('should return a status 200 JSON object', async function() {
+            await chai.request(testURL)
+            .post('/users')
+            .set('Authorization', `Bearer ${authToken}`)
+            .send({
+                email: 'chai@tests.com',
+                password: 'salasana'
+            })
+            .then(response => {
+                expect(response).to.have.status(201)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should return a 400 JSON object', async function() {
+            await chai.request(testURL)
+            .post('/users')
+            .set('Authorization', `Bearer ${authToken}`)
+            .send({
+                email: 'chai@tests.com',
+                password: 1234
+            })
+            .then(response => {
+                expect(response).to.have.status(400)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+    })
+
 
 
 });
