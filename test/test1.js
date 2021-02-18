@@ -12,6 +12,8 @@ const statusSchema = require('../schemas/statusSchema.json')
 const secrets = require('./secrets.json')
 const authHeader = Buffer.from(`olli.ostaja@posti.com:${secrets.password}`, 'utf-8').toString('base64')
 var authToken = ''
+var nItems = 6
+var nUsers = 3
 
 
 
@@ -104,29 +106,6 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        it('should be able to delete items', async function() {
-            await chai.request(testURL)
-            .delete('/users/0/items/1')
-            .set('Authorization', `Bearer ${authToken}`)
-            .then(response => {
-                expect(response).to.have.status(202)
-                expect(response.body).to.be.jsonSchema(statusSchema)
-            })
-            .catch(error => {
-                throw error
-            })
-        })
-        it('should actually delete items', async function() {
-            await chai.request(testURL)
-            .get('/items')
-            .then(response => {
-                expect(response).to.have.status(200)
-                expect(response.body.length).to.equal(server.items.length - 1)
-            })
-            .catch(error => {
-                throw error
-            })
-        })
 
     })
 
@@ -161,6 +140,7 @@ describe('Response tests', function() {
         })
         it('should return a 404 JSON object instead of an empty array',
             async function() {
+                console.log('server.items.length ' + server.items.length)
                 await chai.request(testURL)
                 .get('/items')
                 .query({
@@ -176,19 +156,21 @@ describe('Response tests', function() {
             })
         it('should return a 200 JSON object when posting items', async function() {
             await chai.request(testURL)
-            .post('/items')
-            .set('Authorization', `Bearer ${authToken}`)
-            .send({
-                "title": "A magical object for testing purposes",
-                "description": "The object starts to glow as you send it in a HTTP request",
-                "category": "Art",
-                "location": "Atlantis",
-                "askingPrice": 1,
-                "canShip": true
+                .post('/items')
+                .set('Authorization', `Bearer ${authToken}`)
+                .send({
+                    "title": "A magical object for testing purposes",
+                    "description": "The object starts to glow as you send it in a HTTP request",
+                    "category": "Art",
+                    "location": "Atlantis",
+                    "askingPrice": 1,
+                    "canShip": true
             })
             .then(response => {
+                nItems += 1
                 expect(response).to.have.status(201)
                 expect(response.body).to.be.jsonSchema(statusSchema)
+                expect(server.items.length).to.equal(nItems)
             })
             .catch(error => {
                 throw error
@@ -208,15 +190,38 @@ describe('Response tests', function() {
             .then(response => {
                 expect(response).to.have.status(400)
                 expect(response.body).to.be.jsonSchema(statusSchema)
+                expect(server.items.length).to.equal(nItems)
             })
             .catch(error => {
                 throw error
             })
         })
+        it('should be able to delete items', async function() {
+            nItems -= 1
+            await chai.request(testURL)
+            .delete('/users/0/items/1')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(202)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should actually delete items', async function() {
+            await chai.request(testURL)
+            .get('/items')
+            .then(response => {
+                expect(response.body.length).to.equal(nItems)
+            })
+        })
+        
     })
 
     describe('Test user registration', function() {
         it('should return a status 200 JSON object', async function() {
+            nUsers += 1
             await chai.request(testURL)
             .post('/users')
             .send({
@@ -236,13 +241,13 @@ describe('Response tests', function() {
             .get('/users')
             .then(response => {
                 expect(response).to.have.status(200)
-                expect(response.body.length).to.equal(server.users.length + 1)
+                expect(response.body.length).to.equal(nUsers)
             })
             .catch(error => {
                 throw error
             })
         })
-        it('should return a 400 JSON object', async function() {
+        it('should return a 400 JSON object with an invalid request', async function() {
             await chai.request(testURL)
             .post('/users')
             .set('Authorization', `Bearer ${authToken}`)
