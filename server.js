@@ -118,7 +118,7 @@ items = [
         "idUser": 3
       },
       {
-        "idItem": 3,
+        "idItem": 5,
         "title": "Kaj Stenvalls painting of a famous duck",
         "description": "Nice painting to keep in a safe somewhere",
         "category": "Art",
@@ -391,6 +391,53 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
 })
 
 
+// Tavaroiden poisto
+app.delete('/users/:id/items/:idItem', passport.authenticate('jwt', { session: false }), (req, res) => {
+    // Tarkistetaan ensin, onko käyttäjä olemassa   
+    user = users.find( ({idUser}) => idUser == req.params.id)
+    // ja onko item olemassa on
+    item = items.find( ({idItem}) => idItem == req.params.idItem)
+
+    // Haetaan idUser auth. tokenista
+    tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    tokenIdUser = decodedToken.user.idUser                   // otetaan idUser datasta
+
+    if (user == undefined) {    // jos ei ole olemassa
+        statusCode = 404
+        res.status(statusCode)
+        .json(statusMessage(statusCode, `User ${req.params.id} not found`))
+        return
+    }
+    else if (tokenIdUser != req.params.id) {    // jos yrittää poistaa muiden käyttäjien
+        statusCode = 401                        // luomaa itemiä
+        res.status(statusCode)
+        .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
+        return
+    }
+    else if (item == undefined) {   // jos itemiä ei ole olemassa
+        statusCode = 404
+        res.status(statusCode)
+        .json(statusMessage(statusCode, `Item ${req.params.idItem} not found`))
+        return
+    }
+    else if (item.idUser != tokenIdUser) { // jos item ei ole käyttäjän luoma
+        statusCode = 401
+        res.status(statusCode)
+        .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
+        return
+    }
+
+    // Jos käyttäjä ja item on olemassa ja käyttäjä omistaa itemin
+    items = items.filter( ({idItem}) => idItem != req.params.idItem)
+
+
+    statusCode = 202                    
+    res.status(statusCode)
+    .json(statusMessage(statusCode, `Item ${req.params.idItem} deleted succesfully`))
+})
+
+
 
 // Kaikkien myytävien listaus ja rajaus
 app.get('/items', (req, res) => {
@@ -446,9 +493,12 @@ app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) 
     decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
     idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
+    // ensin määritellään uusi idItem: haetaan taulukon viimeisen elementin idItem
+    // ja kasvatetaan yhdellä
+    var id = items[items.length - 1].idItem + 1
     // Luodaan uusi item-objekti
     var newItem = {
-        idItem: items.length,
+        idItem: id,
         title: req.body.title,
         description: req.body.description,
         category: req.body.category,
@@ -489,5 +539,7 @@ module.exports = {
     close: () => {
         // rajapinnan lopetus:
         serverInstance.close()
-    }
+    },
+    users: users,
+    items: items
 }
