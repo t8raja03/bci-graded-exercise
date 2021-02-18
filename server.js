@@ -80,6 +80,17 @@ const app = express()
 app.use(express.json())
 app.use(bodyParser.json())
 
+
+// Jos määritettyä reittiä ei ole, palautetaan vastaus JSON-muodossa
+// Expressin oletus HTML-vastauksen sijasta.
+// Tämä täytyy olla määritetty viimeiseksi ketjussa (reittien jälkeen!)
+// Lähde: https://ourcodeworld.com/articles/read/261/how-to-create-an-http-server-with-express-in-node-js
+function jsonRouteNotFound(req, res, next) {
+    res.status(404).json({
+        status: 404,
+        message: `Cannot ${req.method} ${req.originalUrl}`
+    })}
+
 passport.use(new BasicStrategy(
     function(username, password, done) {
         // Tässä määritellään mitä tehdään, kun tulee Basic Auth-pyyntö
@@ -270,7 +281,7 @@ app.get('/items', (req, res) => {
     res.json(items)
 })
 
-
+app.use(jsonRouteNotFound)
 
 let serverInstance = null       // Tähän muuttujaan tallenetaan app.listen()
                                 // palauttama objekti
