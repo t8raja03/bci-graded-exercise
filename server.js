@@ -214,12 +214,22 @@ function epochToDate (epoch) {
     return queryDate.toDateString() // Palautetaan pelkkä päivämäärä stringinä
 }
 
+///// Status-viestien luomista helpottamaan
+// Palauttaa vain statusSchema-muotoisen JSON-objektin
+function statusMessage (code, message) {
+    statusObject = {
+        status: code,
+        message: message
+    }
+    return statusObject
+}
+
 
 
 /************************  Reitit: *****************************/
 
 app.get('/', (req, res) => {
-    res.json({
+    res.status(200).json({
         app: 'BCI Graded Exercise',
         author: 'Rankinen Jarno TVT19KMO'
     })
@@ -243,11 +253,7 @@ app.post('/users', (req, res) => {
     if (!valid) {                                       // Jos pyynnön body on muotoiltu
         //console.log(validate.errors)                  // väärin, lähetetään status 400
         statusCode = 400
-        res.status(statusCode)                          // ja AJV:n virheviesti 
-        res.json({                                      // vastauksena
-            status: statusCode,
-            message: "Invalid request"
-        })
+        res.status(statusCode).json(statusMessage(statusCode, 'Invalid request'))
         return
     }
 
@@ -280,12 +286,11 @@ app.post('/users', (req, res) => {
     
     users.push(newUser)     // Lisätään newUser users-arrayhin
     
+    // Jos pyyntö onnistuu, status = 201
     statusCode = 201
-    res.status(statusCode)                          // Jos pyyntö onnistuu,
-    res.json({                                      // status = 201 ja
-        "status": statusCode,                       // vastataan lyhyellä
-        "message": "User registered successfully"   // JSON-viestillä.
-    })
+    res.status(statusCode)
+    .json(statusMessage(statusCode, 'User registered succesfully'))
+    // })
     
 })
 
@@ -337,19 +342,13 @@ app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, re
     if (user == undefined) {    // jos ei ole olemassa
         statusCode = 404
         res.status(statusCode)
-        res.json({
-            "status": statusCode,
-            "message": `User ${req.params.id} not found`
-        })
+        .json(statusMessage(statusCode, `User ${req.params.id} not found`))
         return
     }
     else if (idUser != req.params.id) {     // jos yrittää katsoa muiden käyttäjien
         statusCode = 401                    // tietoja
         res.status(statusCode)
-        res.json({
-            "status": statusCode,
-            "message": 'You are only authorized to view your own user information'
-        })
+        .json(statusMessage(statusCode, 'You are only authorized to view your own user information'))
         return
     }
 
@@ -373,19 +372,13 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
     if (user == undefined) {    // jos ei ole olemassa
         statusCode = 404
         res.status(statusCode)
-        res.json({
-            "status": statusCode,
-            "message": `User ${req.params.id} not found`
-        })
+        .json(statusMessage(statusCode, `User ${req.params.id} not found`))
         return
     }
     else if (idUser != req.params.id) {     // jos yrittää katsoa muiden käyttäjien
         statusCode = 401                    // tietoja
         res.status(statusCode)
-        res.json({
-            "status": statusCode,
-            "message": `You are only authorized to see your own items filtered by user`
-        })
+        .json(statusMessage(statusCode, 'You are only authorized to see your own items filtered by user'))
         return
     }
 
@@ -421,10 +414,7 @@ app.get('/items', (req, res) => {
         if (itemsList.length === 0) {
             statusCode = 404
             res.status(statusCode)
-            res.json({
-                status: statusCode,
-                message: "No items found with query parameters"
-            })
+            .json(statusMessage(statusCode, 'No items found with query parameters'))
             return
         }
 
