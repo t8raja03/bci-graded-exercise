@@ -15,7 +15,7 @@ paths:
   /users:
     post:
       summary: Register a user
-      operationId: users-POST
+      operationId: registerUser
       responses:
         '201':
           description: Created
@@ -67,7 +67,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      operationId: users-login-GET
+      operationId: login
       description: Get authentication token from server
       parameters:
         - schema:
@@ -107,7 +107,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      operationId: users-userId-GET
+      operationId: userInfo
       description: Get the information of a specific user
       parameters:
         - schema:
@@ -148,7 +148,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      operationId: users-idUser-items-GET
+      operationId: userItems
       description: List all postings of a user identified by idUser
       parameters:
         - schema:
@@ -172,8 +172,8 @@ paths:
         required: true
         description: idItem of the user's item
     put:
-      summary: Modify or delete an item
-      operationId: users-idUser-items-idItem-PUT
+      summary: Modify an item information
+      operationId: modifyItem
       responses:
         '202':
           description: Accepted
@@ -209,7 +209,7 @@ paths:
           required: true
     delete:
       summary: ''
-      operationId: users-idUser-items-idItem-DELETE
+      operationId: deleteItem
       responses:
         '202':
           description: Accepted
@@ -255,7 +255,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      operationId: items-GET
+      operationId: listItems
       parameters:
         - schema:
             type: string
