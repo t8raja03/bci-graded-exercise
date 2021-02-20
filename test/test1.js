@@ -140,7 +140,6 @@ describe('Response tests', function() {
         })
         it('should return a 404 JSON object instead of an empty array',
             async function() {
-                console.log('server.items.length ' + server.items.length)
                 await chai.request(testURL)
                 .get('/items')
                 .query({
