@@ -224,6 +224,9 @@ describe('Response tests', function() {
             await chai.request(testURL)
             .put('/items/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')
             .set('Authorization', `Bearer ${authToken}`)
+            .send({
+                "description": "A very modified collar"
+            })
             .then(response => {
                 expect(response).to.have.status(202)
                 expect(response.body).to.be.jsonSchema(statusSchema)
@@ -232,7 +235,21 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        //SHOULD ACTUALLY MODIFY ITEMS
+        it('should actually modify items', async function() {
+            await chai.request(testURL)
+            .get('/items')
+            .query({
+                category: 'Clothing',
+                location: 'Oulu'
+            })
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body[0].dateModified).to.not.equal(response.body[0].datePosted)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
         //SHOULD NOT BE ABLE TO MODIFY OTHER USERS' ITEMS
         
     })
