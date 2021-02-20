@@ -513,7 +513,7 @@ components:
       type: object
       x-examples:
         example-1 (password MyPassWord4321):
-          idUser: 0
+          idUser: b2xsaS5vc3RhamFAcG9zdGkuY29t
           firstName: Olli
           lastName: Ostaja
           email: olli.ostaja@posti.com
@@ -522,7 +522,7 @@ components:
           tel: '+35881234567'
           password: $2y$10$9nlCG7OwYW9QqE5/Ofd/UeUvvIvArY22BjM7SphFuaXhJ4QYw42je
         example-2 (password salasana1234):
-          idUser: 1
+          idUser: bXl5QG15eW50aS5uZXQ=
           firstName: Myy
           lastName: Myyjätär
           email: myy@myynti.net
@@ -533,8 +533,8 @@ components:
       description: User of bci-market
       properties:
         idUser:
-          type: integer
-          description: 'The unique identifier of the user, automatically generated'
+          type: string
+          description: 'The unique identifier of the user, automatically generated (base64 encoded email address)'
         firstName:
           type: string
           description: First name of the user
@@ -562,10 +562,22 @@ components:
       title: Item
       type: object
       description: Item for sale
+      x-examples:
+        example-1:
+          idItem: 0
+          title: 'Opel Corsa, good condition'
+          description: 'Opel Corsa m.y. 1998, must be inspected until the end of the month'
+          category: Cars
+          location: Rovaniemi
+          askingPrice: 200
+          datePosted: 1613592071
+          dateModified: 1613592071
+          canShip: false
+          idUser: 1
       properties:
         idItem:
-          type: integer
-          description: 'The unique identifier of the item, automatically generated'
+          type: string
+          description: 'The unique identifier of the item, automatically generated (base 64 encoded idUser+description)'
         title:
           type: string
           description: The title of the item for sale
@@ -592,18 +604,6 @@ components:
           description: Whether the seller is willing to ship the item
         idUser:
           type: integer
-      x-examples:
-        example-1:
-          idItem: 0
-          title: 'Opel Corsa, good condition'
-          description: 'Opel Corsa m.y. 1998, must be inspected until the end of the month'
-          category: Cars
-          location: Rovaniemi
-          askingPrice: 200
-          datePosted: 1613592071
-          dateModified: 1613592071
-          canShip: false
-          idUser: 1
     Status:
       title: Status
       type: object
