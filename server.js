@@ -19,10 +19,9 @@ const baseURL = `http://portforward.ipt.oamk.fi:${listenPort}`
 let options = {}    // JWT options
 
 
-
 /**************** Data **************************/
 
-var users = [
+users = [
     {
         "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t",
         "firstName": "Olli",
@@ -53,9 +52,9 @@ var users = [
         "tel": "0501235678",
         "password": "$2y$10$ZQg5T28.f0/oirjuInEZlefrBVdClfzlan9BqCvoUmaQXITzMExSC"
     }
-]
+];
 
-var items = [
+items = [
     {
         "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==",
         "title": "Opel Corsa, good condition",
@@ -128,7 +127,7 @@ var items = [
         "canShip": true,
         "idUser": "bXl5QG15eW50aS5uZXQ="
       }
-]
+];
 
 
 
@@ -356,9 +355,6 @@ app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, re
 
 app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (req, res) => {
 
-    // Tarkistetaan ensin, onko käyttäjä olemassa   
-    var user = users.find( ({idUser}) => idUser == req.params.id)
-
     // Haetaan idUser auth. tokenista
     var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
     var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
@@ -382,27 +378,21 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
 // Tavaroiden poisto
 app.delete('/items/:idItem', passport.authenticate('jwt', { session: false }), (req, res) => {
 
-    // Tarkistetaan onko item olemassa
-    var item = items.find( ({idItem}) => idItem == req.params.idItem)
+    // Haetaan tavaran tiedot items-taulukosta
+    var item = items.find( ({idItem}) => idItem === req.params.idItem)
 
     // Haetaan idUser auth. tokenista
     var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
     var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
     var tokenIdUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
-    if (tokenIdUser != req.params.id) {    // jos yrittää poistaa muiden käyttäjien
-        var statusCode = 401                        // luomaa itemiä
-        res.status(statusCode)
-        .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
-        return
-    }
-    else if (item == undefined) {   // jos itemiä ei ole olemassa
+    if (item === undefined) {   // jos itemiä ei ole olemassa
         var statusCode = 404
         res.status(statusCode)
         .json(statusMessage(statusCode, `Item ${req.params.idItem} not found`))
         return
     }
-    else if (item.idUser != tokenIdUser) { // jos item ei ole käyttäjän luoma
+    if (item.idUser != tokenIdUser) { // jos item ei ole käyttäjän luoma
         var statusCode = 401
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
@@ -410,7 +400,7 @@ app.delete('/items/:idItem', passport.authenticate('jwt', { session: false }), (
     }
 
     // Jos käyttäjä ja item on olemassa ja käyttäjä omistaa itemin
-    var items = items.filter( ({idItem}) => idItem != req.params.idItem)
+    items = items.filter( ({idItem}) => idItem != req.params.idItem)
 
 
     var statusCode = 202                    
