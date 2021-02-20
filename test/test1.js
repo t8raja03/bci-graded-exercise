@@ -84,7 +84,7 @@ describe('Response tests', function() {
         })
         it('should return an array of user\'s own postings', async function() {
             await chai.request(testURL)
-            .get('/users/0/items')
+            .get('/users/b2xsaS5vc3RhamFAcG9zdGkuY29t/items')
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(200)

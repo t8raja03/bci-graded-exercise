@@ -7,7 +7,7 @@
     "default": {},
     "examples": [
         {
-            "idItem": 0,
+            "idItem": "b2xsaS5vc3RhamFAcG9zdGkuY29t",
             "title": "Opel Corsa, good condition",
             "description": "Opel Corsa m.y. 1998, must be inspected until the end of the month",
             "category": "Cars",
@@ -16,26 +16,30 @@
             "datePosted": 1613592071,
             "dateModified": 1613592071,
             "canShip": false,
-            "idUser": 1
+            "idUser": "bXl5QG15eW50aS5uZXQ"
         }
     ],
     "required": [
+        "idItem",
         "title",
         "description",
         "category",
         "location",
         "askingPrice",
-        "canShip"
+        "datePosted",
+        "dateModified",
+        "canShip",
+        "idUser"
     ],
     "properties": {
         "idItem": {
             "$id": "#/properties/idItem",
-            "type": "integer",
+            "type": "string",
             "title": "The idItem schema",
             "description": "An explanation about the purpose of this instance.",
-            "default": 0,
+            "default": "",
             "examples": [
-                0
+                "b2xsaS5vc3RhamFAcG9zdGkuY29t"
             ]
         },
         "title": {
@@ -120,12 +124,12 @@
         },
         "idUser": {
             "$id": "#/properties/idUser",
-            "type": "integer",
+            "type": "string",
             "title": "The idUser schema",
             "description": "An explanation about the purpose of this instance.",
-            "default": 0,
+            "default": "",
             "examples": [
-                1
+                "bXl5QG15eW50aS5uZXQ"
             ]
         }
     },
