@@ -19,7 +19,12 @@ const baseURL = `http://portforward.ipt.oamk.fi:${listenPort}`
 let options = {}    // JWT options
 
 
-
+console.log(Buffer.from('bXl5QG15eW50aS5uZXQ=Opel Corsa, good condition').toString('base64'))
+console.log(Buffer.from('b2xsaS5vc3RhamFAcG9zdGkuY29tA painting').toString('base64'))
+console.log(Buffer.from("bXl5QG15eW50aS5uZXQ=Children's winter overalls").toString('base64'))
+console.log(Buffer.from("b2xsaS5vc3RhamFAcG9zdGkuY29tA dog's collar").toString('base64'))
+console.log(Buffer.from('bXl5QG15eW50aS5uZXQ=Fiat Punto 2014 16 valve').toString('base64'))
+console.log(Buffer.from("bXl5QG15eW50aS5uZXQ=Kaj Stenvalls painting of a famous duck").toString('base64'))
 
 /**************** Data **************************/
 
@@ -58,7 +63,7 @@ users = [
 
 items = [
     {
-        "idItem": 0,
+        "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==",
         "title": "Opel Corsa, good condition",
         "description": "Opel Corsa m.y. 1998, must be inspected until the end of the month",
         "category": "Cars",
@@ -70,7 +75,7 @@ items = [
         "idUser": "bXl5QG15eW50aS5uZXQ="
       },
       {
-        "idItem": 1,
+        "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=",
         "title": "A painting",
         "description": "A beatiful painting of the ocean floor",
         "category": "Art",
@@ -82,7 +87,7 @@ items = [
         "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t"
       },
       {
-        "idItem": 2,
+        "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1DaGlsZHJlbidzIHdpbnRlciBvdmVyYWxscw==",
         "title": "Children's winter overalls",
         "description": "A very thick overall for children under 90cm. Holes only in the knees, elbows and sitting area.",
         "category": "Clothing",
@@ -94,7 +99,7 @@ items = [
         "idUser": "bXl5QG15eW50aS5uZXQ="
       },
       {
-        "idItem": 3,
+        "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy",
         "title": "A dog's collar",
         "description": "Very good leather collar.",
         "category": "Clothing",
@@ -106,7 +111,7 @@ items = [
         "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t"
       },
       {
-        "idItem": 4,
+        "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1GaWF0IFB1bnRvIDIwMTQgMTYgdmFsdmU=",
         "title": "Fiat Punto 2014 16 valve",
         "description": "Good car. Small car. Leaks oil slightly.",
         "category": "Cars",
@@ -118,7 +123,7 @@ items = [
         "idUser": "bXl5QG15eW50aS5uZXQ="
       },
       {
-        "idItem": 5,
+        "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1LYWogU3RlbnZhbGxzIHBhaW50aW5nIG9mIGEgZmFtb3VzIGR1Y2s=",
         "title": "Kaj Stenvalls painting of a famous duck",
         "description": "Nice painting to keep in a safe somewhere",
         "category": "Art",
@@ -484,7 +489,7 @@ app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) 
 
     // ensin määritellään uusi idItem: haetaan taulukon viimeisen elementin idItem
     // ja kasvatetaan yhdellä
-    var id = items[items.length - 1].idItem + 1
+    var id = Buffer.from(idUser + req.body.description).toString('base64')
     // Luodaan uusi item-objekti
     var newItem = {
         idItem: id,
