@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: 0.6
+  version: 0.6.1
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -88,13 +88,13 @@ paths:
                     type: string
                     description: Java Web Token for authentication
                   idUser:
-                    type: integer
+                    type: string
                     description: idUser of the logged in user
               examples:
                 login-example-1:
                   value:
                     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk
-                    idUser: 0
+                    idUser: yJhbGciOiJIUzI1NiIsInR5cCI6IkpX=
           headers: {}
         '401':
           description: Unauthorized
