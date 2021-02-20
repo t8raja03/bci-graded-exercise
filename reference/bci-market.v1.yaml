@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: 0.5.1
+  version: 0.6
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -272,7 +272,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      description: Update the information of an item posted by logged in user
+      description: |-
+        Update the information of an item posted by logged in user.
+        Only the fields that are to be updated are required in the request body.
+        `dateModified` will be updated automatically.
+        `idItem`, `datePosted` and `idUser` should not be in the request body, if they are, it will have no effect.
       parameters:
         - schema:
             type: string
@@ -280,6 +284,25 @@ paths:
           name: Authorization
           description: Bearer token
           required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+            examples:
+              modify-item-example1:
+                value:
+                  title: This title has been modified
+                  askingPrice: 10
+                  canShip: true
+              modify-item-example-2:
+                value:
+                  title: A replacement title
+                  description: This item has had all it's fields changed
+                  category: Clothing
+                  location: Oslo
+                  askingPrice: 1000
+                  canShip: false
     delete:
       summary: ''
       operationId: itemDelete
