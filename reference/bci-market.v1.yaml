@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: 0.6.1
+  version: 0.6.2
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -196,7 +196,7 @@ paths:
               examples:
                 example-1:
                   value:
-                    - idItem: 1
+                    - idItem: YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=
                       title: A painting
                       description: A beatiful painting of the ocean floor
                       category: Art
@@ -206,7 +206,7 @@ paths:
                       dateModified: 1613647147
                       canShip: false
                       idUser: 0
-                    - idItem: 3
+                    - idItem: YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy
                       title: A dog's collar
                       description: Very good leather collar.
                       category: Clothing
@@ -556,7 +556,7 @@ components:
       description: Item for sale
       x-examples:
         example-1:
-          idItem: 0
+          idItem: b2xsaS5vc3RhamFAcG9zdGkuY29t
           title: 'Opel Corsa, good condition'
           description: 'Opel Corsa m.y. 1998, must be inspected until the end of the month'
           category: Cars
@@ -565,7 +565,7 @@ components:
           datePosted: 1613592071
           dateModified: 1613592071
           canShip: false
-          idUser: 1
+          idUser: bXl5QG15eW50aS5uZXQ
       properties:
         idItem:
           type: string
@@ -595,7 +595,7 @@ components:
           type: boolean
           description: Whether the seller is willing to ship the item
         idUser:
-          type: integer
+          type: string
     Status:
       title: Status
       type: object
