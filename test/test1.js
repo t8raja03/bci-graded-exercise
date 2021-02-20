@@ -199,7 +199,7 @@ describe('Response tests', function() {
         it('should be able to delete items', async function() {
             nItems -= 1
             await chai.request(testURL)
-            .delete('/users/0/items/1')
+            .delete('/items/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=')
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(202)
