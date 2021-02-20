@@ -215,7 +215,25 @@ describe('Response tests', function() {
             .then(response => {
                 expect(response.body.length).to.equal(nItems)
             })
+            .catch(error => {
+                throw error
+            })
         })
+        // SHOULD NOT BE ABLE TO DELETE OTHER USERS' ITEMS
+        it('should be able to modify items', async function() {
+            await chai.request(testURL)
+            .put('/items/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(202)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        //SHOULD ACTUALLY MODIFY ITEMS
+        //SHOULD NOT BE ABLE TO MODIFY OTHER USERS' ITEMS
         
     })
 
