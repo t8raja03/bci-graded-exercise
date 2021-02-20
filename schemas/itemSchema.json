@@ -20,16 +20,12 @@
         }
     ],
     "required": [
-        "idItem",
         "title",
         "description",
         "category",
         "location",
         "askingPrice",
-        "datePosted",
-        "dateModified",
-        "canShip",
-        "idUser"
+        "canShip"
     ],
     "properties": {
         "idItem": {

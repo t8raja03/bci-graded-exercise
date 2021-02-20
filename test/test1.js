@@ -154,7 +154,7 @@ describe('Response tests', function() {
                     throw error
                 })
             })
-        it('should return a 200 JSON object when posting items', async function() {
+        it('should return a 201 JSON object when posting items', async function() {
             await chai.request(testURL)
                 .post('/items')
                 .set('Authorization', `Bearer ${authToken}`)
@@ -165,16 +165,16 @@ describe('Response tests', function() {
                     "location": "Atlantis",
                     "askingPrice": 1,
                     "canShip": true
-            })
-            .then(response => {
-                nItems += 1
-                expect(response).to.have.status(201)
-                expect(response.body).to.be.jsonSchema(statusSchema)
-                expect(server.items.length).to.equal(nItems)
-            })
-            .catch(error => {
-                throw error
-            })
+                })
+                .then(response => {
+                    nItems += 1
+                    expect(response).to.have.status(201)
+                    expect(response.body).to.be.jsonSchema(statusSchema)
+                    expect(server.items.length).to.equal(nItems)
+                })
+                .catch(error => {
+                    throw error
+                })
         })
         it('should return a 400 JSON object when posting an invalid request', async function() {
             await chai.request(testURL)
