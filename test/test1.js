@@ -231,7 +231,6 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        // SHOULD NOT BE ABLE TO DELETE OTHER USERS' ITEMS
         it('should be able to modify items', async function() {
             await chai.request(testURL)
             .put('/items/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')
@@ -262,7 +261,18 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        //SHOULD NOT BE ABLE TO MODIFY OTHER USERS' ITEMS
+        it('should not be able to modify other user\'s items', async function() {
+            await chai.request(testURL)
+            .put('/items/YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(401)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
         
     })
 
