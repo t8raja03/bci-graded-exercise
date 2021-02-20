@@ -60,7 +60,7 @@ describe('Response tests', function() {
         it('should return a valid JSON object', async function() {
             // Lähetetään http-pyyntö
             await chai.request(testURL)
-            .get('/users/0')
+            .get('/users/b2xsaS5vc3RhamFAcG9zdGkuY29t')
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(200)
