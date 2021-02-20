@@ -148,8 +148,9 @@ function jsonRouteNotFound (req, res, next) {
     res.status(404).json({
         status: 404,
         message: `Cannot ${req.method} ${req.originalUrl}`
-    })
+    })       
 }
+
 
 
 ///// Myös palvelimen virheilmoitukset JSON-muodossa
@@ -176,14 +177,14 @@ passport.use(new BasicStrategy(
         if (basicAuthUser == undefined) {
             // jos käyttäjänimeä ei löydy
             console.log(`               No user with name ${username} found`)
-            return done(null, false, { message: "Invalid username for HTTP Basic Authentication"})
+            return done(null, false)
         }
 
         // Check password
         if(bcrypt.compareSync(password, basicAuthUser.password) == false) {
             // jos salasana ei täsmää
             console.log(`               Invalid password for ${username}`)
-            return done(null, false, { message: "Invalid password for HTTP Basic Authentication"})
+            return done(null, false)
         }
 
         // Jos käyttäjänimi ja salasana täsmäävät
@@ -333,21 +334,15 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
 app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     // Tarkistetaan ensin, onko käyttäjä olemassa   
-    user = users.find( ({idUser}) => idUser == req.params.id)
+    //user = users.find( ({idUser}) => idUser == req.params.id)
 
     // Haetaan idUser auth. tokenista
     tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
     decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
     idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
-    if (user == undefined) {    // jos ei ole olemassa
-        statusCode = 404
-        res.status(statusCode)
-        .json(statusMessage(statusCode, `User ${req.params.id} not found`))
-        return
-    }
-    else if (idUser != req.params.id) {     // jos yrittää katsoa muiden käyttäjien
-        statusCode = 401                    // tietoja
+    if (idUser != req.params.id) {                      // jos yrittää katsoa muiden käyttäjien
+        statusCode = 401                                // tietoja
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to view your own user information'))
         return
@@ -363,21 +358,15 @@ app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, re
 app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     // Tarkistetaan ensin, onko käyttäjä olemassa   
-    user = users.find( ({idUser}) => idUser == req.params.id)
+    //user = users.find( ({idUser}) => idUser == req.params.id)
 
     // Haetaan idUser auth. tokenista
     tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
     decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
     idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
-    if (user == undefined) {    // jos ei ole olemassa
-        statusCode = 404
-        res.status(statusCode)
-        .json(statusMessage(statusCode, `User ${req.params.id} not found`))
-        return
-    }
-    else if (idUser != req.params.id) {     // jos yrittää katsoa muiden käyttäjien
-        statusCode = 401                    // tietoja
+    if (idUser != req.params.id) {                      // jos yrittää katsoa muiden käyttäjien
+        statusCode = 401                                // tietoja
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to see your own items filtered by user'))
         return
