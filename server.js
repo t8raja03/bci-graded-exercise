@@ -410,6 +410,58 @@ app.delete('/items/:idItem', passport.authenticate('jwt', { session: false }), (
 
 
 
+// Tavaroiden muokkaus
+app.put('/items/:idItem', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    // Haetaan tavaran tiedot items-taulukosta
+    var item = items.find( ({idItem}) => idItem === req.params.idItem)
+
+    // Haetaan idUser auth. tokenista
+    var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    var tokenIdUser = decodedToken.user.idUser                   // otetaan idUser datasta
+
+    if (item === undefined) {   // jos itemiä ei ole olemassa
+        var statusCode = 404
+        res.status(statusCode)
+        .json(statusMessage(statusCode, `Item ${req.params.idItem} not found`))
+        return
+    }
+    if (item.idUser !== tokenIdUser) { // jos item ei ole käyttäjän luoma
+        var statusCode = 401
+        res.status(statusCode)
+        .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
+        return
+    }
+
+    // Jos käyttäjä ja item on olemassa ja käyttäjä omistaa itemin
+    if (req.body.title !== undefined) {
+        item.title = req.body.title
+    }
+    if (req.body.description !== undefined) {
+        item.description = req.body.description
+    }
+    if (req.body.category !== undefined) {
+        item.category = req.body.category
+    }
+    if (req.body.location !== undefined) {
+        item.location = req.body.location
+    }
+    if (req.body.askingPrice !== undefined) {
+        item.askingPrice = req.body.askingPrice
+    }
+    if (req.body.canShip !== undefined) {
+        item.canShip = req.body.canShip
+    }
+
+
+    var statusCode = 202                    
+    res.status(statusCode)
+    .json(statusMessage(statusCode, `Item ${req.params.idItem} modified succesfully`))
+})
+
+
+
 // Kaikkien myytävien listaus ja rajaus
 app.get('/items', (req, res) => {
 
