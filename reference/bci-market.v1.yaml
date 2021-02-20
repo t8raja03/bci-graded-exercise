@@ -1,13 +1,23 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: '0.4.2'
+  version: 0.5.0
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
   description: |-
     Building Cloud Integration, spring 2021, graded exercise
     Rankinen Jarno TVT19KMO
+
+    This is an API for an imaginary online marketplace like eBay or Tori.fi. The requirements for the assignment are:
+    - User registration and login (`POST /users` and `GET /users/login`)
+    - Posting new items for sale (`POST /items`)
+    - Modify postings (`POST /items/:idItem`)
+    - Delete postings (`DELETE /items/:idItem`)
+    - List and search items with categories: (`GET /items?category=xxx&location=yyy&date=zzz`)
+
+    User registration and item listing/searching do not require authentication.
+    Posting, modifying and deleting requires logging in via `GET /user/login`
 servers:
   - url: 'http://portforward.ipt.oamk.fi:42010'
     description: public deployment
@@ -15,7 +25,7 @@ paths:
   /users:
     post:
       summary: Register a user
-      operationId: users-POST
+      operationId: registerUser
       responses:
         '201':
           description: Created
@@ -23,18 +33,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+              examples:
+                example-1:
+                  value:
+                    status: 201
+                    message: User registered succesfully
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      description: 'Register a new user. '
+              examples:
+                example-1:
+                  value:
+                    status: 400
+                    message: Invalid request
+      description: |-
+        Register a new user.
+
+        In the request body, only `email` and `password` fields are required. `idUser`, `dateCreated` and `dateModified` are generated automatically and are not required.
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
+            examples:
+              users-post-example-1:
+                value:
+                  firstName: Donald
+                  lastName: Duck
+                  email: dd@duckburg.com
+                  tel: '5553131'
+                  password: veryStrongAndComplexPassword
+              users-post-example-2:
+                value:
+                  email: private@burner.email.com
+                  password: dös9823OPFASNå09umsdv
         description: ''
     parameters: []
   /users/login:
@@ -67,7 +102,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      operationId: users-login-GET
+      operationId: login
       description: Get authentication token from server
       parameters:
         - schema:
@@ -107,7 +142,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      operationId: users-userId-GET
+      operationId: userInfo
       description: Get the information of a specific user
       parameters:
         - schema:
@@ -148,7 +183,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      operationId: users-idUser-items-GET
+      operationId: userItems
       description: List all postings of a user identified by idUser
       parameters:
         - schema:
@@ -157,14 +192,8 @@ paths:
           name: Authorization
           description: Bearer token
           required: true
-  '/users/{idUser}/items/{idItem}':
+  '/items/{idItem}':
     parameters:
-      - schema:
-          type: string
-        name: idUser
-        in: path
-        required: true
-        description: idUser of the user
       - schema:
           type: string
         name: idItem
@@ -173,7 +202,7 @@ paths:
         description: idItem of the user's item
     put:
       summary: Modify or delete an item
-      operationId: users-idUser-items-idItem-PUT
+      operationId: umodifyItem
       responses:
         '202':
           description: Accepted
@@ -209,7 +238,7 @@ paths:
           required: true
     delete:
       summary: ''
-      operationId: users-idUser-items-idItem-DELETE
+      operationId: deleteItem
       responses:
         '202':
           description: Accepted
@@ -249,13 +278,81 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Item'
+              examples:
+                get-items-200:
+                  value:
+                    - idItem: 0
+                      title: 'Opel Corsa, good condition'
+                      description: 'Opel Corsa m.y. 1998, must be inspected until the end of the month'
+                      category: Cars
+                      location: Rovaniemi
+                      askingPrice: 200
+                      datePosted: 1613592071
+                      dateModified: 1613592071
+                      canShip: false
+                      idUser: 1
+                    - idItem: 1
+                      title: A painting
+                      description: A beatiful painting of the ocean floor
+                      category: Art
+                      location: Strasbourg
+                      askingPrice: 2000
+                      datePosted: 1613647147
+                      dateModified: 1613647147
+                      canShip: false
+                      idUser: 0
+                    - idItem: 2
+                      title: Children's winter overalls
+                      description: 'A very thick overall for children under 90cm. Holes only in the knees, elbows and sitting area.'
+                      category: Clothing
+                      location: Oslo
+                      askingPrice: 50
+                      datePosted: 1613654361
+                      dateModified: 1613654361
+                      canShip: true
+                      idUser: 1
+                    - idItem: 3
+                      title: A dog's collar
+                      description: Very good leather collar.
+                      category: Clothing
+                      location: Oulu
+                      askingPrice: 5
+                      datePosted: 1613654161
+                      dateModified: 1613654161
+                      canShip: true
+                      idUser: 0
+                    - idItem: 4
+                      title: Fiat Punto 2014 16 valve
+                      description: Good car. Small car. Leaks oil slightly.
+                      category: Cars
+                      location: Strasborough
+                      askingPrice: 150
+                      datePosted: 1613654161
+                      dateModified: 1613654161
+                      canShip: true
+                      idUser: 3
+                    - idItem: 5
+                      title: Kaj Stenvalls painting of a famous duck
+                      description: Nice painting to keep in a safe somewhere
+                      category: Art
+                      location: Paris
+                      askingPrice: 10000
+                      datePosted: 1613340000
+                      dateModified: 1613340000
+                      canShip: true
+                      idUser: 1
         '404':
           description: Not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-      operationId: items-GET
+              examples:
+                get-items-404:
+                  value:
+                    status: 404
+                    message: No items found matching query parameters
+      operationId: listItems
       parameters:
         - schema:
             type: string
@@ -276,10 +373,64 @@ paths:
         List items for sale, the query can be narrowed by category, location or date of item posted.
 
         Query parameters:
-        - category: There are some items prefilled to "database", good categories to test item search/query parameters are 'Cars', 'Art' and 'Clothing'.
-        - location: Prefilled items have locations 'Paris', 'Strasborough', 'Oulu', 'Oslo' and 'Rovaniemi'
-        - date must be supplied in UNIX epoch format, the backend parses the date so that the time does not matter, only date
+        - category: There are some items prefilled to "database", good categories to test item search/query parameters are `Cars`, `Art` and `Clothing`.
+        - location: Prefilled items have locations `Paris`, `Strasborough`, `Oulu`, `Oslo` and `Rovaniemi`
+        - date must be supplied in UNIX epoch format, the backend parses the date so that the time does not matter, only date. E.g. `1613844380` is `20.2.2021 20.06.20 +0200` but it will match every item posted on 20.2.2021
+
+        Query parameters are handled as AND, so `?category=clothing&location=ivalo` will list only items that match BOTH parameters.
     parameters: []
+    post:
+      summary: ''
+      operationId: postItem
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+              examples:
+                post-items-201:
+                  value:
+                    status: 201
+                    message: Item posted succesfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+              examples:
+                post-items-400:
+                  value:
+                    status: 400
+                    message: Invalid request
+      description: |-
+        Post a new item for sale.
+
+        The request body contains a JSON object with the new item's information. `idItem`, `datePosted`, and `dateModified` are generated automatically and are not required. `idUser` is detected from the authorization token.
+
+        Requires a valid JWT token as Bearer token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+            examples:
+              post-item-example-1:
+                value:
+                  title: Men's leather jacket
+                  description: 'A suade leather jacket, very good condition. Has been in the cupboard since the 80''s'
+                  category: Clothing
+                  location: Helsinki
+                  askingPrice: 30
+                  canShip: true
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer <token>
 components:
   schemas:
     User:
