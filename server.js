@@ -380,10 +380,9 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
 
 
 // Tavaroiden poisto
-app.delete('/users/:id/items/:idItem', passport.authenticate('jwt', { session: false }), (req, res) => {
-    // Tarkistetaan ensin, onko käyttäjä olemassa   
-    var user = users.find( ({idUser}) => idUser == req.params.id)
-    // ja onko item olemassa on
+app.delete('/items/:idItem', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    // Tarkistetaan onko item olemassa
     var item = items.find( ({idItem}) => idItem == req.params.idItem)
 
     // Haetaan idUser auth. tokenista
@@ -391,13 +390,7 @@ app.delete('/users/:id/items/:idItem', passport.authenticate('jwt', { session: f
     var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
     var tokenIdUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
-    if (user == undefined) {    // jos ei ole olemassa
-        var statusCode = 404
-        res.status(statusCode)
-        .json(statusMessage(statusCode, `User ${req.params.id} not found`))
-        return
-    }
-    else if (tokenIdUser != req.params.id) {    // jos yrittää poistaa muiden käyttäjien
+    if (tokenIdUser != req.params.id) {    // jos yrittää poistaa muiden käyttäjien
         var statusCode = 401                        // luomaa itemiä
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
