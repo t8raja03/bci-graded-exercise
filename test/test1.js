@@ -219,6 +219,18 @@ describe('Response tests', function() {
                 throw error
             })
         })
+        it('should not be able to delete other user\'s items', async function() {
+            await chai.request(testURL)
+            .delete('/items/YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(401)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
         // SHOULD NOT BE ABLE TO DELETE OTHER USERS' ITEMS
         it('should be able to modify items', async function() {
             await chai.request(testURL)
