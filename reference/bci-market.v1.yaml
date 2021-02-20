@@ -25,7 +25,7 @@ paths:
   /users:
     post:
       summary: Register a user
-      operationId: registerUser
+      operationId: userRegister
       responses:
         '201':
           description: Created
@@ -107,7 +107,7 @@ paths:
                   value:
                     status: 0
                     message: string
-      operationId: login
+      operationId: userLogin
       description: |-
         Get authentication token from server.
 
@@ -274,13 +274,9 @@ paths:
         required: true
         description: idItem of the user's item
     put:
-
       summary: Modify or delete an item
-      operationId: umodifyItem
-
+      operationId: itemModify
       summary: Modify an item information
-      operationId: modifyItem
-
       responses:
         '202':
           description: Accepted
@@ -316,7 +312,7 @@ paths:
           required: true
     delete:
       summary: ''
-      operationId: deleteItem
+      operationId: itemDelete
       responses:
         '202':
           description: Accepted
@@ -431,9 +427,7 @@ paths:
                   value:
                     status: 404
                     message: No items found matching query parameters
-
-
-      operationId: listItems
+      operationId: itemsList
       parameters:
         - schema:
             type: string
@@ -462,7 +456,7 @@ paths:
     parameters: []
     post:
       summary: ''
-      operationId: postItem
+      operationId: itemsPost
       responses:
         '201':
           description: Created
