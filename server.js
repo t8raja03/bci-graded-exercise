@@ -19,16 +19,10 @@ const baseURL = `http://portforward.ipt.oamk.fi:${listenPort}`
 let options = {}    // JWT options
 
 
-console.log(Buffer.from('bXl5QG15eW50aS5uZXQ=Opel Corsa, good condition').toString('base64'))
-console.log(Buffer.from('b2xsaS5vc3RhamFAcG9zdGkuY29tA painting').toString('base64'))
-console.log(Buffer.from("bXl5QG15eW50aS5uZXQ=Children's winter overalls").toString('base64'))
-console.log(Buffer.from("b2xsaS5vc3RhamFAcG9zdGkuY29tA dog's collar").toString('base64'))
-console.log(Buffer.from('bXl5QG15eW50aS5uZXQ=Fiat Punto 2014 16 valve').toString('base64'))
-console.log(Buffer.from("bXl5QG15eW50aS5uZXQ=Kaj Stenvalls painting of a famous duck").toString('base64'))
 
 /**************** Data **************************/
 
-users = [
+var users = [
     {
         "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t",
         "firstName": "Olli",
@@ -61,7 +55,7 @@ users = [
     }
 ]
 
-items = [
+var items = [
     {
         "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==",
         "title": "Opel Corsa, good condition",
@@ -161,7 +155,7 @@ function jsonRouteNotFound (req, res, next) {
 ///// Myös palvelimen virheilmoitukset JSON-muodossa
 // Tämä myös käyttöön vasta reittien jälkeen
 function jsonServerError (err, req, res, next) {
-    statusCode = 500
+    var statusCode = 500
     console.error(err.stack)
     res.status(statusCode).json({
         status: statusCode,
@@ -224,7 +218,7 @@ function epochToDate (epoch) {
 ///// Status-viestien luomista helpottamaan
 // Palauttaa vain statusSchema-muotoisen JSON-objektin
 function statusMessage (code, message) {
-    statusObject = {
+    var statusObject = {
         status: code,
         message: message
     }
@@ -268,7 +262,7 @@ app.post('/users', (req, res) => {
     // joten jotta saadaan varsinainen UNIX epoch-aika, täytyy
     // jakaa 1000 ja pyöristää alaspäin
     var today = new Date().valueOf()
-    epoch = Math.floor(today / 1000)    
+    var epoch = Math.floor(today / 1000)    
 
     // Luodaan uusi user-objekti johon esitäytetään pakolliset arvot
     var newUser = {
@@ -288,13 +282,13 @@ app.post('/users', (req, res) => {
     if (req.body.tel != undefined) newUser.tel = req.body.tel
 
     // Salasanan hash ja lisäys newUseriin
-    userPassword = bcrypt.hashSync(req.body.password)
+    var userPassword = bcrypt.hashSync(req.body.password)
     newUser.password = userPassword
     
     users.push(newUser)     // Lisätään newUser users-arrayhin
     
     // Jos pyyntö onnistuu, status = 201
-    statusCode = 201
+    var statusCode = 201
     res.status(statusCode)
     .json(statusMessage(statusCode, 'User registered succesfully'))
     // })
@@ -307,8 +301,8 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
         (req, res) => {
 
             // Haetaan ensin käyttäjän idUser sähköpostiosoitteen perusteella
-            userIndex = users.findIndex( ({email}) => email === req.user.email)
-            idUser = users[userIndex].idUser
+            var userIndex = users.findIndex( ({email}) => email === req.user.email)
+            var idUser = users[userIndex].idUser
 
             // Muodostetaan token
             const body = {
@@ -339,15 +333,15 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
 app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     // Tarkistetaan ensin, onko käyttäjä olemassa   
-    user = users.find( ({idUser}) => idUser == req.params.id)
+    var user = users.find( ({idUser}) => idUser == req.params.id)
 
     // Haetaan idUser auth. tokenista
-    tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
-    decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
-    idUser = decodedToken.user.idUser                   // otetaan idUser datasta
+    var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    var idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
     if (idUser != req.params.id) {                      // jos yrittää katsoa muiden käyttäjien
-        statusCode = 401                                // tietoja
+        var statusCode = 401                                // tietoja
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to view your own user information'))
         return
@@ -363,22 +357,22 @@ app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, re
 app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     // Tarkistetaan ensin, onko käyttäjä olemassa   
-    user = users.find( ({idUser}) => idUser == req.params.id)
+    var user = users.find( ({idUser}) => idUser == req.params.id)
 
     // Haetaan idUser auth. tokenista
-    tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
-    decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
-    idUser = decodedToken.user.idUser                   // otetaan idUser datasta
+    var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    var idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
     if (idUser != req.params.id) {                      // jos yrittää katsoa muiden käyttäjien
-        statusCode = 401                                // tietoja
+        var statusCode = 401                                // tietoja
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to see your own items filtered by user'))
         return
     }
 
     // Jos käyttäjä on olemassa ja katsoo omia tietojaan
-    userItems = items.filter( ({idUser}) => idUser == req.params.id)
+    var userItems = items.filter( ({idUser}) => idUser == req.params.id)
 
     res.status(200)
     res.json(userItems)
@@ -388,45 +382,45 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
 // Tavaroiden poisto
 app.delete('/users/:id/items/:idItem', passport.authenticate('jwt', { session: false }), (req, res) => {
     // Tarkistetaan ensin, onko käyttäjä olemassa   
-    user = users.find( ({idUser}) => idUser == req.params.id)
+    var user = users.find( ({idUser}) => idUser == req.params.id)
     // ja onko item olemassa on
-    item = items.find( ({idItem}) => idItem == req.params.idItem)
+    var item = items.find( ({idItem}) => idItem == req.params.idItem)
 
     // Haetaan idUser auth. tokenista
-    tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
-    decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
-    tokenIdUser = decodedToken.user.idUser                   // otetaan idUser datasta
+    var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    var tokenIdUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
     if (user == undefined) {    // jos ei ole olemassa
-        statusCode = 404
+        var statusCode = 404
         res.status(statusCode)
         .json(statusMessage(statusCode, `User ${req.params.id} not found`))
         return
     }
     else if (tokenIdUser != req.params.id) {    // jos yrittää poistaa muiden käyttäjien
-        statusCode = 401                        // luomaa itemiä
+        var statusCode = 401                        // luomaa itemiä
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
         return
     }
     else if (item == undefined) {   // jos itemiä ei ole olemassa
-        statusCode = 404
+        var statusCode = 404
         res.status(statusCode)
         .json(statusMessage(statusCode, `Item ${req.params.idItem} not found`))
         return
     }
     else if (item.idUser != tokenIdUser) { // jos item ei ole käyttäjän luoma
-        statusCode = 401
+        var statusCode = 401
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
         return
     }
 
     // Jos käyttäjä ja item on olemassa ja käyttäjä omistaa itemin
-    items = items.filter( ({idItem}) => idItem != req.params.idItem)
+    var items = items.filter( ({idItem}) => idItem != req.params.idItem)
 
 
-    statusCode = 202                    
+    var statusCode = 202                    
     res.status(statusCode)
     .json(statusMessage(statusCode, `Item ${req.params.idItem} deleted succesfully`))
 })
@@ -439,7 +433,7 @@ app.get('/items', (req, res) => {
     // Kopioidaan ensin items-array,
     // jotta ei tehdä muutoksia siihen:
     // lähde: https://holycoders.com/javscript-copy-array/
-    itemsList = [...items]
+    var itemsList = [...items]
 
         // Suodatetaan itemsListiä parametrien mukaan:        
         if(req.query.category != undefined) {   // Jos query-parametrina on category:
@@ -454,7 +448,7 @@ app.get('/items', (req, res) => {
             itemsList = itemsList.filter( ({datePosted}) => epochToDate(datePosted) === qDay)
         }
         if (itemsList.length === 0) {
-            statusCode = 404
+            var statusCode = 404
             res.status(statusCode)
             .json(statusMessage(statusCode, 'No items found with query parameters'))
             return
@@ -480,12 +474,12 @@ app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) 
     // joten jotta saadaan varsinainen UNIX epoch-aika, täytyy
     // jakaa 1000 ja pyöristää alaspäin
     var today = new Date().valueOf()
-    epoch = Math.floor(today / 1000)
+    var epoch = Math.floor(today / 1000)
     
     // Haetaan idUser auth. tokenista
-    tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
-    decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
-    idUser = decodedToken.user.idUser                   // otetaan idUser datasta
+    var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    var idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
     // ensin määritellään uusi idItem: haetaan taulukon viimeisen elementin idItem
     // ja kasvatetaan yhdellä
@@ -507,7 +501,7 @@ app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) 
     items.push(newItem)     // Lisätään newUser users-arrayhin
     
     // Jos pyyntö onnistuu, status = 201
-    statusCode = 201
+    var statusCode = 201
     res.status(statusCode)
     .json(statusMessage(statusCode, 'Item posted succesfully'))
     // })
@@ -534,6 +528,6 @@ module.exports = {
         // rajapinnan lopetus:
         serverInstance.close()
     },
-    users: users,
-    items: items
+    users: users,   // Testejä varten
+    items: items    //    - " -
 }
