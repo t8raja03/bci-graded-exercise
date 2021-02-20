@@ -454,6 +454,11 @@ app.put('/items/:idItem', passport.authenticate('jwt', { session: false }), (req
         item.canShip = req.body.canShip
     }
 
+    // Update dateModified of the item to current UNIX epoch timestamp
+    var today = new Date().valueOf()
+    var epoch = Math.floor(today / 1000)
+    item.dateModified = epoch
+
 
     var statusCode = 202                    
     res.status(statusCode)
