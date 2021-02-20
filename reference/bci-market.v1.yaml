@@ -91,25 +91,34 @@ paths:
                     type: integer
                     description: idUser of the logged in user
               examples:
-                example-1:
+                login-example-1:
                   value:
-                    token: string
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk
                     idUser: 0
           headers: {}
         '401':
           description: Unauthorized
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
+              schema: {}
+              examples:
+                example-1:
+                  value:
+                    status: 0
+                    message: string
       operationId: login
-      description: Get authentication token from server
+      description: |-
+        Get authentication token from server.
+
+        Uses HTTP Basic authentication, username is the user's email and password the user's password.
+
+        If the email & password are not valid, a 401 response with no body is returned.
       parameters:
         - schema:
             type: string
           in: header
           name: Authorization
-          description: HTTP Basic authentication
+          description: Basic <base64_string>
           required: true
     parameters: []
   '/users/{idUser}':
