@@ -860,29 +860,29 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="deleteItem" class="">
-                      <a href="#api-Default-deleteItem">deleteItem</a>
+                    <li data-group="Default" data-name="itemDelete" class="">
+                      <a href="#api-Default-itemDelete">itemDelete</a>
                     </li>
-                    <li data-group="Default" data-name="listItems" class="">
-                      <a href="#api-Default-listItems">listItems</a>
+                    <li data-group="Default" data-name="itemModify" class="">
+                      <a href="#api-Default-itemModify">itemModify</a>
                     </li>
-                    <li data-group="Default" data-name="login" class="">
-                      <a href="#api-Default-login">login</a>
+                    <li data-group="Default" data-name="itemsList" class="">
+                      <a href="#api-Default-itemsList">itemsList</a>
                     </li>
-                    <li data-group="Default" data-name="postItem" class="">
-                      <a href="#api-Default-postItem">postItem</a>
-                    </li>
-                    <li data-group="Default" data-name="registerUser" class="">
-                      <a href="#api-Default-registerUser">registerUser</a>
-                    </li>
-                    <li data-group="Default" data-name="umodifyItem" class="">
-                      <a href="#api-Default-umodifyItem">umodifyItem</a>
+                    <li data-group="Default" data-name="itemsPost" class="">
+                      <a href="#api-Default-itemsPost">itemsPost</a>
                     </li>
                     <li data-group="Default" data-name="userInfo" class="">
                       <a href="#api-Default-userInfo">userInfo</a>
                     </li>
                     <li data-group="Default" data-name="userItems" class="">
                       <a href="#api-Default-userItems">userItems</a>
+                    </li>
+                    <li data-group="Default" data-name="userLogin" class="">
+                      <a href="#api-Default-userLogin">userLogin</a>
+                    </li>
+                    <li data-group="Default" data-name="userRegister" class="">
+                      <a href="#api-Default-userRegister">userRegister</a>
                     </li>
           </ul>
         </nav>
@@ -897,7 +897,7 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 0.5.0</div>
+              <div class="app-desc">Version: 0.5.1</div>
             <hr>
             <div><p>Building Cloud Integration, spring 2021, graded exercise
 Rankinen Jarno TVT19KMO</p>
@@ -917,10 +917,10 @@ Posting, modifying and deleting requires logging in via <code>GET /user/login</c
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-deleteItem">
-                      <article id="api-Default-deleteItem-0" data-group="User" data-name="deleteItem" data-version="0">
+                    <div id="api-Default-itemDelete">
+                      <article id="api-Default-itemDelete-0" data-group="User" data-name="itemDelete" data-version="0">
                         <div class="pull-left">
-                          <h1>deleteItem</h1>
+                          <h1>itemDelete</h1>
                           <p></p>
                         </div>
                         <div class="pull-right"></div>
@@ -934,26 +934,26 @@ Posting, modifying and deleting requires logging in via <code>GET /user/login</c
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-deleteItem-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-deleteItem-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-deleteItem-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-deleteItem-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-deleteItem-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-deleteItem-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-deleteItem-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-deleteItem-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-deleteItem-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-deleteItem-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-deleteItem-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-itemDelete-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-itemDelete-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-itemDelete-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemDelete-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-itemDelete-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-itemDelete-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemDelete-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-itemDelete-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-itemDelete-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-itemDelete-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-itemDelete-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-deleteItem-0-curl">
+                          <div class="tab-pane active" id="examples-Default-itemDelete-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
 -H "Accept: application/json"\
 "http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-deleteItem-0-java">
+                          <div class="tab-pane" id="examples-Default-itemDelete-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -970,17 +970,17 @@ public class DefaultApiExample {
         String idItem = idItem_example; // String | idItem of the user's item
         String authorization = authorization_example; // String | Bearer token
         try {
-            Status result = apiInstance.deleteItem(idItem, authorization);
+            Status result = apiInstance.itemDelete(idItem, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#deleteItem");
+            System.err.println("Exception when calling DefaultApi#itemDelete");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-deleteItem-0-android">
+                          <div class="tab-pane" id="examples-Default-itemDelete-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -990,26 +990,26 @@ public class DefaultApiExample {
         String idItem = idItem_example; // String | idItem of the user's item
         String authorization = authorization_example; // String | Bearer token
         try {
-            Status result = apiInstance.deleteItem(idItem, authorization);
+            Status result = apiInstance.itemDelete(idItem, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#deleteItem");
+            System.err.println("Exception when calling DefaultApi#itemDelete");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-deleteItem-0-groovy">
+  <div class="tab-pane" id="examples-Default-itemDelete-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-deleteItem-0-objc">
+                            <div class="tab-pane" id="examples-Default-itemDelete-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">String *idItem = idItem_example; // idItem of the user's item
 String *authorization = authorization_example; // Bearer token (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance deleteItemWith:idItem
+[apiInstance itemDeleteWith:idItem
     authorization:authorization
               completionHandler: ^(Status output, NSError* error) {
                             if (output) {
@@ -1022,7 +1022,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-deleteItem-0-javascript">
+                            <div class="tab-pane" id="examples-Default-itemDelete-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
@@ -1037,14 +1037,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.deleteItem(idItem, opts, callback);
+api.itemDelete(idItem, opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-deleteItem-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-itemDelete-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-deleteItem-0-csharp">
+                            <div class="tab-pane" id="examples-Default-itemDelete-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1053,7 +1053,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class deleteItemExample
+    public class itemDeleteExample
     {
         public void main()
         {
@@ -1064,12 +1064,12 @@ namespace Example
 
             try
             {
-                Status result = apiInstance.deleteItem(idItem, authorization);
+                Status result = apiInstance.itemDelete(idItem, authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.deleteItem: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.itemDelete: " + e.Message );
             }
         }
     }
@@ -1077,7 +1077,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-deleteItem-0-php">
+                            <div class="tab-pane" id="examples-Default-itemDelete-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1086,15 +1086,15 @@ $idItem = idItem_example; // String | idItem of the user's item
 $authorization = authorization_example; // String | Bearer token
 
 try {
-    $result = $api_instance->deleteItem($idItem, $authorization);
+    $result = $api_instance->itemDelete($idItem, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->deleteItem: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->itemDelete: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-deleteItem-0-perl">
+                            <div class="tab-pane" id="examples-Default-itemDelete-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -1104,15 +1104,15 @@ my $idItem = idItem_example; # String | idItem of the user's item
 my $authorization = authorization_example; # String | Bearer token
 
 eval { 
-    my $result = $api_instance->deleteItem(idItem => $idItem, authorization => $authorization);
+    my $result = $api_instance->itemDelete(idItem => $idItem, authorization => $authorization);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->deleteItem: $@\n";
+    warn "Exception when calling DefaultApi->itemDelete: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-deleteItem-0-python">
+                            <div class="tab-pane" id="examples-Default-itemDelete-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1125,10 +1125,10 @@ idItem = idItem_example # String | idItem of the user's item
 authorization = authorization_example # String | Bearer token (optional)
 
 try: 
-    api_response = api_instance.delete_item(idItem, authorization=authorization)
+    api_response = api_instance.item_delete(idItem, authorization=authorization)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->deleteItem: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->itemDelete: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1144,7 +1144,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_deleteItem_idItem">
+                                      <div id="d2e199_itemDelete_idItem">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -1174,7 +1174,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_deleteItem_authorization">
+                                      <div id="d2e199_itemDelete_authorization">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -1199,14 +1199,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-deleteItem-202-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-itemDelete-202-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-deleteItem-202-schema">
-                                  <div id='responses-deleteItem-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-itemDelete-202-schema">
+                                  <div id='responses-itemDelete-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1232,14 +1232,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-deleteItem-202-schema-data').val(stringify(schema));
-                                        var result = $('#responses-deleteItem-202-schema-202');
+                                        $('#responses-itemDelete-202-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemDelete-202-schema-202');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-deleteItem-202-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-itemDelete-202-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -1247,14 +1247,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-deleteItem-401-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-itemDelete-401-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-deleteItem-401-schema">
-                                  <div id='responses-deleteItem-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-itemDelete-401-schema">
+                                  <div id='responses-itemDelete-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1280,14 +1280,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-deleteItem-401-schema-data').val(stringify(schema));
-                                        var result = $('#responses-deleteItem-401-schema-401');
+                                        $('#responses-itemDelete-401-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemDelete-401-schema-401');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-deleteItem-401-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-itemDelete-401-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -1295,14 +1295,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-deleteItem-404-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-itemDelete-404-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-deleteItem-404-schema">
-                                  <div id='responses-deleteItem-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-itemDelete-404-schema">
+                                  <div id='responses-itemDelete-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1328,24 +1328,502 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-deleteItem-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-deleteItem-404-schema-404');
+                                        $('#responses-itemDelete-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemDelete-404-schema-404');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-deleteItem-404-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-itemDelete-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-listItems">
-                      <article id="api-Default-listItems-0" data-group="User" data-name="listItems" data-version="0">
+                    <div id="api-Default-itemModify">
+                      <article id="api-Default-itemModify-0" data-group="User" data-name="itemModify" data-version="0">
                         <div class="pull-left">
-                          <h1>listItems</h1>
+                          <h1>itemModify</h1>
+                          <p>Modify or delete an item</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Update the information of an item posted by logged in user</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/items/{idItem}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-itemModify-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-itemModify-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-itemModify-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemModify-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-itemModify-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-itemModify-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemModify-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-itemModify-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-itemModify-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-itemModify-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-itemModify-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-itemModify-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
+-H "Accept: application/json"\
+"http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-itemModify-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String idItem = idItem_example; // String | idItem of the user's item
+        String authorization = authorization_example; // String | Bearer token
+        try {
+            Item result = apiInstance.itemModify(idItem, authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#itemModify");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-itemModify-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String idItem = idItem_example; // String | idItem of the user's item
+        String authorization = authorization_example; // String | Bearer token
+        try {
+            Item result = apiInstance.itemModify(idItem, authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#itemModify");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-itemModify-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-itemModify-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *idItem = idItem_example; // idItem of the user's item
+String *authorization = authorization_example; // Bearer token
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Modify or delete an item
+[apiInstance itemModifyWith:idItem
+    authorization:authorization
+              completionHandler: ^(Item output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-itemModify-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
+
+var api = new BciMarket.DefaultApi()
+var idItem = idItem_example; // {{String}} idItem of the user's item
+var authorization = authorization_example; // {{String}} Bearer token
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.itemModify(idItem, authorization, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-itemModify-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-itemModify-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class itemModifyExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var idItem = idItem_example;  // String | idItem of the user's item
+            var authorization = authorization_example;  // String | Bearer token
+
+            try
+            {
+                // Modify or delete an item
+                Item result = apiInstance.itemModify(idItem, authorization);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.itemModify: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-itemModify-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$idItem = idItem_example; // String | idItem of the user's item
+$authorization = authorization_example; // String | Bearer token
+
+try {
+    $result = $api_instance->itemModify($idItem, $authorization);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->itemModify: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-itemModify-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $idItem = idItem_example; # String | idItem of the user's item
+my $authorization = authorization_example; # String | Bearer token
+
+eval { 
+    my $result = $api_instance->itemModify(idItem => $idItem, authorization => $authorization);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->itemModify: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-itemModify-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+idItem = idItem_example # String | idItem of the user's item
+authorization = authorization_example # String | Bearer token
+
+try: 
+    # Modify or delete an item
+    api_response = api_instance.item_modify(idItem, authorization)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->itemModify: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">idItem*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_itemModify_idItem">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          idItem of the user&#x27;s item
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Authorization*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_itemModify_authorization">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Bearer token
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 202 - Accepted </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-itemModify-202-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-itemModify-202-schema">
+                                  <div id='responses-itemModify-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Accepted",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Item"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-itemModify-202-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemModify-202-schema-202');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-itemModify-202-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Bad Request </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-itemModify-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-itemModify-400-schema">
+                                  <div id='responses-itemModify-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Bad Request",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-itemModify-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemModify-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-itemModify-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 401 - Unauthorized </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-itemModify-401-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-itemModify-401-schema">
+                                  <div id='responses-itemModify-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-itemModify-401-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemModify-401-schema-401');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-itemModify-401-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 404 - Not Found </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-itemModify-404-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-itemModify-404-schema">
+                                  <div id='responses-itemModify-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Not Found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-itemModify-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemModify-404-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-itemModify-404-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-itemsList">
+                      <article id="api-Default-itemsList-0" data-group="User" data-name="itemsList" data-version="0">
+                        <div class="pull-left">
+                          <h1>itemsList</h1>
                           <p>List items for sale</p>
                         </div>
                         <div class="pull-right"></div>
@@ -1366,26 +1844,26 @@ Query parameters are handled as AND, so &#x60;?category&#x3D;clothing&amp;locati
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-listItems-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-listItems-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-listItems-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-listItems-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-listItems-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-listItems-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-listItems-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-listItems-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-listItems-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-listItems-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-listItems-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-itemsList-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-itemsList-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-itemsList-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemsList-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-itemsList-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-itemsList-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemsList-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-itemsList-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-itemsList-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-itemsList-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-itemsList-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-listItems-0-curl">
+                          <div class="tab-pane active" id="examples-Default-itemsList-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
 "http://portforward.ipt.oamk.fi:42010/items?category=&location=&date="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-listItems-0-java">
+                          <div class="tab-pane" id="examples-Default-itemsList-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1403,17 +1881,17 @@ public class DefaultApiExample {
         String location = location_example; // String | List items by location
         Integer date = 56; // Integer | List items posted on date (UNIX epoch)
         try {
-            array[Item] result = apiInstance.listItems(category, location, date);
+            array[Item] result = apiInstance.itemsList(category, location, date);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#listItems");
+            System.err.println("Exception when calling DefaultApi#itemsList");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-listItems-0-android">
+                          <div class="tab-pane" id="examples-Default-itemsList-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -1424,20 +1902,20 @@ public class DefaultApiExample {
         String location = location_example; // String | List items by location
         Integer date = 56; // Integer | List items posted on date (UNIX epoch)
         try {
-            array[Item] result = apiInstance.listItems(category, location, date);
+            array[Item] result = apiInstance.itemsList(category, location, date);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#listItems");
+            System.err.println("Exception when calling DefaultApi#itemsList");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-listItems-0-groovy">
+  <div class="tab-pane" id="examples-Default-itemsList-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-listItems-0-objc">
+                            <div class="tab-pane" id="examples-Default-itemsList-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">String *category = category_example; // List items of category only (optional)
 String *location = location_example; // List items by location (optional)
 Integer *date = 56; // List items posted on date (UNIX epoch) (optional)
@@ -1445,7 +1923,7 @@ Integer *date = 56; // List items posted on date (UNIX epoch) (optional)
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // List items for sale
-[apiInstance listItemsWith:category
+[apiInstance itemsListWith:category
     location:location
     date:date
               completionHandler: ^(array[Item] output, NSError* error) {
@@ -1459,7 +1937,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-listItems-0-javascript">
+                            <div class="tab-pane" id="examples-Default-itemsList-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
@@ -1475,14 +1953,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.listItems(opts, callback);
+api.itemsList(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-listItems-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-itemsList-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-listItems-0-csharp">
+                            <div class="tab-pane" id="examples-Default-itemsList-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1491,7 +1969,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class listItemsExample
+    public class itemsListExample
     {
         public void main()
         {
@@ -1504,12 +1982,12 @@ namespace Example
             try
             {
                 // List items for sale
-                array[Item] result = apiInstance.listItems(category, location, date);
+                array[Item] result = apiInstance.itemsList(category, location, date);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.listItems: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.itemsList: " + e.Message );
             }
         }
     }
@@ -1517,7 +1995,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-listItems-0-php">
+                            <div class="tab-pane" id="examples-Default-itemsList-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1527,15 +2005,15 @@ $location = location_example; // String | List items by location
 $date = 56; // Integer | List items posted on date (UNIX epoch)
 
 try {
-    $result = $api_instance->listItems($category, $location, $date);
+    $result = $api_instance->itemsList($category, $location, $date);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->listItems: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->itemsList: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-listItems-0-perl">
+                            <div class="tab-pane" id="examples-Default-itemsList-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -1546,15 +2024,15 @@ my $location = location_example; # String | List items by location
 my $date = 56; # Integer | List items posted on date (UNIX epoch)
 
 eval { 
-    my $result = $api_instance->listItems(category => $category, location => $location, date => $date);
+    my $result = $api_instance->itemsList(category => $category, location => $location, date => $date);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->listItems: $@\n";
+    warn "Exception when calling DefaultApi->itemsList: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-listItems-0-python">
+                            <div class="tab-pane" id="examples-Default-itemsList-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1569,10 +2047,10 @@ date = 56 # Integer | List items posted on date (UNIX epoch) (optional)
 
 try: 
     # List items for sale
-    api_response = api_instance.list_items(category=category, location=location, date=date)
+    api_response = api_instance.items_list(category=category, location=location, date=date)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->listItems: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->itemsList: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1592,7 +2070,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_listItems_category">
+                                    <div id="d2e199_itemsList_category">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -1611,7 +2089,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_listItems_location">
+                                    <div id="d2e199_itemsList_location">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -1630,7 +2108,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_listItems_date">
+                                    <div id="d2e199_itemsList_date">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -1652,17 +2130,17 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-listItems-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-itemsList-200-schema">Schema</a>
                                 </li>
 
                                   <li class="">
-                                    <a data-toggle="tab" href="#responses-listItems-200-example-0">Response Example</a>
+                                    <a data-toggle="tab" href="#responses-itemsList-200-example-0">Response Example</a>
                                   </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-listItems-200-schema">
-                                  <div id='responses-listItems-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-itemsList-200-schema">
+                                  <div id='responses-itemsList-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1763,16 +2241,16 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-listItems-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-listItems-200-schema-200');
+                                        $('#responses-itemsList-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemsList-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-listItems-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-itemsList-200-schema-data' type='hidden' value=''></input>
                                 </div>
-                                  <div class="tab-pane" id="responses-listItems-200-example-0">
+                                  <div class="tab-pane" id="responses-itemsList-200-example-0">
                                       <pre class="prettyprint"><code class="json">[{&quot;idItem&quot;:0,&quot;title&quot;:&quot;Opel Corsa, good condition&quot;,&quot;description&quot;:&quot;Opel Corsa m.y. 1998, must be inspected until the end of the month&quot;,&quot;category&quot;:&quot;Cars&quot;,&quot;location&quot;:&quot;Rovaniemi&quot;,&quot;askingPrice&quot;:200,&quot;datePosted&quot;:1613592071,&quot;dateModified&quot;:1613592071,&quot;canShip&quot;:false,&quot;idUser&quot;:1},{&quot;idItem&quot;:1,&quot;title&quot;:&quot;A painting&quot;,&quot;description&quot;:&quot;A beatiful painting of the ocean floor&quot;,&quot;category&quot;:&quot;Art&quot;,&quot;location&quot;:&quot;Strasbourg&quot;,&quot;askingPrice&quot;:2000,&quot;datePosted&quot;:1613647147,&quot;dateModified&quot;:1613647147,&quot;canShip&quot;:false,&quot;idUser&quot;:0},{&quot;idItem&quot;:2,&quot;title&quot;:&quot;Children&#x27;s winter overalls&quot;,&quot;description&quot;:&quot;A very thick overall for children under 90cm. Holes only in the knees, elbows and sitting area.&quot;,&quot;category&quot;:&quot;Clothing&quot;,&quot;location&quot;:&quot;Oslo&quot;,&quot;askingPrice&quot;:50,&quot;datePosted&quot;:1613654361,&quot;dateModified&quot;:1613654361,&quot;canShip&quot;:true,&quot;idUser&quot;:1},{&quot;idItem&quot;:3,&quot;title&quot;:&quot;A dog&#x27;s collar&quot;,&quot;description&quot;:&quot;Very good leather collar.&quot;,&quot;category&quot;:&quot;Clothing&quot;,&quot;location&quot;:&quot;Oulu&quot;,&quot;askingPrice&quot;:5,&quot;datePosted&quot;:1613654161,&quot;dateModified&quot;:1613654161,&quot;canShip&quot;:true,&quot;idUser&quot;:0},{&quot;idItem&quot;:4,&quot;title&quot;:&quot;Fiat Punto 2014 16 valve&quot;,&quot;description&quot;:&quot;Good car. Small car. Leaks oil slightly.&quot;,&quot;category&quot;:&quot;Cars&quot;,&quot;location&quot;:&quot;Strasborough&quot;,&quot;askingPrice&quot;:150,&quot;datePosted&quot;:1613654161,&quot;dateModified&quot;:1613654161,&quot;canShip&quot;:true,&quot;idUser&quot;:3},{&quot;idItem&quot;:5,&quot;title&quot;:&quot;Kaj Stenvalls painting of a famous duck&quot;,&quot;description&quot;:&quot;Nice painting to keep in a safe somewhere&quot;,&quot;category&quot;:&quot;Art&quot;,&quot;location&quot;:&quot;Paris&quot;,&quot;askingPrice&quot;:10000,&quot;datePosted&quot;:1613340000,&quot;dateModified&quot;:1613340000,&quot;canShip&quot;:true,&quot;idUser&quot;:1}]</code></pre>
                                 </div>
                             </div>
@@ -1781,17 +2259,17 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-listItems-404-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-itemsList-404-schema">Schema</a>
                                 </li>
 
                                   <li class="">
-                                    <a data-toggle="tab" href="#responses-listItems-404-example-0">Response Example</a>
+                                    <a data-toggle="tab" href="#responses-itemsList-404-example-0">Response Example</a>
                                   </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-listItems-404-schema">
-                                  <div id='responses-listItems-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-itemsList-404-schema">
+                                  <div id='responses-itemsList-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1825,16 +2303,16 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-listItems-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-listItems-404-schema-404');
+                                        $('#responses-itemsList-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemsList-404-schema-404');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-listItems-404-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-itemsList-404-schema-data' type='hidden' value=''></input>
                                 </div>
-                                  <div class="tab-pane" id="responses-listItems-404-example-0">
+                                  <div class="tab-pane" id="responses-itemsList-404-example-0">
                                       <pre class="prettyprint"><code class="json">{&quot;status&quot;:404,&quot;message&quot;:&quot;No items found matching query parameters&quot;}</code></pre>
                                 </div>
                             </div>
@@ -1842,386 +2320,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-login">
-                      <article id="api-Default-login-0" data-group="User" data-name="login" data-version="0">
+                    <div id="api-Default-itemsPost">
+                      <article id="api-Default-itemsPost-0" data-group="User" data-name="itemsPost" data-version="0">
                         <div class="pull-left">
-                          <h1>login</h1>
-                          <p>Authenticate a user to the API</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Get authentication token from server.
-
-Uses HTTP Basic authentication, username is the user&#x27;s email and password the user&#x27;s password.
-
-If the email &amp; password are not valid, a 401 response with no body is returned.</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/login</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-login-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-login-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-login-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-login-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-login-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-login-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-login-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-login-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-login-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-login-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-login-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-login-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/login"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-login-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        String authorization = authorization_example; // String | Basic <base64_string>
-        try {
-            inline_response_202 result = apiInstance.login(authorization);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#login");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-login-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        String authorization = authorization_example; // String | Basic <base64_string>
-        try {
-            inline_response_202 result = apiInstance.login(authorization);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#login");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-login-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-login-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // Basic <base64_string>
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Authenticate a user to the API
-[apiInstance loginWith:authorization
-              completionHandler: ^(inline_response_202 output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-login-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
-
-var api = new BciMarket.DefaultApi()
-var authorization = authorization_example; // {{String}} Basic <base64_string>
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.login(authorization, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-login-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-login-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class loginExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var authorization = authorization_example;  // String | Basic <base64_string>
-
-            try
-            {
-                // Authenticate a user to the API
-                inline_response_202 result = apiInstance.login(authorization);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.login: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-login-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$authorization = authorization_example; // String | Basic <base64_string>
-
-try {
-    $result = $api_instance->login($authorization);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->login: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-login-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $authorization = authorization_example; # String | Basic <base64_string>
-
-eval { 
-    my $result = $api_instance->login(authorization => $authorization);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->login: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-login-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-authorization = authorization_example # String | Basic <base64_string>
-
-try: 
-    # Authenticate a user to the API
-    api_response = api_instance.login(authorization)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->login: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-                            <div class="methodsubtabletitle">Header parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                  <tr><td style="width:150px;">Authorization*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_login_authorization">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          Basic &lt;base64_string&gt;
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 202 - Accepted </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-login-202-schema">Schema</a>
-                                </li>
-
-                                  <li class="">
-                                    <a data-toggle="tab" href="#responses-login-202-example-0">Response Example</a>
-                                  </li>
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-login-202-schema">
-                                  <div id='responses-login-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Accepted",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_202"
-      },
-      "examples" : {
-        "login-example-1" : {
-          "value" : {
-            "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk",
-            "idUser" : 0
-          }
-        }
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-login-202-schema-data').val(stringify(schema));
-                                        var result = $('#responses-login-202-schema-202');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-login-202-schema-data' type='hidden' value=''></input>
-                                </div>
-                                  <div class="tab-pane" id="responses-login-202-example-0">
-                                      <pre class="prettyprint"><code class="json">{&quot;token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk&quot;,&quot;idUser&quot;:0}</code></pre>
-                                </div>
-                            </div>
-
-                            <h3> Status: 401 - Unauthorized </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-login-401-schema">Schema</a>
-                                </li>
-
-                                  <li class="">
-                                    <a data-toggle="tab" href="#responses-login-401-example-0">Response Example</a>
-                                  </li>
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-login-401-schema">
-                                  <div id='responses-login-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Unauthorized",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "x-content-type" : "application/json"
-      },
-      "examples" : {
-        "example-1" : {
-          "value" : {
-            "status" : 0,
-            "message" : "string"
-          }
-        }
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-login-401-schema-data').val(stringify(schema));
-                                        var result = $('#responses-login-401-schema-401');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-login-401-schema-data' type='hidden' value=''></input>
-                                </div>
-                                  <div class="tab-pane" id="responses-login-401-example-0">
-                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:0,&quot;message&quot;:&quot;string&quot;}</code></pre>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-postItem">
-                      <article id="api-Default-postItem-0" data-group="User" data-name="postItem" data-version="0">
-                        <div class="pull-left">
-                          <h1>postItem</h1>
+                          <h1>itemsPost</h1>
                           <p></p>
                         </div>
                         <div class="pull-right"></div>
@@ -2239,27 +2341,27 @@ Requires a valid JWT token as Bearer token</p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-postItem-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-postItem-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-postItem-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-postItem-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-postItem-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-postItem-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-postItem-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-postItem-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-postItem-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-postItem-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-postItem-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-itemsPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-itemsPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-itemsPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemsPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-itemsPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-itemsPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-itemsPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-itemsPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-itemsPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-itemsPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-itemsPost-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-postItem-0-curl">
+                          <div class="tab-pane active" id="examples-Default-itemsPost-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
 "http://portforward.ipt.oamk.fi:42010/items"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-postItem-0-java">
+                          <div class="tab-pane" id="examples-Default-itemsPost-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2285,17 +2387,17 @@ public class DefaultApiExample {
 }; // Item | 
         String authorization = authorization_example; // String | Bearer <token>
         try {
-            Status result = apiInstance.postItem(body, authorization);
+            Status result = apiInstance.itemsPost(body, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#postItem");
+            System.err.println("Exception when calling DefaultApi#itemsPost");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-postItem-0-android">
+                          <div class="tab-pane" id="examples-Default-itemsPost-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -2314,20 +2416,20 @@ public class DefaultApiExample {
 }; // Item | 
         String authorization = authorization_example; // String | Bearer <token>
         try {
-            Status result = apiInstance.postItem(body, authorization);
+            Status result = apiInstance.itemsPost(body, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#postItem");
+            System.err.println("Exception when calling DefaultApi#itemsPost");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-postItem-0-groovy">
+  <div class="tab-pane" id="examples-Default-itemsPost-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-postItem-0-objc">
+                            <div class="tab-pane" id="examples-Default-itemsPost-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Item *body = {
   "value" : {
     "title" : "Men's leather jacket",
@@ -2342,7 +2444,7 @@ String *authorization = authorization_example; // Bearer <token> (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance postItemWith:body
+[apiInstance itemsPostWith:body
     authorization:authorization
               completionHandler: ^(Status output, NSError* error) {
                             if (output) {
@@ -2355,7 +2457,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-postItem-0-javascript">
+                            <div class="tab-pane" id="examples-Default-itemsPost-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
@@ -2379,14 +2481,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.postItem(opts, callback);
+api.itemsPost(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-postItem-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-itemsPost-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-postItem-0-csharp">
+                            <div class="tab-pane" id="examples-Default-itemsPost-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2395,7 +2497,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class postItemExample
+    public class itemsPostExample
     {
         public void main()
         {
@@ -2406,12 +2508,12 @@ namespace Example
 
             try
             {
-                Status result = apiInstance.postItem(body, authorization);
+                Status result = apiInstance.itemsPost(body, authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.postItem: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.itemsPost: " + e.Message );
             }
         }
     }
@@ -2419,7 +2521,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-postItem-0-php">
+                            <div class="tab-pane" id="examples-Default-itemsPost-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2437,15 +2539,15 @@ $body = {
 $authorization = authorization_example; // String | Bearer <token>
 
 try {
-    $result = $api_instance->postItem($body, $authorization);
+    $result = $api_instance->itemsPost($body, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->postItem: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->itemsPost: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-postItem-0-perl">
+                            <div class="tab-pane" id="examples-Default-itemsPost-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -2455,15 +2557,15 @@ my $body = WWW::SwaggerClient::Object::Item->new(); # Item |
 my $authorization = authorization_example; # String | Bearer <token>
 
 eval { 
-    my $result = $api_instance->postItem(body => $body, authorization => $authorization);
+    my $result = $api_instance->itemsPost(body => $body, authorization => $authorization);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->postItem: $@\n";
+    warn "Exception when calling DefaultApi->itemsPost: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-postItem-0-python">
+                            <div class="tab-pane" id="examples-Default-itemsPost-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -2485,10 +2587,10 @@ body = {
 authorization = authorization_example # String | Bearer <token> (optional)
 
 try: 
-    api_response = api_instance.post_item(body=body, authorization=authorization)
+    api_response = api_instance.items_post(body=body, authorization=authorization)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->postItem: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->itemsPost: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -2505,7 +2607,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_postItem_authorization">
+                                      <div id="d2e199_itemsPost_authorization">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -2567,12 +2669,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_postItem_body');
+                                  var result = $('#d2e199_itemsPost_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_postItem_body"></div>
+                                <div id="d2e199_itemsPost_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -2584,17 +2686,17 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-postItem-201-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-itemsPost-201-schema">Schema</a>
                                 </li>
 
                                   <li class="">
-                                    <a data-toggle="tab" href="#responses-postItem-201-example-0">Response Example</a>
+                                    <a data-toggle="tab" href="#responses-itemsPost-201-example-0">Response Example</a>
                                   </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-postItem-201-schema">
-                                  <div id='responses-postItem-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-itemsPost-201-schema">
+                                  <div id='responses-itemsPost-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2628,16 +2730,16 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-postItem-201-schema-data').val(stringify(schema));
-                                        var result = $('#responses-postItem-201-schema-201');
+                                        $('#responses-itemsPost-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemsPost-201-schema-201');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-postItem-201-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-itemsPost-201-schema-data' type='hidden' value=''></input>
                                 </div>
-                                  <div class="tab-pane" id="responses-postItem-201-example-0">
+                                  <div class="tab-pane" id="responses-itemsPost-201-example-0">
                                       <pre class="prettyprint"><code class="json">{&quot;status&quot;:201,&quot;message&quot;:&quot;Item posted succesfully&quot;}</code></pre>
                                 </div>
                             </div>
@@ -2646,17 +2748,17 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-postItem-400-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-itemsPost-400-schema">Schema</a>
                                 </li>
 
                                   <li class="">
-                                    <a data-toggle="tab" href="#responses-postItem-400-example-0">Response Example</a>
+                                    <a data-toggle="tab" href="#responses-itemsPost-400-example-0">Response Example</a>
                                   </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-postItem-400-schema">
-                                  <div id='responses-postItem-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-itemsPost-400-schema">
+                                  <div id='responses-itemsPost-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2690,949 +2792,17 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-postItem-400-schema-data').val(stringify(schema));
-                                        var result = $('#responses-postItem-400-schema-400');
+                                        $('#responses-itemsPost-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-itemsPost-400-schema-400');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-postItem-400-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-itemsPost-400-schema-data' type='hidden' value=''></input>
                                 </div>
-                                  <div class="tab-pane" id="responses-postItem-400-example-0">
+                                  <div class="tab-pane" id="responses-itemsPost-400-example-0">
                                       <pre class="prettyprint"><code class="json">{&quot;status&quot;:400,&quot;message&quot;:&quot;Invalid request&quot;}</code></pre>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-registerUser">
-                      <article id="api-Default-registerUser-0" data-group="User" data-name="registerUser" data-version="0">
-                        <div class="pull-left">
-                          <h1>registerUser</h1>
-                          <p>Register a user</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Register a new user.
-
-In the request body, only &#x60;email&#x60; and &#x60;password&#x60; fields are required. &#x60;idUser&#x60;, &#x60;dateCreated&#x60; and &#x60;dateModified&#x60; are generated automatically and are not required.</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/users</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-registerUser-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-registerUser-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-registerUser-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-registerUser-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-registerUser-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-registerUser-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-registerUser-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-registerUser-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-registerUser-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-registerUser-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-registerUser-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-registerUser-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
--H "Accept: application/json"\
--H "Content-Type: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-registerUser-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        User body = {
-  "value" : {
-    "firstName" : "Donald",
-    "lastName" : "Duck",
-    "email" : "dd@duckburg.com",
-    "tel" : "5553131",
-    "password" : "veryStrongAndComplexPassword"
-  }
-}; // User | 
-        try {
-            Status result = apiInstance.registerUser(body);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#registerUser");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-registerUser-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        User body = {
-  "value" : {
-    "firstName" : "Donald",
-    "lastName" : "Duck",
-    "email" : "dd@duckburg.com",
-    "tel" : "5553131",
-    "password" : "veryStrongAndComplexPassword"
-  }
-}; // User | 
-        try {
-            Status result = apiInstance.registerUser(body);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#registerUser");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-registerUser-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-registerUser-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">User *body = {
-  "value" : {
-    "firstName" : "Donald",
-    "lastName" : "Duck",
-    "email" : "dd@duckburg.com",
-    "tel" : "5553131",
-    "password" : "veryStrongAndComplexPassword"
-  }
-}; //  (optional)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Register a user
-[apiInstance registerUserWith:body
-              completionHandler: ^(Status output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-registerUser-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
-
-var api = new BciMarket.DefaultApi()
-var opts = { 
-  'body': {
-  "value" : {
-    "firstName" : "Donald",
-    "lastName" : "Duck",
-    "email" : "dd@duckburg.com",
-    "tel" : "5553131",
-    "password" : "veryStrongAndComplexPassword"
-  }
-} // {{User}} 
-};
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.registerUser(opts, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-registerUser-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-registerUser-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class registerUserExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var body = new User(); // User |  (optional) 
-
-            try
-            {
-                // Register a user
-                Status result = apiInstance.registerUser(body);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.registerUser: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-registerUser-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$body = {
-  "value" : {
-    "firstName" : "Donald",
-    "lastName" : "Duck",
-    "email" : "dd@duckburg.com",
-    "tel" : "5553131",
-    "password" : "veryStrongAndComplexPassword"
-  }
-}; // User | 
-
-try {
-    $result = $api_instance->registerUser($body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->registerUser: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-registerUser-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $body = WWW::SwaggerClient::Object::User->new(); # User | 
-
-eval { 
-    my $result = $api_instance->registerUser(body => $body);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->registerUser: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-registerUser-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-body = {
-  "value" : {
-    "firstName" : "Donald",
-    "lastName" : "Duck",
-    "email" : "dd@duckburg.com",
-    "tel" : "5553131",
-    "password" : "veryStrongAndComplexPassword"
-  }
-} # User |  (optional)
-
-try: 
-    # Register a user
-    api_response = api_instance.register_user(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->registerUser: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-                            <div class="methodsubtabletitle">Body parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">body </td>
-                                <td>
-                                
-                                
-                                <script>
-                                $(document).ready(function() {
-                                  var schemaWrapper = {
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/User"
-      },
-      "examples" : {
-        "users-post-example-1" : {
-          "value" : {
-            "firstName" : "Donald",
-            "lastName" : "Duck",
-            "email" : "dd@duckburg.com",
-            "tel" : "5553131",
-            "password" : "veryStrongAndComplexPassword"
-          }
-        },
-        "users-post-example-2" : {
-          "value" : {
-            "email" : "private@burner.email.com",
-            "password" : "dös9823OPFASNå09umsdv"
-          }
-        }
-      }
-    }
-  }
-};
-                                  var schema = schemaWrapper.content["application/json"].schema;
-                                  if (schema.$ref != null) {
-                                    schema = defsParser.$refs.get(schema.$ref);
-                                  } else {
-                                    schemaWrapper.components = {};
-                                    schemaWrapper.components.schemas = Object.assign({}, defs);
-                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                      console.log(err);
-                                    });
-                                  }
-                                
-                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_registerUser_body');
-                                  result.empty();
-                                  result.append(view.render());
-                                });
-                                </script>
-                                <div id="d2e199_registerUser_body"></div>
-                                </td>
-                                </tr>
-                            </table>
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 201 - Created </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-registerUser-201-schema">Schema</a>
-                                </li>
-
-                                  <li class="">
-                                    <a data-toggle="tab" href="#responses-registerUser-201-example-0">Response Example</a>
-                                  </li>
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-registerUser-201-schema">
-                                  <div id='responses-registerUser-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Created",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      },
-      "examples" : {
-        "example-1" : {
-          "value" : {
-            "status" : 201,
-            "message" : "User registered succesfully"
-          }
-        }
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-registerUser-201-schema-data').val(stringify(schema));
-                                        var result = $('#responses-registerUser-201-schema-201');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-registerUser-201-schema-data' type='hidden' value=''></input>
-                                </div>
-                                  <div class="tab-pane" id="responses-registerUser-201-example-0">
-                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:201,&quot;message&quot;:&quot;User registered succesfully&quot;}</code></pre>
-                                </div>
-                            </div>
-
-                            <h3> Status: 400 - Bad Request </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-registerUser-400-schema">Schema</a>
-                                </li>
-
-                                  <li class="">
-                                    <a data-toggle="tab" href="#responses-registerUser-400-example-0">Response Example</a>
-                                  </li>
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-registerUser-400-schema">
-                                  <div id='responses-registerUser-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Bad Request",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      },
-      "examples" : {
-        "example-1" : {
-          "value" : {
-            "status" : 400,
-            "message" : "Invalid request"
-          }
-        }
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-registerUser-400-schema-data').val(stringify(schema));
-                                        var result = $('#responses-registerUser-400-schema-400');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-registerUser-400-schema-data' type='hidden' value=''></input>
-                                </div>
-                                  <div class="tab-pane" id="responses-registerUser-400-example-0">
-                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:400,&quot;message&quot;:&quot;Invalid request&quot;}</code></pre>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-umodifyItem">
-                      <article id="api-Default-umodifyItem-0" data-group="User" data-name="umodifyItem" data-version="0">
-                        <div class="pull-left">
-                          <h1>umodifyItem</h1>
-                          <p>Modify or delete an item</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Update the information of an item posted by logged in user</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/items/{idItem}</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-umodifyItem-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-umodifyItem-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-umodifyItem-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-umodifyItem-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-umodifyItem-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-umodifyItem-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-umodifyItem-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-umodifyItem-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-umodifyItem-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-umodifyItem-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-umodifyItem-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-umodifyItem-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
--H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-umodifyItem-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        String idItem = idItem_example; // String | idItem of the user's item
-        String authorization = authorization_example; // String | Bearer token
-        try {
-            Item result = apiInstance.umodifyItem(idItem, authorization);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#umodifyItem");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-umodifyItem-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        String idItem = idItem_example; // String | idItem of the user's item
-        String authorization = authorization_example; // String | Bearer token
-        try {
-            Item result = apiInstance.umodifyItem(idItem, authorization);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#umodifyItem");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-umodifyItem-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-umodifyItem-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *idItem = idItem_example; // idItem of the user's item
-String *authorization = authorization_example; // Bearer token
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Modify or delete an item
-[apiInstance umodifyItemWith:idItem
-    authorization:authorization
-              completionHandler: ^(Item output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-umodifyItem-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
-
-var api = new BciMarket.DefaultApi()
-var idItem = idItem_example; // {{String}} idItem of the user's item
-var authorization = authorization_example; // {{String}} Bearer token
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.umodifyItem(idItem, authorization, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-umodifyItem-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-umodifyItem-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class umodifyItemExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var idItem = idItem_example;  // String | idItem of the user's item
-            var authorization = authorization_example;  // String | Bearer token
-
-            try
-            {
-                // Modify or delete an item
-                Item result = apiInstance.umodifyItem(idItem, authorization);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.umodifyItem: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-umodifyItem-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$idItem = idItem_example; // String | idItem of the user's item
-$authorization = authorization_example; // String | Bearer token
-
-try {
-    $result = $api_instance->umodifyItem($idItem, $authorization);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->umodifyItem: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-umodifyItem-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $idItem = idItem_example; # String | idItem of the user's item
-my $authorization = authorization_example; # String | Bearer token
-
-eval { 
-    my $result = $api_instance->umodifyItem(idItem => $idItem, authorization => $authorization);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->umodifyItem: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-umodifyItem-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-idItem = idItem_example # String | idItem of the user's item
-authorization = authorization_example # String | Bearer token
-
-try: 
-    # Modify or delete an item
-    api_response = api_instance.umodify_item(idItem, authorization)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->umodifyItem: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">idItem*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_umodifyItem_idItem">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          idItem of the user&#x27;s item
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-                            <div class="methodsubtabletitle">Header parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                  <tr><td style="width:150px;">Authorization*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_umodifyItem_authorization">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          Bearer token
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 202 - Accepted </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-umodifyItem-202-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-umodifyItem-202-schema">
-                                  <div id='responses-umodifyItem-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Accepted",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Item"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-umodifyItem-202-schema-data').val(stringify(schema));
-                                        var result = $('#responses-umodifyItem-202-schema-202');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-umodifyItem-202-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 400 - Bad Request </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-umodifyItem-400-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-umodifyItem-400-schema">
-                                  <div id='responses-umodifyItem-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Bad Request",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-umodifyItem-400-schema-data').val(stringify(schema));
-                                        var result = $('#responses-umodifyItem-400-schema-400');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-umodifyItem-400-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 401 - Unauthorized </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-umodifyItem-401-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-umodifyItem-401-schema">
-                                  <div id='responses-umodifyItem-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Unauthorized",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-umodifyItem-401-schema-data').val(stringify(schema));
-                                        var result = $('#responses-umodifyItem-401-schema-401');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-umodifyItem-401-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 404 - Not Found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-umodifyItem-404-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-umodifyItem-404-schema">
-                                  <div id='responses-umodifyItem-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Not Found",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-umodifyItem-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-umodifyItem-404-schema-404');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-umodifyItem-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -4484,6 +3654,836 @@ except ApiException as e:
                                 </div>
                                   <div class="tab-pane" id="responses-userItems-401-example-0">
                                       <pre class="prettyprint"><code class="json">{&quot;status&quot;:401,&quot;message&quot;:&quot;You are only authorized to see your own items filtered by user&quot;}</code></pre>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-userLogin">
+                      <article id="api-Default-userLogin-0" data-group="User" data-name="userLogin" data-version="0">
+                        <div class="pull-left">
+                          <h1>userLogin</h1>
+                          <p>Authenticate a user to the API</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Get authentication token from server.
+
+Uses HTTP Basic authentication, username is the user&#x27;s email and password the user&#x27;s password.
+
+If the email &amp; password are not valid, a 401 response with no body is returned.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/login</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-userLogin-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-userLogin-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-userLogin-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-userLogin-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-userLogin-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-userLogin-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-userLogin-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-userLogin-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-userLogin-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-userLogin-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-userLogin-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-userLogin-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"http://portforward.ipt.oamk.fi:42010/users/login"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-userLogin-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String authorization = authorization_example; // String | Basic <base64_string>
+        try {
+            inline_response_202 result = apiInstance.userLogin(authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#userLogin");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-userLogin-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String authorization = authorization_example; // String | Basic <base64_string>
+        try {
+            inline_response_202 result = apiInstance.userLogin(authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#userLogin");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-userLogin-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-userLogin-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // Basic <base64_string>
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Authenticate a user to the API
+[apiInstance userLoginWith:authorization
+              completionHandler: ^(inline_response_202 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-userLogin-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
+
+var api = new BciMarket.DefaultApi()
+var authorization = authorization_example; // {{String}} Basic <base64_string>
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.userLogin(authorization, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-userLogin-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-userLogin-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class userLoginExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var authorization = authorization_example;  // String | Basic <base64_string>
+
+            try
+            {
+                // Authenticate a user to the API
+                inline_response_202 result = apiInstance.userLogin(authorization);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.userLogin: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-userLogin-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$authorization = authorization_example; // String | Basic <base64_string>
+
+try {
+    $result = $api_instance->userLogin($authorization);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->userLogin: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-userLogin-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $authorization = authorization_example; # String | Basic <base64_string>
+
+eval { 
+    my $result = $api_instance->userLogin(authorization => $authorization);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->userLogin: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-userLogin-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+authorization = authorization_example # String | Basic <base64_string>
+
+try: 
+    # Authenticate a user to the API
+    api_response = api_instance.user_login(authorization)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->userLogin: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Authorization*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_userLogin_authorization">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Basic &lt;base64_string&gt;
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 202 - Accepted </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-userLogin-202-schema">Schema</a>
+                                </li>
+
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-userLogin-202-example-0">Response Example</a>
+                                  </li>
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-userLogin-202-schema">
+                                  <div id='responses-userLogin-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Accepted",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_202"
+      },
+      "examples" : {
+        "login-example-1" : {
+          "value" : {
+            "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk",
+            "idUser" : 0
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-userLogin-202-schema-data').val(stringify(schema));
+                                        var result = $('#responses-userLogin-202-schema-202');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-userLogin-202-schema-data' type='hidden' value=''></input>
+                                </div>
+                                  <div class="tab-pane" id="responses-userLogin-202-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk&quot;,&quot;idUser&quot;:0}</code></pre>
+                                </div>
+                            </div>
+
+                            <h3> Status: 401 - Unauthorized </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-userLogin-401-schema">Schema</a>
+                                </li>
+
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-userLogin-401-example-0">Response Example</a>
+                                  </li>
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-userLogin-401-schema">
+                                  <div id='responses-userLogin-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "x-content-type" : "application/json"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "status" : 0,
+            "message" : "string"
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-userLogin-401-schema-data').val(stringify(schema));
+                                        var result = $('#responses-userLogin-401-schema-401');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-userLogin-401-schema-data' type='hidden' value=''></input>
+                                </div>
+                                  <div class="tab-pane" id="responses-userLogin-401-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:0,&quot;message&quot;:&quot;string&quot;}</code></pre>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-userRegister">
+                      <article id="api-Default-userRegister-0" data-group="User" data-name="userRegister" data-version="0">
+                        <div class="pull-left">
+                          <h1>userRegister</h1>
+                          <p>Register a user</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Register a new user.
+
+In the request body, only &#x60;email&#x60; and &#x60;password&#x60; fields are required. &#x60;idUser&#x60;, &#x60;dateCreated&#x60; and &#x60;dateModified&#x60; are generated automatically and are not required.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/users</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-userRegister-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-userRegister-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-userRegister-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-userRegister-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-userRegister-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-userRegister-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-userRegister-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-userRegister-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-userRegister-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-userRegister-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-userRegister-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-userRegister-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: application/json"\
+-H "Content-Type: application/json"\
+"http://portforward.ipt.oamk.fi:42010/users"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-userRegister-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        User body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+}; // User | 
+        try {
+            Status result = apiInstance.userRegister(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#userRegister");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-userRegister-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        User body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+}; // User | 
+        try {
+            Status result = apiInstance.userRegister(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#userRegister");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-userRegister-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-userRegister-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">User *body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+}; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Register a user
+[apiInstance userRegisterWith:body
+              completionHandler: ^(Status output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-userRegister-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
+
+var api = new BciMarket.DefaultApi()
+var opts = { 
+  'body': {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+} // {{User}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.userRegister(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-userRegister-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-userRegister-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class userRegisterExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var body = new User(); // User |  (optional) 
+
+            try
+            {
+                // Register a user
+                Status result = apiInstance.userRegister(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.userRegister: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-userRegister-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+}; // User | 
+
+try {
+    $result = $api_instance->userRegister($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->userRegister: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-userRegister-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $body = WWW::SwaggerClient::Object::User->new(); # User | 
+
+eval { 
+    my $result = $api_instance->userRegister(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->userRegister: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-userRegister-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+} # User |  (optional)
+
+try: 
+    # Register a user
+    api_response = api_instance.user_register(body=body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->userRegister: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/User"
+      },
+      "examples" : {
+        "users-post-example-1" : {
+          "value" : {
+            "firstName" : "Donald",
+            "lastName" : "Duck",
+            "email" : "dd@duckburg.com",
+            "tel" : "5553131",
+            "password" : "veryStrongAndComplexPassword"
+          }
+        },
+        "users-post-example-2" : {
+          "value" : {
+            "email" : "private@burner.email.com",
+            "password" : "dös9823OPFASNå09umsdv"
+          }
+        }
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_userRegister_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_userRegister_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 201 - Created </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-userRegister-201-schema">Schema</a>
+                                </li>
+
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-userRegister-201-example-0">Response Example</a>
+                                  </li>
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-userRegister-201-schema">
+                                  <div id='responses-userRegister-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Created",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "status" : 201,
+            "message" : "User registered succesfully"
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-userRegister-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-userRegister-201-schema-201');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-userRegister-201-schema-data' type='hidden' value=''></input>
+                                </div>
+                                  <div class="tab-pane" id="responses-userRegister-201-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:201,&quot;message&quot;:&quot;User registered succesfully&quot;}</code></pre>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Bad Request </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-userRegister-400-schema">Schema</a>
+                                </li>
+
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-userRegister-400-example-0">Response Example</a>
+                                  </li>
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-userRegister-400-schema">
+                                  <div id='responses-userRegister-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Bad Request",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "status" : 400,
+            "message" : "Invalid request"
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-userRegister-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-userRegister-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-userRegister-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                                  <div class="tab-pane" id="responses-userRegister-400-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:400,&quot;message&quot;:&quot;Invalid request&quot;}</code></pre>
                                 </div>
                             </div>
 
