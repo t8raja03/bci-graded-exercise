@@ -139,20 +139,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+              examples:
+                example-1:
+                  value:
+                    idUser: 0
+                    firstName: string
+                    lastName: string
+                    email: string
+                    dateCreated: 0
+                    dateModified: 0
+                    tel: string
+                    password: string
         '401':
           description: Unauthorized
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
+              examples:
+                example-1:
+                  value:
+                    status: 401
+                    message: You are only authorized to view your own user information
       operationId: userInfo
-      description: Get the information of a specific user
+      description: |-
+        Get the information of the logged in user.
+
+        Requires JWT authentication token. The user is only able to view his/her own information.
       parameters:
         - schema:
             type: string
@@ -180,20 +193,42 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Item'
+              examples:
+                example-1:
+                  value:
+                    - idItem: 1
+                      title: A painting
+                      description: A beatiful painting of the ocean floor
+                      category: Art
+                      location: Strasbourg
+                      askingPrice: 2000
+                      datePosted: 1613647147
+                      dateModified: 1613647147
+                      canShip: false
+                      idUser: 0
+                    - idItem: 3
+                      title: A dog's collar
+                      description: Very good leather collar.
+                      category: Clothing
+                      location: Oulu
+                      askingPrice: 5
+                      datePosted: 1613654161
+                      dateModified: 1613654161
+                      canShip: true
+                      idUser: 0
         '401':
           description: Unauthorized
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
+              examples:
+                example-1:
+                  value:
+                    status: 401
+                    message: You are only authorized to see your own items filtered by user
       operationId: userItems
-      description: List all postings of a user identified by idUser
+      description: List all postings of a user identified by idUser. A user can only see his/her own posted items via this route.
       parameters:
         - schema:
             type: string
