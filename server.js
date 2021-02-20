@@ -25,7 +25,7 @@ let options = {}    // JWT options
 
 users = [
     {
-        "idUser": 0,
+        "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t",
         "firstName": "Olli",
         "lastName": "Ostaja",
         "email": "olli.ostaja@posti.com",
@@ -35,7 +35,7 @@ users = [
         "password": "$2y$10$9nlCG7OwYW9QqE5/Ofd/UeUvvIvArY22BjM7SphFuaXhJ4QYw42je"
     },
     {
-        "idUser": 1,
+        "idUser": "bXl5QG15eW50aS5uZXQ=",
         "firstName": "Myy",
         "lastName": "Myyjätär",
         "email": "myy@myynti.net",
@@ -45,7 +45,7 @@ users = [
         "password": "$2y$10$ZQg5T28.f0/oirjuInEZlefrBVdClfzlan9BqCvoUmaQXITzMExSC"
     },
     {
-        "idUser": 2,
+        "idUser": "a2F1a28ua2F0c2VsaWphQGdtYWlsLmNvbQ==",
         "firstName": "Kauko",
         "lastName": "Katselija",
         "email": "kauko.katselija@gmail.com",
@@ -67,7 +67,7 @@ items = [
         "datePosted": 1613592071,
         "dateModified": 1613592071,
         "canShip": false,
-        "idUser": 1
+        "idUser": "bXl5QG15eW50aS5uZXQ="
       },
       {
         "idItem": 1,
@@ -79,7 +79,7 @@ items = [
         "datePosted": 1613647147,
         "dateModified": 1613647147,
         "canShip": false,
-        "idUser": 0
+        "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t"
       },
       {
         "idItem": 2,
@@ -91,7 +91,7 @@ items = [
         "datePosted": 1613654361,
         "dateModified": 1613654361,
         "canShip": true,
-        "idUser": 1
+        "idUser": "bXl5QG15eW50aS5uZXQ="
       },
       {
         "idItem": 3,
@@ -103,7 +103,7 @@ items = [
         "datePosted": 1613654161,
         "dateModified": 1613654161,
         "canShip": true,
-        "idUser": 0
+        "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t"
       },
       {
         "idItem": 4,
@@ -115,7 +115,7 @@ items = [
         "datePosted": 1613654161,
         "dateModified": 1613654161,
         "canShip": true,
-        "idUser": 3
+        "idUser": "bXl5QG15eW50aS5uZXQ="
       },
       {
         "idItem": 5,
@@ -127,7 +127,7 @@ items = [
         "datePosted": 1613340000,
         "dateModified": 1613340000,
         "canShip": true,
-        "idUser": 1
+        "idUser": "bXl5QG15eW50aS5uZXQ="
       }
 ]
 
@@ -267,7 +267,7 @@ app.post('/users', (req, res) => {
 
     // Luodaan uusi user-objekti johon esitäytetään pakolliset arvot
     var newUser = {
-        id: users.length,
+        id: Buffer.from(req.body.email).toString('base64'),
         firstName: '',
         lastName: '',
         email: req.body.email,
@@ -334,7 +334,7 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
 app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     // Tarkistetaan ensin, onko käyttäjä olemassa   
-    //user = users.find( ({idUser}) => idUser == req.params.id)
+    user = users.find( ({idUser}) => idUser == req.params.id)
 
     // Haetaan idUser auth. tokenista
     tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
@@ -358,7 +358,7 @@ app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, re
 app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     // Tarkistetaan ensin, onko käyttäjä olemassa   
-    //user = users.find( ({idUser}) => idUser == req.params.id)
+    user = users.find( ({idUser}) => idUser == req.params.id)
 
     // Haetaan idUser auth. tokenista
     tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
