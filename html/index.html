@@ -697,7 +697,7 @@
       "description" : "Java Web Token for authentication"
     },
     "idUser" : {
-      "type" : "integer",
+      "type" : "string",
       "description" : "idUser of the logged in user"
     }
   }
@@ -743,13 +743,13 @@
       "description" : "Whether the seller is willing to ship the item"
     },
     "idUser" : {
-      "type" : "integer"
+      "type" : "string"
     }
   },
   "description" : "Item for sale",
   "x-examples" : {
     "example-1" : {
-      "idItem" : 0,
+      "idItem" : "b2xsaS5vc3RhamFAcG9zdGkuY29t",
       "title" : "Opel Corsa, good condition",
       "description" : "Opel Corsa m.y. 1998, must be inspected until the end of the month",
       "category" : "Cars",
@@ -758,7 +758,7 @@
       "datePosted" : 1613592071,
       "dateModified" : 1613592071,
       "canShip" : false,
-      "idUser" : 1
+      "idUser" : "bXl5QG15eW50aS5uZXQ"
     }
   }
 };
@@ -897,7 +897,7 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 0.5.1</div>
+              <div class="app-desc">Version: 0.6.2</div>
             <hr>
             <div><p>Building Cloud Integration, spring 2021, graded exercise
 Rankinen Jarno TVT19KMO</p>
@@ -951,7 +951,7 @@ Posting, modifying and deleting requires logging in via <code>GET /user/login</c
                           <div class="tab-pane active" id="examples-Default-itemDelete-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.5.1/items/{idItem}"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemDelete-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1351,7 +1351,10 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Update the information of an item posted by logged in user</p>
+                        <p class="marked">Update the information of an item posted by logged in user.
+Only the fields that are to be updated are required in the request body.
+&#x60;dateModified&#x60; will be updated automatically.
+&#x60;idItem&#x60;, &#x60;datePosted&#x60; and &#x60;idUser&#x60; should not be in the request body, if they are, it will have no effect.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/items/{idItem}</span></code></pre>
@@ -1376,7 +1379,8 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-itemModify-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.5.1/items/{idItem}"</code></pre>
+-H "Content-Type: application/json"\
+"http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemModify-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1392,10 +1396,17 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         
         DefaultApi apiInstance = new DefaultApi();
-        String idItem = idItem_example; // String | idItem of the user's item
         String authorization = authorization_example; // String | Bearer token
+        String idItem = idItem_example; // String | idItem of the user's item
+        Item body = {
+  "value" : {
+    "title" : "This title has been modified",
+    "askingPrice" : 10,
+    "canShip" : true
+  }
+}; // Item | 
         try {
-            Item result = apiInstance.itemModify(idItem, authorization);
+            Item result = apiInstance.itemModify(authorization, idItem, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#itemModify");
@@ -1412,10 +1423,17 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String idItem = idItem_example; // String | idItem of the user's item
         String authorization = authorization_example; // String | Bearer token
+        String idItem = idItem_example; // String | idItem of the user's item
+        Item body = {
+  "value" : {
+    "title" : "This title has been modified",
+    "askingPrice" : 10,
+    "canShip" : true
+  }
+}; // Item | 
         try {
-            Item result = apiInstance.itemModify(idItem, authorization);
+            Item result = apiInstance.itemModify(authorization, idItem, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#itemModify");
@@ -1429,14 +1447,22 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-itemModify-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *idItem = idItem_example; // idItem of the user's item
-String *authorization = authorization_example; // Bearer token
+                              <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // Bearer token
+String *idItem = idItem_example; // idItem of the user's item
+Item *body = {
+  "value" : {
+    "title" : "This title has been modified",
+    "askingPrice" : 10,
+    "canShip" : true
+  }
+}; //  (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Modify or delete an item
-[apiInstance itemModifyWith:idItem
-    authorization:authorization
+[apiInstance itemModifyWith:authorization
+    idItem:idItem
+    body:body
               completionHandler: ^(Item output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -1452,9 +1478,17 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
-var idItem = idItem_example; // {{String}} idItem of the user's item
 var authorization = authorization_example; // {{String}} Bearer token
-
+var idItem = idItem_example; // {{String}} idItem of the user's item
+var opts = { 
+  'body': {
+  "value" : {
+    "title" : "This title has been modified",
+    "askingPrice" : 10,
+    "canShip" : true
+  }
+} // {{Item}} 
+};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1462,7 +1496,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.itemModify(idItem, authorization, callback);
+api.itemModify(authorizationidItem, opts, callback);
 </code></pre>
                             </div>
 
@@ -1484,13 +1518,14 @@ namespace Example
         {
 
             var apiInstance = new DefaultApi();
-            var idItem = idItem_example;  // String | idItem of the user's item
             var authorization = authorization_example;  // String | Bearer token
+            var idItem = idItem_example;  // String | idItem of the user's item
+            var body = new Item(); // Item |  (optional) 
 
             try
             {
                 // Modify or delete an item
-                Item result = apiInstance.itemModify(idItem, authorization);
+                Item result = apiInstance.itemModify(authorization, idItem, body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1508,11 +1543,18 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$idItem = idItem_example; // String | idItem of the user's item
 $authorization = authorization_example; // String | Bearer token
+$idItem = idItem_example; // String | idItem of the user's item
+$body = {
+  "value" : {
+    "title" : "This title has been modified",
+    "askingPrice" : 10,
+    "canShip" : true
+  }
+}; // Item | 
 
 try {
-    $result = $api_instance->itemModify($idItem, $authorization);
+    $result = $api_instance->itemModify($authorization, $idItem, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->itemModify: ', $e->getMessage(), PHP_EOL;
@@ -1526,11 +1568,12 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $idItem = idItem_example; # String | idItem of the user's item
 my $authorization = authorization_example; # String | Bearer token
+my $idItem = idItem_example; # String | idItem of the user's item
+my $body = WWW::SwaggerClient::Object::Item->new(); # Item | 
 
 eval { 
-    my $result = $api_instance->itemModify(idItem => $idItem, authorization => $authorization);
+    my $result = $api_instance->itemModify(authorization => $authorization, idItem => $idItem, body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -1547,12 +1590,19 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-idItem = idItem_example # String | idItem of the user's item
 authorization = authorization_example # String | Bearer token
+idItem = idItem_example # String | idItem of the user's item
+body = {
+  "value" : {
+    "title" : "This title has been modified",
+    "askingPrice" : 10,
+    "canShip" : true
+  }
+} # Item |  (optional)
 
 try: 
     # Modify or delete an item
-    api_response = api_instance.item_modify(idItem, authorization)
+    api_response = api_instance.item_modify(authorization, idItem, body=body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->itemModify: %s\n" % e)</code></pre>
@@ -1621,6 +1671,67 @@ except ApiException as e:
                                   </tr>
                             </table>
 
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Item"
+      },
+      "examples" : {
+        "modify-item-example1" : {
+          "value" : {
+            "title" : "This title has been modified",
+            "askingPrice" : 10,
+            "canShip" : true
+          }
+        },
+        "modify-item-example-2" : {
+          "value" : {
+            "title" : "A replacement title",
+            "description" : "This item has had all it's fields changed",
+            "category" : "Clothing",
+            "location" : "Oslo",
+            "askingPrice" : 1000,
+            "canShip" : false
+          }
+        }
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_itemModify_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_itemModify_body"></div>
+                                </td>
+                                </tr>
+                            </table>
 
 
 
@@ -1861,7 +1972,7 @@ Query parameters are handled as AND, so &#x60;?category&#x3D;clothing&amp;locati
                           <div class="tab-pane active" id="examples-Default-itemsList-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.5.1/items?category=&location=&date="</code></pre>
+"http://portforward.ipt.oamk.fi:42010/items?category=&location=&date="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemsList-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2359,7 +2470,7 @@ Requires a valid JWT token as Bearer token</p>
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.5.1/items"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/items"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemsPost-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2845,7 +2956,7 @@ Requires JWT authentication token. The user is only able to view his/her own inf
                           <div class="tab-pane active" id="examples-Default-userInfo-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.5.1/users/{idUser}"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-userInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3261,7 +3372,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-userItems-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.5.1/users/{idUser}/items"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-userItems-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3541,7 +3652,7 @@ except ApiException as e:
       "examples" : {
         "example-1" : {
           "value" : [ {
-            "idItem" : 1,
+            "idItem" : "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=",
             "title" : "A painting",
             "description" : "A beatiful painting of the ocean floor",
             "category" : "Art",
@@ -3552,7 +3663,7 @@ except ApiException as e:
             "canShip" : false,
             "idUser" : 0
           }, {
-            "idItem" : 3,
+            "idItem" : "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy",
             "title" : "A dog's collar",
             "description" : "Very good leather collar.",
             "category" : "Clothing",
@@ -3591,7 +3702,7 @@ except ApiException as e:
                                   <input id='responses-userItems-200-schema-data' type='hidden' value=''></input>
                                 </div>
                                   <div class="tab-pane" id="responses-userItems-200-example-0">
-                                      <pre class="prettyprint"><code class="json">[{&quot;idItem&quot;:1,&quot;title&quot;:&quot;A painting&quot;,&quot;description&quot;:&quot;A beatiful painting of the ocean floor&quot;,&quot;category&quot;:&quot;Art&quot;,&quot;location&quot;:&quot;Strasbourg&quot;,&quot;askingPrice&quot;:2000,&quot;datePosted&quot;:1613647147,&quot;dateModified&quot;:1613647147,&quot;canShip&quot;:false,&quot;idUser&quot;:0},{&quot;idItem&quot;:3,&quot;title&quot;:&quot;A dog&#x27;s collar&quot;,&quot;description&quot;:&quot;Very good leather collar.&quot;,&quot;category&quot;:&quot;Clothing&quot;,&quot;location&quot;:&quot;Oulu&quot;,&quot;askingPrice&quot;:5,&quot;datePosted&quot;:1613654161,&quot;dateModified&quot;:1613654161,&quot;canShip&quot;:true,&quot;idUser&quot;:0}]</code></pre>
+                                      <pre class="prettyprint"><code class="json">[{&quot;idItem&quot;:&quot;YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc&#x3D;&quot;,&quot;title&quot;:&quot;A painting&quot;,&quot;description&quot;:&quot;A beatiful painting of the ocean floor&quot;,&quot;category&quot;:&quot;Art&quot;,&quot;location&quot;:&quot;Strasbourg&quot;,&quot;askingPrice&quot;:2000,&quot;datePosted&quot;:1613647147,&quot;dateModified&quot;:1613647147,&quot;canShip&quot;:false,&quot;idUser&quot;:0},{&quot;idItem&quot;:&quot;YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy&quot;,&quot;title&quot;:&quot;A dog&#x27;s collar&quot;,&quot;description&quot;:&quot;Very good leather collar.&quot;,&quot;category&quot;:&quot;Clothing&quot;,&quot;location&quot;:&quot;Oulu&quot;,&quot;askingPrice&quot;:5,&quot;datePosted&quot;:1613654161,&quot;dateModified&quot;:1613654161,&quot;canShip&quot;:true,&quot;idUser&quot;:0}]</code></pre>
                                 </div>
                             </div>
 
@@ -3698,7 +3809,7 @@ If the email &amp; password are not valid, a 401 response with no body is return
                           <div class="tab-pane active" id="examples-Default-userLogin-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.5.1/users/login"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users/login"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-userLogin-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3937,7 +4048,7 @@ except ApiException as e:
         "login-example-1" : {
           "value" : {
             "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk",
-            "idUser" : 0
+            "idUser" : "yJhbGciOiJIUzI1NiIsInR5cCI6IkpX="
           }
         }
       }
@@ -3967,7 +4078,7 @@ except ApiException as e:
                                   <input id='responses-userLogin-202-schema-data' type='hidden' value=''></input>
                                 </div>
                                   <div class="tab-pane" id="responses-userLogin-202-example-0">
-                                      <pre class="prettyprint"><code class="json">{&quot;token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk&quot;,&quot;idUser&quot;:0}</code></pre>
+                                      <pre class="prettyprint"><code class="json">{&quot;token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk&quot;,&quot;idUser&quot;:&quot;yJhbGciOiJIUzI1NiIsInR5cCI6IkpX&#x3D;&quot;}</code></pre>
                                 </div>
                             </div>
 
@@ -4073,7 +4184,7 @@ In the request body, only &#x60;email&#x60; and &#x60;password&#x60; fields are 
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
-"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.5.1/users"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/users"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-userRegister-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
