@@ -100,6 +100,7 @@ paths:
           description: Unauthorized
           content:
             application/json:
+
               schema: {}
               examples:
                 example-1:
@@ -113,6 +114,12 @@ paths:
         Uses HTTP Basic authentication, username is the user's email and password the user's password.
 
         If the email & password are not valid, a 401 response with no body is returned.
+
+              schema:
+                $ref: '#/components/schemas/Status'
+      operationId: login
+      description: Get authentication token from server
+
       parameters:
         - schema:
             type: string
@@ -156,6 +163,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+
               examples:
                 example-1:
                   value:
@@ -166,6 +174,16 @@ paths:
         Get the information of the logged in user.
 
         Requires JWT authentication token. The user is only able to view his/her own information.
+
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+      operationId: userInfo
+      description: Get the information of a specific user
+
       parameters:
         - schema:
             type: string
@@ -222,6 +240,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+
               examples:
                 example-1:
                   value:
@@ -229,6 +248,16 @@ paths:
                     message: You are only authorized to see your own items filtered by user
       operationId: userItems
       description: List all postings of a user identified by idUser. A user can only see his/her own posted items via this route.
+=======
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+      operationId: userItems
+      description: List all postings of a user identified by idUser
+
       parameters:
         - schema:
             type: string
@@ -247,6 +276,7 @@ paths:
     put:
       summary: Modify or delete an item
       operationId: itemModify
+      summary: Modify an item information
       responses:
         '202':
           description: Accepted
@@ -391,6 +421,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+
               examples:
                 get-items-404:
                   value:

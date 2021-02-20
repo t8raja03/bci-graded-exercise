@@ -1,0 +1,133 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "itemSchema",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "idItem": 0,
+            "title": "Opel Corsa, good condition",
+            "description": "Opel Corsa m.y. 1998, must be inspected until the end of the month",
+            "category": "Cars",
+            "location": "Rovaniemi",
+            "askingPrice": 200,
+            "datePosted": 1613592071,
+            "dateModified": 1613592071,
+            "canShip": false,
+            "idUser": 1
+        }
+    ],
+    "required": [
+        "title",
+        "description",
+        "category",
+        "location",
+        "askingPrice",
+        "canShip"
+    ],
+    "properties": {
+        "idItem": {
+            "$id": "#/properties/idItem",
+            "type": "integer",
+            "title": "The idItem schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                0
+            ]
+        },
+        "title": {
+            "$id": "#/properties/title",
+            "type": "string",
+            "title": "The title schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Opel Corsa, good condition"
+            ]
+        },
+        "description": {
+            "$id": "#/properties/description",
+            "type": "string",
+            "title": "The description schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Opel Corsa m.y. 1998, must be inspected until the end of the month"
+            ]
+        },
+        "category": {
+            "$id": "#/properties/category",
+            "type": "string",
+            "title": "The category schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Cars"
+            ]
+        },
+        "location": {
+            "$id": "#/properties/location",
+            "type": "string",
+            "title": "The location schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Rovaniemi"
+            ]
+        },
+        "askingPrice": {
+            "$id": "#/properties/askingPrice",
+            "type": "integer",
+            "title": "The askingPrice schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                200
+            ]
+        },
+        "datePosted": {
+            "$id": "#/properties/datePosted",
+            "type": "integer",
+            "title": "The datePosted schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                1613592071
+            ]
+        },
+        "dateModified": {
+            "$id": "#/properties/dateModified",
+            "type": "integer",
+            "title": "The dateModified schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                1613592071
+            ]
+        },
+        "canShip": {
+            "$id": "#/properties/canShip",
+            "type": "boolean",
+            "title": "The canShip schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": false,
+            "examples": [
+                false
+            ]
+        },
+        "idUser": {
+            "$id": "#/properties/idUser",
+            "type": "integer",
+            "title": "The idUser schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                1
+            ]
+        }
+    },
+    "additionalProperties": false
+}
