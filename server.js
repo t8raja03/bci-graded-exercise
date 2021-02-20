@@ -169,17 +169,17 @@ passport.use(new BasicStrategy(
         // Tässä määritellään mitä tehdään, kun tulee Basic Auth-pyyntö
 
         // katsotaan onko käyttäjä olemassa yllä määritellyssä users-taulukossa
-        const basicAuthUser = users.find(u => u.email == username)
+        const basicAuthUser = users.find(u => u.email === username)
 
         // Check username
-        if (basicAuthUser == undefined) {
+        if (basicAuthUser === undefined) {
             // jos käyttäjänimeä ei löydy
             console.log(`               No user with name ${username} found`)
             return done(null, false)
         }
 
         // Check password
-        if(bcrypt.compareSync(password, basicAuthUser.password) == false) {
+        if(bcrypt.compareSync(password, basicAuthUser.password) === false) {
             // jos salasana ei täsmää
             console.log(`               Invalid password for ${username}`)
             return done(null, false)
@@ -276,9 +276,9 @@ app.post('/users', (req, res) => {
     }
 
     // Luetaan muut kentät pyynnöstä, jos ne on määritelty
-    if (req.body.firstName != undefined) newUser.firstName = req.body.firstName
-    if (req.body.lastName != undefined) newUser.lastName = req.body.lastName
-    if (req.body.tel != undefined) newUser.tel = req.body.tel
+    if (req.body.firstName !== undefined) newUser.firstName = req.body.firstName
+    if (req.body.lastName !== undefined) newUser.lastName = req.body.lastName
+    if (req.body.tel !== undefined) newUser.tel = req.body.tel
 
     // Salasanan hash ja lisäys newUseriin
     var userPassword = bcrypt.hashSync(req.body.password)
@@ -339,7 +339,7 @@ app.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, re
     var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
     var idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
-    if (idUser != req.params.id) {                      // jos yrittää katsoa muiden käyttäjien
+    if (idUser !== req.params.id) {                      // jos yrittää katsoa muiden käyttäjien
         var statusCode = 401                                // tietoja
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to view your own user information'))
@@ -360,7 +360,7 @@ app.get('/users/:id/items', passport.authenticate('jwt', { session: false }), (r
     var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
     var idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
-    if (idUser != req.params.id) {                      // jos yrittää katsoa muiden käyttäjien
+    if (idUser !== req.params.id) {                      // jos yrittää katsoa muiden käyttäjien
         var statusCode = 401                                // tietoja
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to see your own items filtered by user'))
@@ -392,7 +392,7 @@ app.delete('/items/:idItem', passport.authenticate('jwt', { session: false }), (
         .json(statusMessage(statusCode, `Item ${req.params.idItem} not found`))
         return
     }
-    if (item.idUser != tokenIdUser) { // jos item ei ole käyttäjän luoma
+    if (item.idUser !== tokenIdUser) { // jos item ei ole käyttäjän luoma
         var statusCode = 401
         res.status(statusCode)
         .json(statusMessage(statusCode, 'You are only authorized to delete your own items'))
@@ -476,13 +476,13 @@ app.get('/items', (req, res) => {
     var itemsList = [...items]
 
         // Suodatetaan itemsListiä parametrien mukaan:        
-        if(req.query.category != undefined) {   // Jos query-parametrina on category:
+        if(req.query.category !== undefined) {   // Jos query-parametrina on category:
             itemsList = itemsList.filter( ({category}) => category === req.query.category)
         }        
-        if(req.query.location != undefined) {   // Jos location:
+        if(req.query.location !== undefined) {   // Jos location:
             itemsList = itemsList.filter( ({location}) => location === req.query.location)
         }        
-        if(req.query.date != undefined) {       // Jos date:
+        if(req.query.date !== undefined) {       // Jos date:
             var qDay = epochToDate(req.query.date)  // Pyynnön päivämäärä
             // suodatetaan pyynnön päivämäärän perusteella
             itemsList = itemsList.filter( ({datePosted}) => epochToDate(datePosted) === qDay)
