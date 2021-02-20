@@ -60,7 +60,7 @@ describe('Response tests', function() {
         it('should return a valid JSON object', async function() {
             // Lähetetään http-pyyntö
             await chai.request(testURL)
-            .get('/users/0')
+            .get('/users/b2xsaS5vc3RhamFAcG9zdGkuY29t')
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(200)
@@ -84,7 +84,7 @@ describe('Response tests', function() {
         })
         it('should return an array of user\'s own postings', async function() {
             await chai.request(testURL)
-            .get('/users/0/items')
+            .get('/users/b2xsaS5vc3RhamFAcG9zdGkuY29t/items')
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(200)
@@ -140,7 +140,6 @@ describe('Response tests', function() {
         })
         it('should return a 404 JSON object instead of an empty array',
             async function() {
-                console.log('server.items.length ' + server.items.length)
                 await chai.request(testURL)
                 .get('/items')
                 .query({
@@ -154,7 +153,7 @@ describe('Response tests', function() {
                     throw error
                 })
             })
-        it('should return a 200 JSON object when posting items', async function() {
+        it('should return a 201 JSON object when posting items', async function() {
             await chai.request(testURL)
                 .post('/items')
                 .set('Authorization', `Bearer ${authToken}`)
@@ -165,16 +164,16 @@ describe('Response tests', function() {
                     "location": "Atlantis",
                     "askingPrice": 1,
                     "canShip": true
-            })
-            .then(response => {
-                nItems += 1
-                expect(response).to.have.status(201)
-                expect(response.body).to.be.jsonSchema(statusSchema)
-                expect(server.items.length).to.equal(nItems)
-            })
-            .catch(error => {
-                throw error
-            })
+                })
+                .then(response => {
+                    nItems += 1
+                    expect(response).to.have.status(201)
+                    expect(response.body).to.be.jsonSchema(statusSchema)
+                    expect(server.items.length).to.equal(nItems)
+                })
+                .catch(error => {
+                    throw error
+                })
         })
         it('should return a 400 JSON object when posting an invalid request', async function() {
             await chai.request(testURL)
@@ -199,7 +198,7 @@ describe('Response tests', function() {
         it('should be able to delete items', async function() {
             nItems -= 1
             await chai.request(testURL)
-            .delete('/users/0/items/1')
+            .delete('/items/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=')
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(202)
@@ -214,6 +213,63 @@ describe('Response tests', function() {
             .get('/items')
             .then(response => {
                 expect(response.body.length).to.equal(nItems)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should not be able to delete other user\'s items', async function() {
+            await chai.request(testURL)
+            .delete('/items/YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(401)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should be able to modify items', async function() {
+            await chai.request(testURL)
+            .put('/items/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')
+            .set('Authorization', `Bearer ${authToken}`)
+            .send({
+                "description": "A very modified collar"
+            })
+            .then(response => {
+                expect(response).to.have.status(202)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should actually modify items', async function() {
+            await chai.request(testURL)
+            .get('/items')
+            .query({
+                category: 'Clothing',
+                location: 'Oulu'
+            })
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body[0].dateModified).to.not.equal(response.body[0].datePosted)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should not be able to modify other user\'s items', async function() {
+            await chai.request(testURL)
+            .put('/items/YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(401)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
             })
         })
         

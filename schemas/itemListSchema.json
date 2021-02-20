@@ -8,20 +8,31 @@
     "examples": [
         [
             {
-                "idItem": 0,
-                "title": "Opel Corsa, good condition",
-                "description": "Opel Corsa m.y. 1998, must be inspected until the end of the month",
-                "category": "Cars",
-                "location": "Rovaniemi",
-                "askingPrice": 200,
-                "datePosted": 1613592071,
-                "dateModified": 1613592071,
+                "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=",
+                "title": "A painting",
+                "description": "A beatiful painting of the ocean floor",
+                "category": "Art",
+                "location": "Strasbourg",
+                "askingPrice": 2000,
+                "datePosted": 1613647147,
+                "dateModified": 1613647147,
                 "canShip": false,
-                "idUser": 1
+                "idUser": "bXl5QG15eW50aS5uZXQ="
+            },
+            {
+                "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy",
+                "title": "A dog's collar",
+                "description": "Very good leather collar.",
+                "category": "Clothing",
+                "location": "Oulu",
+                "askingPrice": 5,
+                "datePosted": 1613654161,
+                "dateModified": 1613654161,
+                "canShip": true,
+                "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t"
             }
         ]
     ],
-
     "items": {
         "$id": "#/items",
         "anyOf": [
@@ -33,16 +44,16 @@
                 "default": {},
                 "examples": [
                     {
-                        "idItem": 0,
-                        "title": "Opel Corsa, good condition",
-                        "description": "Opel Corsa m.y. 1998, must be inspected until the end of the month",
-                        "category": "Cars",
-                        "location": "Rovaniemi",
-                        "askingPrice": 200,
-                        "datePosted": 1613592071,
-                        "dateModified": 1613592071,
+                        "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=",
+                        "title": "A painting",
+                        "description": "A beatiful painting of the ocean floor",
+                        "category": "Art",
+                        "location": "Strasbourg",
+                        "askingPrice": 2000,
+                        "datePosted": 1613647147,
+                        "dateModified": 1613647147,
                         "canShip": false,
-                        "idUser": 1
+                        "idUser": "bXl5QG15eW50aS5uZXQ="
                     }
                 ],
                 "required": [
@@ -60,12 +71,12 @@
                 "properties": {
                     "idItem": {
                         "$id": "#/items/anyOf/0/properties/idItem",
-                        "type": "integer",
+                        "type": "string",
                         "title": "The idItem schema",
                         "description": "An explanation about the purpose of this instance.",
-                        "default": 0,
+                        "default": "",
                         "examples": [
-                            0
+                            "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc="
                         ]
                     },
                     "title": {
@@ -75,7 +86,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "Opel Corsa, good condition"
+                            "A painting"
                         ]
                     },
                     "description": {
@@ -85,7 +96,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "Opel Corsa m.y. 1998, must be inspected until the end of the month"
+                            "A beatiful painting of the ocean floor"
                         ]
                     },
                     "category": {
@@ -95,7 +106,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "Cars"
+                            "Art"
                         ]
                     },
                     "location": {
@@ -105,7 +116,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "Rovaniemi"
+                            "Strasbourg"
                         ]
                     },
                     "askingPrice": {
@@ -115,7 +126,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": 0,
                         "examples": [
-                            200
+                            2000
                         ]
                     },
                     "datePosted": {
@@ -125,7 +136,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": 0,
                         "examples": [
-                            1613592071
+                            1613647147
                         ]
                     },
                     "dateModified": {
@@ -135,7 +146,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": 0,
                         "examples": [
-                            1613592071
+                            1613647147
                         ]
                     },
                     "canShip": {
@@ -150,12 +161,12 @@
                     },
                     "idUser": {
                         "$id": "#/items/anyOf/0/properties/idUser",
-                        "type": "integer",
+                        "type": "string",
                         "title": "The idUser schema",
                         "description": "An explanation about the purpose of this instance.",
-                        "default": 0,
+                        "default": "",
                         "examples": [
-                            1
+                            "bXl5QG15eW50aS5uZXQ="
                         ]
                     }
                 },
