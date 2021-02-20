@@ -869,11 +869,14 @@
                     <li data-group="Default" data-name="login" class="">
                       <a href="#api-Default-login">login</a>
                     </li>
-                    <li data-group="Default" data-name="modifyItem" class="">
-                      <a href="#api-Default-modifyItem">modifyItem</a>
+                    <li data-group="Default" data-name="postItem" class="">
+                      <a href="#api-Default-postItem">postItem</a>
                     </li>
                     <li data-group="Default" data-name="registerUser" class="">
                       <a href="#api-Default-registerUser">registerUser</a>
+                    </li>
+                    <li data-group="Default" data-name="umodifyItem" class="">
+                      <a href="#api-Default-umodifyItem">umodifyItem</a>
                     </li>
                     <li data-group="Default" data-name="userInfo" class="">
                       <a href="#api-Default-userInfo">userInfo</a>
@@ -894,10 +897,21 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 0.4.3</div>
+              <div class="app-desc">Version: 0.5.0</div>
             <hr>
-            <div>Building Cloud Integration, spring 2021, graded exercise
-Rankinen Jarno TVT19KMO</div>
+            <div><p>Building Cloud Integration, spring 2021, graded exercise
+Rankinen Jarno TVT19KMO</p>
+<p>This is an API for an imaginary online marketplace like eBay or Tori.fi. The requirements for the assignment are:</p>
+<ul>
+<li>User registration and login (<code>POST /users</code> and <code>GET /users/login</code>)</li>
+<li>Posting new items for sale (<code>POST /items</code>)</li>
+<li>Modify postings (<code>POST /items/:idItem</code>)</li>
+<li>Delete postings (<code>DELETE /items/:idItem</code>)</li>
+<li>List and search items with categories: (<code>GET /items?category=xxx&amp;location=yyy&amp;date=zzz</code>)</li>
+</ul>
+<p>User registration and item listing/searching do not require authentication.
+Posting, modifying and deleting requires logging in via <code>GET /user/login</code></p>
+</div>
           </div>
         </div>
         <div id="sections">
@@ -915,7 +929,7 @@ Rankinen Jarno TVT19KMO</div>
                         <p class="marked">Delete an item posted by logged in user</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/users/{idUser}/items/{idItem}</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/items/{idItem}</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -937,7 +951,7 @@ Rankinen Jarno TVT19KMO</div>
                           <div class="tab-pane active" id="examples-Default-deleteItem-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items/{idItem}"</code></pre>
+"http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-deleteItem-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -953,11 +967,10 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         
         DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of the user
         String idItem = idItem_example; // String | idItem of the user's item
         String authorization = authorization_example; // String | Bearer token
         try {
-            Status result = apiInstance.deleteItem(idUser, idItem, authorization);
+            Status result = apiInstance.deleteItem(idItem, authorization);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#deleteItem");
@@ -974,11 +987,10 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of the user
         String idItem = idItem_example; // String | idItem of the user's item
         String authorization = authorization_example; // String | Bearer token
         try {
-            Status result = apiInstance.deleteItem(idUser, idItem, authorization);
+            Status result = apiInstance.deleteItem(idItem, authorization);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#deleteItem");
@@ -992,14 +1004,12 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-deleteItem-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of the user
-String *idItem = idItem_example; // idItem of the user's item
+                              <pre class="prettyprint"><code class="language-cpp">String *idItem = idItem_example; // idItem of the user's item
 String *authorization = authorization_example; // Bearer token (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance deleteItemWith:idUser
-    idItem:idItem
+[apiInstance deleteItemWith:idItem
     authorization:authorization
               completionHandler: ^(Status output, NSError* error) {
                             if (output) {
@@ -1016,7 +1026,6 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
-var idUser = idUser_example; // {{String}} idUser of the user
 var idItem = idItem_example; // {{String}} idItem of the user's item
 var opts = { 
   'authorization': authorization_example // {{String}} Bearer token
@@ -1028,7 +1037,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.deleteItem(idUser, idItem, opts, callback);
+api.deleteItem(idItem, opts, callback);
 </code></pre>
                             </div>
 
@@ -1050,13 +1059,12 @@ namespace Example
         {
 
             var apiInstance = new DefaultApi();
-            var idUser = idUser_example;  // String | idUser of the user
             var idItem = idItem_example;  // String | idItem of the user's item
             var authorization = authorization_example;  // String | Bearer token (optional) 
 
             try
             {
-                Status result = apiInstance.deleteItem(idUser, idItem, authorization);
+                Status result = apiInstance.deleteItem(idItem, authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1074,12 +1082,11 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$idUser = idUser_example; // String | idUser of the user
 $idItem = idItem_example; // String | idItem of the user's item
 $authorization = authorization_example; // String | Bearer token
 
 try {
-    $result = $api_instance->deleteItem($idUser, $idItem, $authorization);
+    $result = $api_instance->deleteItem($idItem, $authorization);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->deleteItem: ', $e->getMessage(), PHP_EOL;
@@ -1093,12 +1100,11 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $idUser = idUser_example; # String | idUser of the user
 my $idItem = idItem_example; # String | idItem of the user's item
 my $authorization = authorization_example; # String | Bearer token
 
 eval { 
-    my $result = $api_instance->deleteItem(idUser => $idUser, idItem => $idItem, authorization => $authorization);
+    my $result = $api_instance->deleteItem(idItem => $idItem, authorization => $authorization);
     print Dumper($result);
 };
 if ($@) {
@@ -1115,12 +1121,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-idUser = idUser_example # String | idUser of the user
 idItem = idItem_example # String | idItem of the user's item
 authorization = authorization_example # String | Bearer token (optional)
 
 try: 
-    api_response = api_instance.delete_item(idUser, idItem, authorization=authorization)
+    api_response = api_instance.delete_item(idItem, authorization=authorization)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->deleteItem: %s\n" % e)</code></pre>
@@ -1135,28 +1140,6 @@ except ApiException as e:
                                   <th width="150px">Name</th>
                                   <th>Description</th>
                                 </tr>
-                                  <tr><td style="width:150px;">idUser*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_deleteItem_idUser">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          idUser of the user
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
                                   <tr><td style="width:150px;">idItem*</td>
                                   <td>
                                   
@@ -1371,9 +1354,11 @@ except ApiException as e:
                         <p class="marked">List items for sale, the query can be narrowed by category, location or date of item posted.
 
 Query parameters:
-- category: There are some items prefilled to &quot;database&quot;, good categories to test item search/query parameters are &#x27;Cars&#x27;, &#x27;Art&#x27; and &#x27;Clothing&#x27;.
-- location: Prefilled items have locations &#x27;Paris&#x27;, &#x27;Strasborough&#x27;, &#x27;Oulu&#x27;, &#x27;Oslo&#x27; and &#x27;Rovaniemi&#x27;
-- date must be supplied in UNIX epoch format, the backend parses the date so that the time does not matter, only date</p>
+- category: There are some items prefilled to &quot;database&quot;, good categories to test item search/query parameters are &#x60;Cars&#x60;, &#x60;Art&#x60; and &#x60;Clothing&#x60;.
+- location: Prefilled items have locations &#x60;Paris&#x60;, &#x60;Strasborough&#x60;, &#x60;Oulu&#x60;, &#x60;Oslo&#x60; and &#x60;Rovaniemi&#x60;
+- date must be supplied in UNIX epoch format, the backend parses the date so that the time does not matter, only date. E.g. &#x60;1613844380&#x60; is &#x60;20.2.2021 20.06.20 +0200&#x60; but it will match every item posted on 20.2.2021
+
+Query parameters are handled as AND, so &#x60;?category&#x3D;clothing&amp;location&#x3D;ivalo&#x60; will list only items that match BOTH parameters.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/items</span></code></pre>
@@ -1670,6 +1655,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-listItems-200-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-listItems-200-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -1687,6 +1675,77 @@ except ApiException as e:
           "$ref" : "#/components/schemas/Item"
         },
         "x-content-type" : "application/json"
+      },
+      "examples" : {
+        "get-items-200" : {
+          "value" : [ {
+            "idItem" : 0,
+            "title" : "Opel Corsa, good condition",
+            "description" : "Opel Corsa m.y. 1998, must be inspected until the end of the month",
+            "category" : "Cars",
+            "location" : "Rovaniemi",
+            "askingPrice" : 200,
+            "datePosted" : 1613592071,
+            "dateModified" : 1613592071,
+            "canShip" : false,
+            "idUser" : 1
+          }, {
+            "idItem" : 1,
+            "title" : "A painting",
+            "description" : "A beatiful painting of the ocean floor",
+            "category" : "Art",
+            "location" : "Strasbourg",
+            "askingPrice" : 2000,
+            "datePosted" : 1613647147,
+            "dateModified" : 1613647147,
+            "canShip" : false,
+            "idUser" : 0
+          }, {
+            "idItem" : 2,
+            "title" : "Children's winter overalls",
+            "description" : "A very thick overall for children under 90cm. Holes only in the knees, elbows and sitting area.",
+            "category" : "Clothing",
+            "location" : "Oslo",
+            "askingPrice" : 50,
+            "datePosted" : 1613654361,
+            "dateModified" : 1613654361,
+            "canShip" : true,
+            "idUser" : 1
+          }, {
+            "idItem" : 3,
+            "title" : "A dog's collar",
+            "description" : "Very good leather collar.",
+            "category" : "Clothing",
+            "location" : "Oulu",
+            "askingPrice" : 5,
+            "datePosted" : 1613654161,
+            "dateModified" : 1613654161,
+            "canShip" : true,
+            "idUser" : 0
+          }, {
+            "idItem" : 4,
+            "title" : "Fiat Punto 2014 16 valve",
+            "description" : "Good car. Small car. Leaks oil slightly.",
+            "category" : "Cars",
+            "location" : "Strasborough",
+            "askingPrice" : 150,
+            "datePosted" : 1613654161,
+            "dateModified" : 1613654161,
+            "canShip" : true,
+            "idUser" : 3
+          }, {
+            "idItem" : 5,
+            "title" : "Kaj Stenvalls painting of a famous duck",
+            "description" : "Nice painting to keep in a safe somewhere",
+            "category" : "Art",
+            "location" : "Paris",
+            "askingPrice" : 10000,
+            "datePosted" : 1613340000,
+            "dateModified" : 1613340000,
+            "canShip" : true,
+            "idUser" : 1
+          } ]
+        }
       }
     }
   }
@@ -1713,6 +1772,9 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-listItems-200-schema-data' type='hidden' value=''></input>
                                 </div>
+                                  <div class="tab-pane" id="responses-listItems-200-example-0">
+                                      <pre class="prettyprint"><code class="json">[{&quot;idItem&quot;:0,&quot;title&quot;:&quot;Opel Corsa, good condition&quot;,&quot;description&quot;:&quot;Opel Corsa m.y. 1998, must be inspected until the end of the month&quot;,&quot;category&quot;:&quot;Cars&quot;,&quot;location&quot;:&quot;Rovaniemi&quot;,&quot;askingPrice&quot;:200,&quot;datePosted&quot;:1613592071,&quot;dateModified&quot;:1613592071,&quot;canShip&quot;:false,&quot;idUser&quot;:1},{&quot;idItem&quot;:1,&quot;title&quot;:&quot;A painting&quot;,&quot;description&quot;:&quot;A beatiful painting of the ocean floor&quot;,&quot;category&quot;:&quot;Art&quot;,&quot;location&quot;:&quot;Strasbourg&quot;,&quot;askingPrice&quot;:2000,&quot;datePosted&quot;:1613647147,&quot;dateModified&quot;:1613647147,&quot;canShip&quot;:false,&quot;idUser&quot;:0},{&quot;idItem&quot;:2,&quot;title&quot;:&quot;Children&#x27;s winter overalls&quot;,&quot;description&quot;:&quot;A very thick overall for children under 90cm. Holes only in the knees, elbows and sitting area.&quot;,&quot;category&quot;:&quot;Clothing&quot;,&quot;location&quot;:&quot;Oslo&quot;,&quot;askingPrice&quot;:50,&quot;datePosted&quot;:1613654361,&quot;dateModified&quot;:1613654361,&quot;canShip&quot;:true,&quot;idUser&quot;:1},{&quot;idItem&quot;:3,&quot;title&quot;:&quot;A dog&#x27;s collar&quot;,&quot;description&quot;:&quot;Very good leather collar.&quot;,&quot;category&quot;:&quot;Clothing&quot;,&quot;location&quot;:&quot;Oulu&quot;,&quot;askingPrice&quot;:5,&quot;datePosted&quot;:1613654161,&quot;dateModified&quot;:1613654161,&quot;canShip&quot;:true,&quot;idUser&quot;:0},{&quot;idItem&quot;:4,&quot;title&quot;:&quot;Fiat Punto 2014 16 valve&quot;,&quot;description&quot;:&quot;Good car. Small car. Leaks oil slightly.&quot;,&quot;category&quot;:&quot;Cars&quot;,&quot;location&quot;:&quot;Strasborough&quot;,&quot;askingPrice&quot;:150,&quot;datePosted&quot;:1613654161,&quot;dateModified&quot;:1613654161,&quot;canShip&quot;:true,&quot;idUser&quot;:3},{&quot;idItem&quot;:5,&quot;title&quot;:&quot;Kaj Stenvalls painting of a famous duck&quot;,&quot;description&quot;:&quot;Nice painting to keep in a safe somewhere&quot;,&quot;category&quot;:&quot;Art&quot;,&quot;location&quot;:&quot;Paris&quot;,&quot;askingPrice&quot;:10000,&quot;datePosted&quot;:1613340000,&quot;dateModified&quot;:1613340000,&quot;canShip&quot;:true,&quot;idUser&quot;:1}]</code></pre>
+                                </div>
                             </div>
 
                             <h3> Status: 404 - Not found </h3>
@@ -1722,6 +1784,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-listItems-404-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-listItems-404-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -1735,6 +1800,14 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "get-items-404" : {
+          "value" : {
+            "status" : 404,
+            "message" : "No items found matching query parameters"
+          }
+        }
       }
     }
   }
@@ -1761,6 +1834,9 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-listItems-404-schema-data' type='hidden' value=''></input>
                                 </div>
+                                  <div class="tab-pane" id="responses-listItems-404-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:404,&quot;message&quot;:&quot;No items found matching query parameters&quot;}</code></pre>
+                                </div>
                             </div>
 
                         </article>
@@ -1775,7 +1851,11 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Get authentication token from server</p>
+                        <p class="marked">Get authentication token from server.
+
+Uses HTTP Basic authentication, username is the user&#x27;s email and password the user&#x27;s password.
+
+If the email &amp; password are not valid, a 401 response with no body is returned.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/login</span></code></pre>
@@ -1816,7 +1896,7 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         
         DefaultApi apiInstance = new DefaultApi();
-        String authorization = authorization_example; // String | HTTP Basic authentication
+        String authorization = authorization_example; // String | Basic <base64_string>
         try {
             inline_response_202 result = apiInstance.login(authorization);
             System.out.println(result);
@@ -1835,7 +1915,7 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String authorization = authorization_example; // String | HTTP Basic authentication
+        String authorization = authorization_example; // String | Basic <base64_string>
         try {
             inline_response_202 result = apiInstance.login(authorization);
             System.out.println(result);
@@ -1851,7 +1931,7 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-login-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // HTTP Basic authentication
+                              <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // Basic <base64_string>
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -1872,7 +1952,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
-var authorization = authorization_example; // {{String}} HTTP Basic authentication
+var authorization = authorization_example; // {{String}} Basic <base64_string>
 
 var callback = function(error, data, response) {
   if (error) {
@@ -1903,7 +1983,7 @@ namespace Example
         {
 
             var apiInstance = new DefaultApi();
-            var authorization = authorization_example;  // String | HTTP Basic authentication
+            var authorization = authorization_example;  // String | Basic <base64_string>
 
             try
             {
@@ -1926,7 +2006,7 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$authorization = authorization_example; // String | HTTP Basic authentication
+$authorization = authorization_example; // String | Basic <base64_string>
 
 try {
     $result = $api_instance->login($authorization);
@@ -1943,7 +2023,7 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $authorization = authorization_example; # String | HTTP Basic authentication
+my $authorization = authorization_example; # String | Basic <base64_string>
 
 eval { 
     my $result = $api_instance->login(authorization => $authorization);
@@ -1963,7 +2043,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-authorization = authorization_example # String | HTTP Basic authentication
+authorization = authorization_example # String | Basic <base64_string>
 
 try: 
     # Authenticate a user to the API
@@ -1995,7 +2075,7 @@ except ApiException as e:
                                                   </span>
                                   
                                                       <div class="inner description">
-                                                          HTTP Basic authentication
+                                                          Basic &lt;base64_string&gt;
                                                       </div>
                                               </div>
                                                   <div class="inner required">
@@ -2036,9 +2116,9 @@ except ApiException as e:
         "$ref" : "#/components/schemas/inline_response_202"
       },
       "examples" : {
-        "example-1" : {
+        "login-example-1" : {
           "value" : {
-            "token" : "string",
+            "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk",
             "idUser" : 0
           }
         }
@@ -2069,7 +2149,7 @@ except ApiException as e:
                                   <input id='responses-login-202-schema-data' type='hidden' value=''></input>
                                 </div>
                                   <div class="tab-pane" id="responses-login-202-example-0">
-                                      <pre class="prettyprint"><code class="json">{&quot;token&quot;:&quot;string&quot;,&quot;idUser&quot;:0}</code></pre>
+                                      <pre class="prettyprint"><code class="json">{&quot;token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk&quot;,&quot;idUser&quot;:0}</code></pre>
                                 </div>
                             </div>
 
@@ -2080,6 +2160,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-login-401-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-login-401-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -2092,7 +2175,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/Status"
+        "x-content-type" : "application/json"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "status" : 0,
+            "message" : "string"
+          }
+        }
       }
     }
   }
@@ -2119,48 +2210,56 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-login-401-schema-data' type='hidden' value=''></input>
                                 </div>
+                                  <div class="tab-pane" id="responses-login-401-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:0,&quot;message&quot;:&quot;string&quot;}</code></pre>
+                                </div>
                             </div>
 
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-modifyItem">
-                      <article id="api-Default-modifyItem-0" data-group="User" data-name="modifyItem" data-version="0">
+                    <div id="api-Default-postItem">
+                      <article id="api-Default-postItem-0" data-group="User" data-name="postItem" data-version="0">
                         <div class="pull-left">
-                          <h1>modifyItem</h1>
-                          <p>Modify an item information</p>
+                          <h1>postItem</h1>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Update the information of an item posted by logged in user</p>
+                        <p class="marked">Post a new item for sale.
+
+The request body contains a JSON object with the new item&#x27;s information. &#x60;idItem&#x60;, &#x60;datePosted&#x60;, and &#x60;dateModified&#x60; are generated automatically and are not required. &#x60;idUser&#x60; is detected from the authorization token.
+
+Requires a valid JWT token as Bearer token</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/users/{idUser}/items/{idItem}</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/items</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-modifyItem-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-modifyItem-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-modifyItem-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-modifyItem-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-modifyItem-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-modifyItem-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-modifyItem-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-modifyItem-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-modifyItem-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-modifyItem-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-modifyItem-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-postItem-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-postItem-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-postItem-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-postItem-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-postItem-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-postItem-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-postItem-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-postItem-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-postItem-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-postItem-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-postItem-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-modifyItem-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
+                          <div class="tab-pane active" id="examples-Default-postItem-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items/{idItem}"</code></pre>
+-H "Content-Type: application/json"\
+"http://portforward.ipt.oamk.fi:42010/items"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-modifyItem-0-java">
+                          <div class="tab-pane" id="examples-Default-postItem-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2174,56 +2273,78 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         
         DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of the user
-        String idItem = idItem_example; // String | idItem of the user's item
-        String authorization = authorization_example; // String | Bearer token
+        Item body = {
+  "value" : {
+    "title" : "Men's leather jacket",
+    "description" : "A suade leather jacket, very good condition. Has been in the cupboard since the 80's",
+    "category" : "Clothing",
+    "location" : "Helsinki",
+    "askingPrice" : 30,
+    "canShip" : true
+  }
+}; // Item | 
+        String authorization = authorization_example; // String | Bearer <token>
         try {
-            Item result = apiInstance.modifyItem(idUser, idItem, authorization);
+            Status result = apiInstance.postItem(body, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#modifyItem");
+            System.err.println("Exception when calling DefaultApi#postItem");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-modifyItem-0-android">
+                          <div class="tab-pane" id="examples-Default-postItem-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String idUser = idUser_example; // String | idUser of the user
-        String idItem = idItem_example; // String | idItem of the user's item
-        String authorization = authorization_example; // String | Bearer token
+        Item body = {
+  "value" : {
+    "title" : "Men's leather jacket",
+    "description" : "A suade leather jacket, very good condition. Has been in the cupboard since the 80's",
+    "category" : "Clothing",
+    "location" : "Helsinki",
+    "askingPrice" : 30,
+    "canShip" : true
+  }
+}; // Item | 
+        String authorization = authorization_example; // String | Bearer <token>
         try {
-            Item result = apiInstance.modifyItem(idUser, idItem, authorization);
+            Status result = apiInstance.postItem(body, authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#modifyItem");
+            System.err.println("Exception when calling DefaultApi#postItem");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-modifyItem-0-groovy">
+  <div class="tab-pane" id="examples-Default-postItem-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-modifyItem-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *idUser = idUser_example; // idUser of the user
-String *idItem = idItem_example; // idItem of the user's item
-String *authorization = authorization_example; // Bearer token
+                            <div class="tab-pane" id="examples-Default-postItem-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Item *body = {
+  "value" : {
+    "title" : "Men's leather jacket",
+    "description" : "A suade leather jacket, very good condition. Has been in the cupboard since the 80's",
+    "category" : "Clothing",
+    "location" : "Helsinki",
+    "askingPrice" : 30,
+    "canShip" : true
+  }
+}; //  (optional)
+String *authorization = authorization_example; // Bearer <token> (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-// Modify an item information
-[apiInstance modifyItemWith:idUser
-    idItem:idItem
+[apiInstance postItemWith:body
     authorization:authorization
-              completionHandler: ^(Item output, NSError* error) {
+              completionHandler: ^(Status output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -2234,14 +2355,23 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-modifyItem-0-javascript">
+                            <div class="tab-pane" id="examples-Default-postItem-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
 
 var api = new BciMarket.DefaultApi()
-var idUser = idUser_example; // {{String}} idUser of the user
-var idItem = idItem_example; // {{String}} idItem of the user's item
-var authorization = authorization_example; // {{String}} Bearer token
-
+var opts = { 
+  'body': {
+  "value" : {
+    "title" : "Men's leather jacket",
+    "description" : "A suade leather jacket, very good condition. Has been in the cupboard since the 80's",
+    "category" : "Clothing",
+    "location" : "Helsinki",
+    "askingPrice" : 30,
+    "canShip" : true
+  }
+} // {{Item}} 
+  'authorization': authorization_example // {{String}} Bearer <token>
+};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -2249,14 +2379,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.modifyItem(idUser, idItem, authorization, callback);
+api.postItem(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-modifyItem-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-postItem-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-modifyItem-0-csharp">
+                            <div class="tab-pane" id="examples-Default-postItem-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2265,25 +2395,23 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class modifyItemExample
+    public class postItemExample
     {
         public void main()
         {
 
             var apiInstance = new DefaultApi();
-            var idUser = idUser_example;  // String | idUser of the user
-            var idItem = idItem_example;  // String | idItem of the user's item
-            var authorization = authorization_example;  // String | Bearer token
+            var body = new Item(); // Item |  (optional) 
+            var authorization = authorization_example;  // String | Bearer <token> (optional) 
 
             try
             {
-                // Modify an item information
-                Item result = apiInstance.modifyItem(idUser, idItem, authorization);
+                Status result = apiInstance.postItem(body, authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.modifyItem: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.postItem: " + e.Message );
             }
         }
     }
@@ -2291,44 +2419,51 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-modifyItem-0-php">
+                            <div class="tab-pane" id="examples-Default-postItem-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$idUser = idUser_example; // String | idUser of the user
-$idItem = idItem_example; // String | idItem of the user's item
-$authorization = authorization_example; // String | Bearer token
+$body = {
+  "value" : {
+    "title" : "Men's leather jacket",
+    "description" : "A suade leather jacket, very good condition. Has been in the cupboard since the 80's",
+    "category" : "Clothing",
+    "location" : "Helsinki",
+    "askingPrice" : 30,
+    "canShip" : true
+  }
+}; // Item | 
+$authorization = authorization_example; // String | Bearer <token>
 
 try {
-    $result = $api_instance->modifyItem($idUser, $idItem, $authorization);
+    $result = $api_instance->postItem($body, $authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->modifyItem: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->postItem: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-modifyItem-0-perl">
+                            <div class="tab-pane" id="examples-Default-postItem-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $idUser = idUser_example; # String | idUser of the user
-my $idItem = idItem_example; # String | idItem of the user's item
-my $authorization = authorization_example; # String | Bearer token
+my $body = WWW::SwaggerClient::Object::Item->new(); # Item | 
+my $authorization = authorization_example; # String | Bearer <token>
 
 eval { 
-    my $result = $api_instance->modifyItem(idUser => $idUser, idItem => $idItem, authorization => $authorization);
+    my $result = $api_instance->postItem(body => $body, authorization => $authorization);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->modifyItem: $@\n";
+    warn "Exception when calling DefaultApi->postItem: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-modifyItem-0-python">
+                            <div class="tab-pane" id="examples-Default-postItem-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -2337,72 +2472,28 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-idUser = idUser_example # String | idUser of the user
-idItem = idItem_example # String | idItem of the user's item
-authorization = authorization_example # String | Bearer token
+body = {
+  "value" : {
+    "title" : "Men's leather jacket",
+    "description" : "A suade leather jacket, very good condition. Has been in the cupboard since the 80's",
+    "category" : "Clothing",
+    "location" : "Helsinki",
+    "askingPrice" : 30,
+    "canShip" : true
+  }
+} # Item |  (optional)
+authorization = authorization_example # String | Bearer <token> (optional)
 
 try: 
-    # Modify an item information
-    api_response = api_instance.modify_item(idUser, idItem, authorization)
+    api_response = api_instance.post_item(body=body, authorization=authorization)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->modifyItem: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->postItem: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
                           <h2>Parameters</h2>
 
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">idUser*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_modifyItem_idUser">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          idUser of the user
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">idItem*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_modifyItem_idItem">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          idItem of the user&#x27;s item
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
 
                             <div class="methodsubtabletitle">Header parameters</div>
                             <table id="methodsubtable">
@@ -2410,11 +2501,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">Authorization*</td>
+                                  <tr><td style="width:150px;">Authorization</td>
                                   <td>
                                   
                                   
-                                      <div id="d2e199_modifyItem_authorization">
+                                      <div id="d2e199_postItem_authorization">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -2422,42 +2513,104 @@ except ApiException as e:
                                                   </span>
                                   
                                                       <div class="inner description">
-                                                          Bearer token
+                                                          Bearer &lt;token&gt;
                                                       </div>
                                               </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
                                           </div>
                                       </div>
                                   </td>
                                   </tr>
                             </table>
 
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 202 - Accepted </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-modifyItem-202-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-modifyItem-202-schema">
-                                  <div id='responses-modifyItem-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Accepted",
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
   "content" : {
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/Item"
+      },
+      "examples" : {
+        "post-item-example-1" : {
+          "value" : {
+            "title" : "Men's leather jacket",
+            "description" : "A suade leather jacket, very good condition. Has been in the cupboard since the 80's",
+            "category" : "Clothing",
+            "location" : "Helsinki",
+            "askingPrice" : 30,
+            "canShip" : true
+          }
+        }
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_postItem_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_postItem_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 201 - Created </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-postItem-201-schema">Schema</a>
+                                </li>
+
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-postItem-201-example-0">Response Example</a>
+                                  </li>
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-postItem-201-schema">
+                                  <div id='responses-postItem-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Created",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "post-items-201" : {
+          "value" : {
+            "status" : 201,
+            "message" : "Item posted succesfully"
+          }
+        }
       }
     }
   }
@@ -2475,14 +2628,17 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-modifyItem-202-schema-data').val(stringify(schema));
-                                        var result = $('#responses-modifyItem-202-schema-202');
+                                        $('#responses-postItem-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-postItem-201-schema-201');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-modifyItem-202-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-postItem-201-schema-data' type='hidden' value=''></input>
+                                </div>
+                                  <div class="tab-pane" id="responses-postItem-201-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:201,&quot;message&quot;:&quot;Item posted succesfully&quot;}</code></pre>
                                 </div>
                             </div>
 
@@ -2490,14 +2646,17 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-modifyItem-400-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-postItem-400-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-postItem-400-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-modifyItem-400-schema">
-                                  <div id='responses-modifyItem-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-postItem-400-schema">
+                                  <div id='responses-postItem-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2506,6 +2665,14 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "post-items-400" : {
+          "value" : {
+            "status" : 400,
+            "message" : "Invalid request"
+          }
+        }
       }
     }
   }
@@ -2523,110 +2690,17 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-modifyItem-400-schema-data').val(stringify(schema));
-                                        var result = $('#responses-modifyItem-400-schema-400');
+                                        $('#responses-postItem-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-postItem-400-schema-400');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-modifyItem-400-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-postItem-400-schema-data' type='hidden' value=''></input>
                                 </div>
-                            </div>
-
-                            <h3> Status: 401 - Unauthorized </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-modifyItem-401-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-modifyItem-401-schema">
-                                  <div id='responses-modifyItem-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Unauthorized",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-modifyItem-401-schema-data').val(stringify(schema));
-                                        var result = $('#responses-modifyItem-401-schema-401');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-modifyItem-401-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 404 - Not Found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-modifyItem-404-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-modifyItem-404-schema">
-                                  <div id='responses-modifyItem-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Not Found",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-modifyItem-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-modifyItem-404-schema-404');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-modifyItem-404-schema-data' type='hidden' value=''></input>
+                                  <div class="tab-pane" id="responses-postItem-400-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:400,&quot;message&quot;:&quot;Invalid request&quot;}</code></pre>
                                 </div>
                             </div>
 
@@ -2642,7 +2716,9 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Register a new user. </p>
+                        <p class="marked">Register a new user.
+
+In the request body, only &#x60;email&#x60; and &#x60;password&#x60; fields are required. &#x60;idUser&#x60;, &#x60;dateCreated&#x60; and &#x60;dateModified&#x60; are generated automatically and are not required.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/users</span></code></pre>
@@ -2684,7 +2760,15 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         
         DefaultApi apiInstance = new DefaultApi();
-        User body = ; // User | 
+        User body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+}; // User | 
         try {
             Status result = apiInstance.registerUser(body);
             System.out.println(result);
@@ -2703,7 +2787,15 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        User body = ; // User | 
+        User body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+}; // User | 
         try {
             Status result = apiInstance.registerUser(body);
             System.out.println(result);
@@ -2719,7 +2811,15 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-registerUser-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">User *body = ; //  (optional)
+                              <pre class="prettyprint"><code class="language-cpp">User *body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+}; //  (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -2741,7 +2841,15 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 var api = new BciMarket.DefaultApi()
 var opts = { 
-  'body':  // {{User}} 
+  'body': {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+} // {{User}} 
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -2795,7 +2903,15 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$body = ; // User | 
+$body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+}; // User | 
 
 try {
     $result = $api_instance->registerUser($body);
@@ -2832,7 +2948,15 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-body =  # User |  (optional)
+body = {
+  "value" : {
+    "firstName" : "Donald",
+    "lastName" : "Duck",
+    "email" : "dd@duckburg.com",
+    "tel" : "5553131",
+    "password" : "veryStrongAndComplexPassword"
+  }
+} # User |  (optional)
 
 try: 
     # Register a user
@@ -2864,6 +2988,23 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/User"
+      },
+      "examples" : {
+        "users-post-example-1" : {
+          "value" : {
+            "firstName" : "Donald",
+            "lastName" : "Duck",
+            "email" : "dd@duckburg.com",
+            "tel" : "5553131",
+            "password" : "veryStrongAndComplexPassword"
+          }
+        },
+        "users-post-example-2" : {
+          "value" : {
+            "email" : "private@burner.email.com",
+            "password" : "dös9823OPFASNå09umsdv"
+          }
+        }
       }
     }
   }
@@ -2900,6 +3041,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-registerUser-201-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-registerUser-201-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -2913,6 +3057,14 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "status" : 201,
+            "message" : "User registered succesfully"
+          }
+        }
       }
     }
   }
@@ -2939,6 +3091,9 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-registerUser-201-schema-data' type='hidden' value=''></input>
                                 </div>
+                                  <div class="tab-pane" id="responses-registerUser-201-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:201,&quot;message&quot;:&quot;User registered succesfully&quot;}</code></pre>
+                                </div>
                             </div>
 
                             <h3> Status: 400 - Bad Request </h3>
@@ -2948,6 +3103,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-registerUser-400-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-registerUser-400-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -2961,6 +3119,14 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "status" : 400,
+            "message" : "Invalid request"
+          }
+        }
       }
     }
   }
@@ -2987,6 +3153,487 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-registerUser-400-schema-data' type='hidden' value=''></input>
                                 </div>
+                                  <div class="tab-pane" id="responses-registerUser-400-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:400,&quot;message&quot;:&quot;Invalid request&quot;}</code></pre>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-umodifyItem">
+                      <article id="api-Default-umodifyItem-0" data-group="User" data-name="umodifyItem" data-version="0">
+                        <div class="pull-left">
+                          <h1>umodifyItem</h1>
+                          <p>Modify or delete an item</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Update the information of an item posted by logged in user</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/items/{idItem}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-umodifyItem-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-umodifyItem-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-umodifyItem-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-umodifyItem-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-umodifyItem-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-umodifyItem-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-umodifyItem-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-umodifyItem-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-umodifyItem-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-umodifyItem-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-umodifyItem-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-umodifyItem-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
+-H "Accept: application/json"\
+"http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-umodifyItem-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String idItem = idItem_example; // String | idItem of the user's item
+        String authorization = authorization_example; // String | Bearer token
+        try {
+            Item result = apiInstance.umodifyItem(idItem, authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#umodifyItem");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-umodifyItem-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String idItem = idItem_example; // String | idItem of the user's item
+        String authorization = authorization_example; // String | Bearer token
+        try {
+            Item result = apiInstance.umodifyItem(idItem, authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#umodifyItem");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-umodifyItem-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-umodifyItem-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *idItem = idItem_example; // idItem of the user's item
+String *authorization = authorization_example; // Bearer token
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Modify or delete an item
+[apiInstance umodifyItemWith:idItem
+    authorization:authorization
+              completionHandler: ^(Item output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-umodifyItem-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var BciMarket = require('bci_market');
+
+var api = new BciMarket.DefaultApi()
+var idItem = idItem_example; // {{String}} idItem of the user's item
+var authorization = authorization_example; // {{String}} Bearer token
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.umodifyItem(idItem, authorization, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-umodifyItem-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-umodifyItem-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class umodifyItemExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var idItem = idItem_example;  // String | idItem of the user's item
+            var authorization = authorization_example;  // String | Bearer token
+
+            try
+            {
+                // Modify or delete an item
+                Item result = apiInstance.umodifyItem(idItem, authorization);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.umodifyItem: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-umodifyItem-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$idItem = idItem_example; // String | idItem of the user's item
+$authorization = authorization_example; // String | Bearer token
+
+try {
+    $result = $api_instance->umodifyItem($idItem, $authorization);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->umodifyItem: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-umodifyItem-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $idItem = idItem_example; # String | idItem of the user's item
+my $authorization = authorization_example; # String | Bearer token
+
+eval { 
+    my $result = $api_instance->umodifyItem(idItem => $idItem, authorization => $authorization);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->umodifyItem: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-umodifyItem-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+idItem = idItem_example # String | idItem of the user's item
+authorization = authorization_example # String | Bearer token
+
+try: 
+    # Modify or delete an item
+    api_response = api_instance.umodify_item(idItem, authorization)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->umodifyItem: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">idItem*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_umodifyItem_idItem">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          idItem of the user&#x27;s item
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Authorization*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_umodifyItem_authorization">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Bearer token
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 202 - Accepted </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-umodifyItem-202-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-umodifyItem-202-schema">
+                                  <div id='responses-umodifyItem-202-schema-202' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Accepted",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Item"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-umodifyItem-202-schema-data').val(stringify(schema));
+                                        var result = $('#responses-umodifyItem-202-schema-202');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-umodifyItem-202-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Bad Request </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-umodifyItem-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-umodifyItem-400-schema">
+                                  <div id='responses-umodifyItem-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Bad Request",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-umodifyItem-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-umodifyItem-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-umodifyItem-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 401 - Unauthorized </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-umodifyItem-401-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-umodifyItem-401-schema">
+                                  <div id='responses-umodifyItem-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-umodifyItem-401-schema-data').val(stringify(schema));
+                                        var result = $('#responses-umodifyItem-401-schema-401');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-umodifyItem-401-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 404 - Not Found </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-umodifyItem-404-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-umodifyItem-404-schema">
+                                  <div id='responses-umodifyItem-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Not Found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Status"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-umodifyItem-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-umodifyItem-404-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-umodifyItem-404-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
                         </article>
@@ -3001,7 +3648,9 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Get the information of a specific user</p>
+                        <p class="marked">Get the information of the logged in user.
+
+Requires JWT authentication token. The user is only able to view his/her own information.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/{idUser}</span></code></pre>
@@ -3282,6 +3931,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-userInfo-200-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-userInfo-200-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -3295,6 +3947,20 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/User"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "idUser" : 0,
+            "firstName" : "string",
+            "lastName" : "string",
+            "email" : "string",
+            "dateCreated" : 0,
+            "dateModified" : 0,
+            "tel" : "string",
+            "password" : "string"
+          }
+        }
       }
     }
   }
@@ -3321,6 +3987,9 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-userInfo-200-schema-data' type='hidden' value=''></input>
                                 </div>
+                                  <div class="tab-pane" id="responses-userInfo-200-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;idUser&quot;:0,&quot;firstName&quot;:&quot;string&quot;,&quot;lastName&quot;:&quot;string&quot;,&quot;email&quot;:&quot;string&quot;,&quot;dateCreated&quot;:0,&quot;dateModified&quot;:0,&quot;tel&quot;:&quot;string&quot;,&quot;password&quot;:&quot;string&quot;}</code></pre>
+                                </div>
                             </div>
 
                             <h3> Status: 401 - Unauthorized </h3>
@@ -3330,6 +3999,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-userInfo-401-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-userInfo-401-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -3343,6 +4015,14 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "status" : 401,
+            "message" : "You are only authorized to view your own user information"
+          }
+        }
       }
     }
   }
@@ -3369,53 +4049,8 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-userInfo-401-schema-data' type='hidden' value=''></input>
                                 </div>
-                            </div>
-
-                            <h3> Status: 404 - Not Found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-userInfo-404-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-userInfo-404-schema">
-                                  <div id='responses-userInfo-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Not Found",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-userInfo-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-userInfo-404-schema-404');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-userInfo-404-schema-data' type='hidden' value=''></input>
+                                  <div class="tab-pane" id="responses-userInfo-401-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:401,&quot;message&quot;:&quot;You are only authorized to view your own user information&quot;}</code></pre>
                                 </div>
                             </div>
 
@@ -3431,7 +4066,7 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">List all postings of a user identified by idUser</p>
+                        <p class="marked">List all postings of a user identified by idUser. A user can only see his/her own posted items via this route.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/{idUser}/items</span></code></pre>
@@ -3712,6 +4347,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-userItems-200-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-userItems-200-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -3729,6 +4367,33 @@ except ApiException as e:
           "$ref" : "#/components/schemas/Item"
         },
         "x-content-type" : "application/json"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : [ {
+            "idItem" : 1,
+            "title" : "A painting",
+            "description" : "A beatiful painting of the ocean floor",
+            "category" : "Art",
+            "location" : "Strasbourg",
+            "askingPrice" : 2000,
+            "datePosted" : 1613647147,
+            "dateModified" : 1613647147,
+            "canShip" : false,
+            "idUser" : 0
+          }, {
+            "idItem" : 3,
+            "title" : "A dog's collar",
+            "description" : "Very good leather collar.",
+            "category" : "Clothing",
+            "location" : "Oulu",
+            "askingPrice" : 5,
+            "datePosted" : 1613654161,
+            "dateModified" : 1613654161,
+            "canShip" : true,
+            "idUser" : 0
+          } ]
+        }
       }
     }
   }
@@ -3755,6 +4420,9 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-userItems-200-schema-data' type='hidden' value=''></input>
                                 </div>
+                                  <div class="tab-pane" id="responses-userItems-200-example-0">
+                                      <pre class="prettyprint"><code class="json">[{&quot;idItem&quot;:1,&quot;title&quot;:&quot;A painting&quot;,&quot;description&quot;:&quot;A beatiful painting of the ocean floor&quot;,&quot;category&quot;:&quot;Art&quot;,&quot;location&quot;:&quot;Strasbourg&quot;,&quot;askingPrice&quot;:2000,&quot;datePosted&quot;:1613647147,&quot;dateModified&quot;:1613647147,&quot;canShip&quot;:false,&quot;idUser&quot;:0},{&quot;idItem&quot;:3,&quot;title&quot;:&quot;A dog&#x27;s collar&quot;,&quot;description&quot;:&quot;Very good leather collar.&quot;,&quot;category&quot;:&quot;Clothing&quot;,&quot;location&quot;:&quot;Oulu&quot;,&quot;askingPrice&quot;:5,&quot;datePosted&quot;:1613654161,&quot;dateModified&quot;:1613654161,&quot;canShip&quot;:true,&quot;idUser&quot;:0}]</code></pre>
+                                </div>
                             </div>
 
                             <h3> Status: 401 - Unauthorized </h3>
@@ -3764,6 +4432,9 @@ except ApiException as e:
                                   <a data-toggle="tab" href="#responses-userItems-401-schema">Schema</a>
                                 </li>
 
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-userItems-401-example-0">Response Example</a>
+                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -3777,6 +4448,14 @@ except ApiException as e:
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/Status"
+      },
+      "examples" : {
+        "example-1" : {
+          "value" : {
+            "status" : 401,
+            "message" : "You are only authorized to see your own items filtered by user"
+          }
+        }
       }
     }
   }
@@ -3803,53 +4482,8 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-userItems-401-schema-data' type='hidden' value=''></input>
                                 </div>
-                            </div>
-
-                            <h3> Status: 404 - Not Found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-userItems-404-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-userItems-404-schema">
-                                  <div id='responses-userItems-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Not Found",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/Status"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-userItems-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-userItems-404-schema-404');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-userItems-404-schema-data' type='hidden' value=''></input>
+                                  <div class="tab-pane" id="responses-userItems-401-example-0">
+                                      <pre class="prettyprint"><code class="json">{&quot;status&quot;:401,&quot;message&quot;:&quot;You are only authorized to see your own items filtered by user&quot;}</code></pre>
                                 </div>
                             </div>
 
