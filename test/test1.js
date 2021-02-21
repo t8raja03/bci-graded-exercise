@@ -345,6 +345,20 @@ describe('Response tests', function() {
                 throw error
             })
         })
+        it('should be not be able to upload items to other users\' items', async function() {
+            await chai.request(testURL)
+            .post('/upload/YlhsNVFHMTVlVzUwYVM1dVpYUT1GaWF0IFB1bnRvIDIwMTQgMTYgdmFsdmU=')
+            .set('Authorization', `Bearer ${authToken}`)
+            // .set('Content-Type', 'multipart/form-data; boundary=' + boundary)
+            .attach('uploads', './test/testimage.png')
+            .then(response => {
+                expect(response).to.have.status(401)
+                expect(response.body).to.have.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
     })
 
 
