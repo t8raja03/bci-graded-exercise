@@ -3,6 +3,7 @@ const chai = require('chai')
 const expect = chai.expect
 chai.use(require('chai-http'))
 chai.use(require('chai-json-schema-ajv'))
+chai.use(require('chai-files'))
 
 const testURL = 'http://localhost:42010'
 const userInfoSchema = require('../schemas/userInfoSchema.json')
@@ -314,6 +315,27 @@ describe('Response tests', function() {
             .then(response => {
                 expect(response).to.have.status(400)
                 expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+    })
+
+    describe('Test file upload', function() {
+        it('should be able to upload a file', async function() {
+            await chai.request(testURL)
+            .post('/upload/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')
+            .set('Authorization', `Bearer ${authToken}`)
+            .set('Content-Type', 'multipart/form-data; boundary=<calculated when request is sent>')
+            .attach('fileField', './testimage.png')
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body).to.have.jsonSchema(statusSchema)
+                expect(dir('../uploads/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')).to.exist
+                expect(file('../uploads/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy/testfile.png')).to.exist
+                expect(file('../uploads/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy/testfile.png'))
+                .to.equal(file('./testimage.png'))
             })
             .catch(error => {
                 throw error
