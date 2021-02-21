@@ -633,6 +633,11 @@ components:
           dateModified: 1613592071
           canShip: false
           idUser: bXl5QG15eW50aS5uZXQ
+          images:
+            - ./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.1.png
+            - ./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.2.png
+            - ./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.3.png
+            - ./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.4.png
       properties:
         idItem:
           type: string
