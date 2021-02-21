@@ -31,8 +31,7 @@
         "category",
         "location",
         "askingPrice",
-        "canShip",
-        "idUser"
+        "canShip"
     ],
     "properties": {
         "idItem": {
@@ -147,7 +146,6 @@
                     "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.2.png"
                 ]
             ],
-            "additionalItems": true,
             "items": {
                 "$id": "#/properties/images/items",
                 "anyOf": [

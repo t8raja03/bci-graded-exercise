@@ -561,9 +561,6 @@ app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) 
 
 app.post('/upload/:idItem', passport.authenticate('jwt', { session: false }), upload.array('uploads', 4), (req, res, next) => {
 
-    console.log(req.headers)
-    console.log(req.body)
-
     // Haetaan idUser auth. tokenista
     var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
     var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data

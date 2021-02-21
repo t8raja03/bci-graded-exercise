@@ -182,7 +182,6 @@
                         "examples": [
                             []
                         ],
-                        "additionalItems": true,
                         "items": {
                             "$id": "#/items/anyOf/0/properties/images/items"
                         }
