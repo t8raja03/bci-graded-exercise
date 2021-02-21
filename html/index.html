@@ -767,7 +767,8 @@
       "datePosted" : 1613592071,
       "dateModified" : 1613592071,
       "canShip" : false,
-      "idUser" : "bXl5QG15eW50aS5uZXQ"
+      "idUser" : "bXl5QG15eW50aS5uZXQ",
+      "images" : [ "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.1.png", "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.2.png", "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.3.png", "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.4.png" ]
     }
   }
 };
@@ -964,7 +965,7 @@ Posting, modifying and deleting requires logging in via <code>GET /user/login</c
                           <div class="tab-pane active" id="examples-Default-itemDelete-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemDelete-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1393,7 +1394,7 @@ Only the fields that are to be updated are required in the request body.
                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
-"http://portforward.ipt.oamk.fi:42010/items/{idItem}"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/items/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemModify-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1985,7 +1986,7 @@ Query parameters are handled as AND, so &#x60;?category&#x3D;clothing&amp;locati
                           <div class="tab-pane active" id="examples-Default-itemsList-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/items?category=&location=&date="</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/items?category=&location=&date="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemsList-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2483,7 +2484,7 @@ Requires a valid JWT token as Bearer token</p>
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
-"http://portforward.ipt.oamk.fi:42010/items"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/items"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-itemsPost-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2972,7 +2973,7 @@ Requires authentication. A user can only upload images to an item he/she has pos
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
 -H "Content-Type: multipart/form-data"\
-"http://portforward.ipt.oamk.fi:42010/upload/{idItem}"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/upload/{idItem}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-postUploadIdItem-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3303,7 +3304,7 @@ Requires JWT authentication token. The user is only able to view his/her own inf
                           <div class="tab-pane active" id="examples-Default-userInfo-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/{idUser}"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/users/{idUser}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-userInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3719,7 +3720,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-userItems-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/{idUser}/items"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/users/{idUser}/items"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-userItems-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4156,7 +4157,7 @@ If the email &amp; password are not valid, a 401 response with no body is return
                           <div class="tab-pane active" id="examples-Default-userLogin-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users/login"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/users/login"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-userLogin-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4531,7 +4532,7 @@ In the request body, only &#x60;email&#x60; and &#x60;password&#x60; fields are 
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
-"http://portforward.ipt.oamk.fi:42010/users"</code></pre>
+"https://virtserver.swaggerhub.com/t8raja033/bci-market/0.7.0/users"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-userRegister-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
