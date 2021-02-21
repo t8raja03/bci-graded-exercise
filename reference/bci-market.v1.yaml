@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: 0.7.0
+  version: 0.7.1
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -15,7 +15,7 @@ info:
     - Modify postings (`POST /items/:idItem`)
     - Delete postings (`DELETE /items/:idItem`)
     - List and search items with categories: (`GET /items?category=xxx&location=yyy&date=zzz`)
-    - Upload max 4 images of the item
+    - Upload max 4 images of the item (`POST /upload/:idItem`)
 
     User registration and item listing/searching do not require authentication.
     Posting, modifying and deleting requires logging in via `GET /user/login`
