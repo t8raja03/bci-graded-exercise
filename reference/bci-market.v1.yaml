@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: 0.6
+  version: 0.7.0
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -15,6 +15,7 @@ info:
     - Modify postings (`POST /items/:idItem`)
     - Delete postings (`DELETE /items/:idItem`)
     - List and search items with categories: (`GET /items?category=xxx&location=yyy&date=zzz`)
+    - Upload max 4 images of the item (`POST /upload/:idItem`)
 
     User registration and item listing/searching do not require authentication.
     Posting, modifying and deleting requires logging in via `GET /user/login`
@@ -88,13 +89,13 @@ paths:
                     type: string
                     description: Java Web Token for authentication
                   idUser:
-                    type: integer
+                    type: string
                     description: idUser of the logged in user
               examples:
                 login-example-1:
                   value:
                     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoib2xsaS5vc3RhamFAcG9zdGkuY29tIiwiaWRVc2VyIjowfSwiaWF0IjoxNjEzODQ1NDc3LCJleHAiOjE2MTM4NzQyNzd9.0j7AjXmGtpPaOiZgiOkA9dtmIOeSqG3LRtLPfCqoIjk
-                    idUser: 0
+                    idUser: yJhbGciOiJIUzI1NiIsInR5cCI6IkpX=
           headers: {}
         '401':
           description: Unauthorized
@@ -214,7 +215,7 @@ paths:
               examples:
                 example-1:
                   value:
-                    - idItem: 1
+                    - idItem: YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=
                       title: A painting
                       description: A beatiful painting of the ocean floor
                       category: Art
@@ -224,7 +225,7 @@ paths:
                       dateModified: 1613647147
                       canShip: false
                       idUser: 0
-                    - idItem: 3
+                    - idItem: YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy
                       title: A dog's collar
                       description: Very good leather collar.
                       category: Clothing
@@ -529,6 +530,41 @@ paths:
           in: header
           name: Authorization
           description: Bearer <token>
+  '/upload/{idItem}':
+    parameters:
+      - schema:
+          type: string
+        name: idItem
+        in: path
+        required: true
+    post:
+      summary: Upload images
+      operationId: post-upload-idItem
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+      description: |-
+        Upload a maximum of 4 images of an item. The related item is recognized from the route parameter `idItem`.
+
+        If there are already images posted on the server, they will be overwritten (e.g. two images already posted, and the user uploads 3 images, the old ones will be overwritten and there will be only the 3 new ones posted)
+
+        Requires authentication. A user can only upload images to an item he/she has posted.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer <token>
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: 'null'
+        description: The files to upload as multipart/form-data
 components:
   schemas:
     User:
@@ -587,7 +623,7 @@ components:
       description: Item for sale
       x-examples:
         example-1:
-          idItem: 0
+          idItem: b2xsaS5vc3RhamFAcG9zdGkuY29t
           title: 'Opel Corsa, good condition'
           description: 'Opel Corsa m.y. 1998, must be inspected until the end of the month'
           category: Cars
@@ -596,7 +632,7 @@ components:
           datePosted: 1613592071
           dateModified: 1613592071
           canShip: false
-          idUser: 1
+          idUser: bXl5QG15eW50aS5uZXQ
       properties:
         idItem:
           type: string
@@ -626,7 +662,14 @@ components:
           type: boolean
           description: Whether the seller is willing to ship the item
         idUser:
-          type: integer
+          type: string
+          description: id of the user who posted the item
+        images:
+          type: array
+          description: paths & filenames of images of the item
+          items:
+            type: string
+            maxLength: 4
     Status:
       title: Status
       type: object
