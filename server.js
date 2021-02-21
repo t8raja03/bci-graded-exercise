@@ -566,9 +566,23 @@ app.post('/upload/:idItem', passport.authenticate('jwt', { session: false }), up
     var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
     var idUser = decodedToken.user.idUser                   // otetaan idUser datasta
 
-    req.files.forEach(file => {
+    // Etsitään haluttu item
+    var item = items.find( ({idItem})  => idItem === req.params.idItem)
+    
+    // Tarkistetaan, että item kuuluu käyttäjälle
+    if (idUser !== item.idUser) {
+        var statusCode = 401
+        res.status(statusCode).json(statusMessage(statusCode, 'You are only authorized to upload images to your own items'))
+        return
+    }
+
+    // joka tiedostolle:
+    req.files.forEach( (file, index) => {
 
         var fileExtension = file.mimetype.split('/')[1]     // Luetaan tiedoston pääte
+
+        // Tiedoston polku ja tiedostonimi (esim ./uploads/idUser/idItem.1.jpg)
+        var filePath = `./uploads/${idUser}/${req.params.idItem}.${index + 1}.${fileExtension}`
         
         try {
             // Luodaan käyttäjän tiedostoille kansiot (./uploads/idUser/)
@@ -576,10 +590,13 @@ app.post('/upload/:idItem', passport.authenticate('jwt', { session: false }), up
                 fs.mkdirSync(`./uploads/${idUser}`)
             }
 
-            // Siirretään ja nimetään tiedosto uudestaan (./uploads/idUser/idItem.1.jpg)
-            fs.renameSync(file.path, `./uploads/${idUser}/${req.params.idItem}.1.${fileExtension}`, function (err) {
+            // Siirretään ja nimetään tiedosto uudestaan 
+            fs.renameSync(file.path, filePath, function (err) {
                 if (err) throw err    
             })
+
+            // Lisätään items-taulukkoon tiedoston polku "images"-arrayhin
+            item.images.push(filePath)
 
         } catch (error) {
             throw error;
