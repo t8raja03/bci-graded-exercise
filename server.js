@@ -68,7 +68,8 @@ items = [
         "datePosted": 1613592071,
         "dateModified": 1613592071,
         "canShip": false,
-        "idUser": "bXl5QG15eW50aS5uZXQ="
+        "idUser": "bXl5QG15eW50aS5uZXQ=",
+        "images": []
       },
       {
         "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=",
@@ -80,7 +81,8 @@ items = [
         "datePosted": 1613647147,
         "dateModified": 1613647147,
         "canShip": false,
-        "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t"
+        "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t",
+        "images": []
       },
       {
         "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1DaGlsZHJlbidzIHdpbnRlciBvdmVyYWxscw==",
@@ -92,7 +94,8 @@ items = [
         "datePosted": 1613654361,
         "dateModified": 1613654361,
         "canShip": true,
-        "idUser": "bXl5QG15eW50aS5uZXQ="
+        "idUser": "bXl5QG15eW50aS5uZXQ=",
+        "images": []
       },
       {
         "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy",
@@ -104,7 +107,8 @@ items = [
         "datePosted": 1613654161,
         "dateModified": 1613654161,
         "canShip": true,
-        "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t"
+        "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t",
+        "images": []
       },
       {
         "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1GaWF0IFB1bnRvIDIwMTQgMTYgdmFsdmU=",
@@ -116,7 +120,8 @@ items = [
         "datePosted": 1613654161,
         "dateModified": 1613654161,
         "canShip": true,
-        "idUser": "bXl5QG15eW50aS5uZXQ="
+        "idUser": "bXl5QG15eW50aS5uZXQ=",
+        "images": []
       },
       {
         "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1LYWogU3RlbnZhbGxzIHBhaW50aW5nIG9mIGEgZmFtb3VzIGR1Y2s=",
@@ -128,7 +133,8 @@ items = [
         "datePosted": 1613340000,
         "dateModified": 1613340000,
         "canShip": true,
-        "idUser": "bXl5QG15eW50aS5uZXQ="
+        "idUser": "bXl5QG15eW50aS5uZXQ=",
+        "images": []
       }
 ];
 
@@ -555,7 +561,8 @@ app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) 
 
 app.post('/upload/:idItem', passport.authenticate('jwt', { session: false }), upload.array('uploads', 4), (req, res, next) => {
 
-    console.log(req.files)
+    console.log(req.headers)
+    console.log(req.body)
 
     // Haetaan idUser auth. tokenista
     var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista

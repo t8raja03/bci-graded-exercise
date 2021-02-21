@@ -16,7 +16,13 @@
             "datePosted": 1613592071,
             "dateModified": 1613592071,
             "canShip": false,
-            "idUser": "bXl5QG15eW50aS5uZXQ"
+            "idUser": "bXl5QG15eW50aS5uZXQ",
+            "images": [
+                "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.1.png",
+                "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.2.png",
+                "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.3.png",
+                "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.4.png"
+            ]
         }
     ],
     "required": [
@@ -25,7 +31,8 @@
         "category",
         "location",
         "askingPrice",
-        "canShip"
+        "canShip",
+        "idUser"
     ],
     "properties": {
         "idItem": {
@@ -127,6 +134,36 @@
             "examples": [
                 "bXl5QG15eW50aS5uZXQ"
             ]
+        },
+        "images": {
+            "$id": "#/properties/images",
+            "type": "array",
+            "title": "The images schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.1.png",
+                    "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.2.png"
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/images/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/images/items/anyOf/0",
+                        "type": "string",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.1.png",
+                            "./uploads/bXl5QG15eW50aS5uZXQ/b2xsaS5vc3RhamFAcG9zdGkuY29t.2.png"
+                        ]
+                    }
+                ]
+            }
         }
     },
     "additionalProperties": false

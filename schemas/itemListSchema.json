@@ -8,6 +8,19 @@
     "examples": [
         [
             {
+                "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==",
+                "title": "Opel Corsa, good condition",
+                "description": "Opel Corsa m.y. 1998, must be inspected until the end of the month",
+                "category": "Cars",
+                "location": "Rovaniemi",
+                "askingPrice": 200,
+                "datePosted": 1613592071,
+                "dateModified": 1613592071,
+                "canShip": false,
+                "idUser": "bXl5QG15eW50aS5uZXQ=",
+                "images": []
+            },
+            {
                 "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=",
                 "title": "A painting",
                 "description": "A beatiful painting of the ocean floor",
@@ -17,19 +30,8 @@
                 "datePosted": 1613647147,
                 "dateModified": 1613647147,
                 "canShip": false,
-                "idUser": "bXl5QG15eW50aS5uZXQ="
-            },
-            {
-                "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy",
-                "title": "A dog's collar",
-                "description": "Very good leather collar.",
-                "category": "Clothing",
-                "location": "Oulu",
-                "askingPrice": 5,
-                "datePosted": 1613654161,
-                "dateModified": 1613654161,
-                "canShip": true,
-                "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t"
+                "idUser": "b2xsaS5vc3RhamFAcG9zdGkuY29t",
+                "images": []
             }
         ]
     ],
@@ -44,16 +46,17 @@
                 "default": {},
                 "examples": [
                     {
-                        "idItem": "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=",
-                        "title": "A painting",
-                        "description": "A beatiful painting of the ocean floor",
-                        "category": "Art",
-                        "location": "Strasbourg",
-                        "askingPrice": 2000,
-                        "datePosted": 1613647147,
-                        "dateModified": 1613647147,
+                        "idItem": "YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==",
+                        "title": "Opel Corsa, good condition",
+                        "description": "Opel Corsa m.y. 1998, must be inspected until the end of the month",
+                        "category": "Cars",
+                        "location": "Rovaniemi",
+                        "askingPrice": 200,
+                        "datePosted": 1613592071,
+                        "dateModified": 1613592071,
                         "canShip": false,
-                        "idUser": "bXl5QG15eW50aS5uZXQ="
+                        "idUser": "bXl5QG15eW50aS5uZXQ=",
+                        "images": []
                     }
                 ],
                 "required": [
@@ -66,7 +69,8 @@
                     "datePosted",
                     "dateModified",
                     "canShip",
-                    "idUser"
+                    "idUser",
+                    "images"
                 ],
                 "properties": {
                     "idItem": {
@@ -76,7 +80,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc="
+                            "YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg=="
                         ]
                     },
                     "title": {
@@ -86,7 +90,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "A painting"
+                            "Opel Corsa, good condition"
                         ]
                     },
                     "description": {
@@ -96,7 +100,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "A beatiful painting of the ocean floor"
+                            "Opel Corsa m.y. 1998, must be inspected until the end of the month"
                         ]
                     },
                     "category": {
@@ -106,7 +110,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "Art"
+                            "Cars"
                         ]
                     },
                     "location": {
@@ -116,7 +120,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "Strasbourg"
+                            "Rovaniemi"
                         ]
                     },
                     "askingPrice": {
@@ -126,7 +130,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": 0,
                         "examples": [
-                            2000
+                            200
                         ]
                     },
                     "datePosted": {
@@ -136,7 +140,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": 0,
                         "examples": [
-                            1613647147
+                            1613592071
                         ]
                     },
                     "dateModified": {
@@ -146,7 +150,7 @@
                         "description": "An explanation about the purpose of this instance.",
                         "default": 0,
                         "examples": [
-                            1613647147
+                            1613592071
                         ]
                     },
                     "canShip": {
@@ -168,6 +172,20 @@
                         "examples": [
                             "bXl5QG15eW50aS5uZXQ="
                         ]
+                    },
+                    "images": {
+                        "$id": "#/items/anyOf/0/properties/images",
+                        "type": "array",
+                        "title": "The images schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": [],
+                        "examples": [
+                            []
+                        ],
+                        "additionalItems": true,
+                        "items": {
+                            "$id": "#/items/anyOf/0/properties/images/items"
+                        }
                     }
                 },
                 "additionalProperties": false
