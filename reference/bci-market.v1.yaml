@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: 0.6.2
+  version: 0.7.0
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -15,6 +15,7 @@ info:
     - Modify postings (`POST /items/:idItem`)
     - Delete postings (`DELETE /items/:idItem`)
     - List and search items with categories: (`GET /items?category=xxx&location=yyy&date=zzz`)
+    - Upload max 4 images of the item
 
     User registration and item listing/searching do not require authentication.
     Posting, modifying and deleting requires logging in via `GET /user/login`
@@ -498,6 +499,41 @@ paths:
           in: header
           name: Authorization
           description: Bearer <token>
+  '/upload/{idItem}':
+    parameters:
+      - schema:
+          type: string
+        name: idItem
+        in: path
+        required: true
+    post:
+      summary: Upload images
+      operationId: post-upload-idItem
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+      description: |-
+        Upload a maximum of 4 images of an item. The related item is recognized from the route parameter `idItem`.
+
+        If there are already images posted on the server, they will be overwritten (e.g. two images already posted, and the user uploads 3 images, the old ones will be overwritten and there will be only the 3 new ones posted)
+
+        Requires authentication. A user can only upload images to an item he/she has posted.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer <token>
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: 'null'
+        description: The files to upload as multipart/form-data
 components:
   schemas:
     User:
@@ -596,6 +632,13 @@ components:
           description: Whether the seller is willing to ship the item
         idUser:
           type: string
+          description: id of the user who posted the item
+        images:
+          type: array
+          description: paths & filenames of images of the item
+          items:
+            type: string
+            maxLength: 4
     Status:
       title: Status
       type: object
