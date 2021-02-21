@@ -8,6 +8,9 @@ const passport = require('passport')
 const BasicStrategy = require('passport-http').BasicStrategy
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
+const fs = require('fs')
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/tmp/' })
 const jwtSecretKey = require('./secrets.json')
 const createUserJsonSchema = require('./schemas/createUserSchema.json') // Käyttäjän luomiseen käytettävä schema
 const itemSchema = require('./schemas/itemSchema.json')
@@ -231,7 +234,8 @@ function statusMessage (code, message) {
 app.get('/', (req, res) => {
     res.status(200).json({
         app: 'BCI Graded Exercise',
-        author: 'Rankinen Jarno TVT19KMO'
+        author: 'Rankinen Jarno TVT19KMO',
+	documentation: 'http://portforward.ipt.oamk.fi:41010/'
     })
 })
 
@@ -546,6 +550,43 @@ app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) 
     .json(statusMessage(statusCode, 'Item posted succesfully'))
     // })
 })
+
+
+
+app.post('/upload/:idItem', passport.authenticate('jwt', { session: false }), upload.array('uploads', 4), (req, res, next) => {
+
+    console.log(req.files)
+
+    // Haetaan idUser auth. tokenista
+    var tokenArray = req.headers.authorization.split(' ')   // Erotetaan token headereista
+    var decodedToken = jwt.decode(tokenArray[1])            // puretaan tokenin data
+    var idUser = decodedToken.user.idUser                   // otetaan idUser datasta
+
+    req.files.forEach(file => {
+
+        var fileExtension = file.mimetype.split('/')[1]     // Luetaan tiedoston pääte
+        
+        try {
+            // Luodaan käyttäjän tiedostoille kansiot (./uploads/idUser/)
+            if (!fs.existsSync(`./uploads/${idUser}`)) {
+                fs.mkdirSync(`./uploads/${idUser}`)
+            }
+
+            // Siirretään ja nimetään tiedosto uudestaan (./uploads/idUser/idItem.1.jpg)
+            fs.renameSync(file.path, `./uploads/${idUser}/${req.params.idItem}.1.${fileExtension}`, function (err) {
+                if (err) throw err    
+            })
+
+        } catch (error) {
+            throw error;
+        }
+    })
+
+    var statusCode = 201
+    res.status(statusCode).json(statusMessage(statusCode, 'Upload successfull'))
+
+})
+
 
 
 app.use(jsonServerError)

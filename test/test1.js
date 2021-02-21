@@ -1,9 +1,12 @@
 const server = require('../server')
 const chai = require('chai')
+const chaiFiles = require('chai-files')
 const expect = chai.expect
 chai.use(require('chai-http'))
 chai.use(require('chai-json-schema-ajv'))
-chai.use(require('chai-files'))
+chai.use(chaiFiles)
+var file = chaiFiles.file;
+var dir = chaiFiles.dir;
 
 const testURL = 'http://localhost:42010'
 const userInfoSchema = require('../schemas/userInfoSchema.json')
@@ -12,6 +15,7 @@ const itemListSchema = require('../schemas/itemListSchema.json')
 const statusSchema = require('../schemas/statusSchema.json')
 const secrets = require('./secrets.json')
 const authHeader = Buffer.from(`olli.ostaja@posti.com:${secrets.password}`, 'utf-8').toString('base64')
+const boundary = Math.random()
 var authToken = ''
 var nItems = 6
 var nUsers = 3
@@ -323,19 +327,19 @@ describe('Response tests', function() {
     })
 
     describe('Test file upload', function() {
-        it('should be able to upload a file', async function() {
+        it('should be able to upload files', async function() {
             await chai.request(testURL)
             .post('/upload/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')
             .set('Authorization', `Bearer ${authToken}`)
-            .set('Content-Type', 'multipart/form-data; boundary=<calculated when request is sent>')
-            .attach('fileField', './testimage.png')
+            // .set('Content-Type', 'multipart/form-data; boundary=' + boundary)
+            .attach('uploads', './test/testimage.png')
             .then(response => {
-                expect(response).to.have.status(200)
+                expect(response).to.have.status(201)
                 expect(response.body).to.have.jsonSchema(statusSchema)
-                expect(dir('../uploads/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')).to.exist
-                expect(file('../uploads/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy/testfile.png')).to.exist
-                expect(file('../uploads/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy/testfile.png'))
-                .to.equal(file('./testimage.png'))
+                expect(dir('./uploads/b2xsaS5vc3RhamFAcG9zdGkuY29t/')).to.exist
+                expect(file('./uploads/b2xsaS5vc3RhamFAcG9zdGkuY29t/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy.1.png')).to.exist
+                expect(file('./uploads/b2xsaS5vc3RhamFAcG9zdGkuY29t/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy.1.png'))
+                .to.equal(file('./test/testimage.png'))
             })
             .catch(error => {
                 throw error
