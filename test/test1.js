@@ -26,8 +26,9 @@ var testItem = ''       // testeissä luotu item
 
 // itemin/käyttäjän luomisen tarkistamista varten muuttujat. Nämä vastaavat
 // server.js:ssä users- ja items- taulukoiden objektien määrää
-var nItems = 6
-var nUsers = 3
+// koska .length palauttaa integerin, arvo sijoitetaan muuttujaan
+var nItems = server.items.length
+var nUsers = server.user.length
 
 
 // Ennen testejä käynnistetään serveri
