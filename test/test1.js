@@ -13,10 +13,10 @@ const userInfoSchema = require('../schemas/userInfoSchema.json')
 const tokenResponseSchema = require('../schemas/tokenResponseSchema.json')
 const itemListSchema = require('../schemas/itemListSchema.json')
 const statusSchema = require('../schemas/statusSchema.json')
-const secrets = require('./secrets.json')
-const authHeader = Buffer.from(`olli.ostaja@posti.com:${secrets.password}`, 'utf-8').toString('base64')
-const boundary = Math.random()
+const authHeader = Buffer.from(`chai@tests.com:salasana`, 'utf-8').toString('base64')
 var authToken = ''
+var idTestUser = ''
+var testItem = ''
 var nItems = 6
 var nUsers = 3
 
@@ -24,26 +24,65 @@ var nUsers = 3
 
 var assert = require('assert');
 
+before(() => server.start())        // Käynnistää APIn ennen testejä
+after(() => server.close())         // Pysäyttää APIn testien jälkeen
 
 
-describe('Response tests', function() {
+describe('User registration and login', function() {
 
-    before(() => server.start())        // Käynnistää APIn ennen testejä
-    after(() => server.close())         // Pysäyttää APIn testien jälkeen
+    describe('Test user registration', function() {
 
-    describe('Check 404 response format', function() {
-        it('should return 404 JSON object', async function() {
+        it('should return a 400 JSON object with an invalid request (integer password)', async function() {
             await chai.request(testURL)
-            .get('/thisroutedoesnotexist')
+            .post('/users')
+            .set('Authorization', `Bearer ${authToken}`)
+            .send({
+                "email": "chai@tests.com",
+                "password": 1234
+            })
             .then(response => {
-                expect(response).to.have.status(404)
+                expect(response).to.have.status(400)
                 expect(response.body).to.be.jsonSchema(statusSchema)
             })
             .catch(error => {
                 throw error
             })
         })
+
+
+        it('should be able to register', async function() {
+            nUsers += 1
+            await chai.request(testURL)
+            .post('/users')
+            .send({
+                "email": "chai@tests.com",
+                "password": "salasana"
+            })
+            .then(response => {
+                expect(response).to.have.status(201)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+
+        
+        it('a user should actually be created', async function() {
+            await chai.request(testURL)
+            .get('/users')
+            .then(response => {
+                expect(response).to.have.status(200)
+                expect(response.body.length).to.equal(nUsers)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        
     })
+
+
 
     describe('Get bearer token', function() {
         it('should return an access token', async function() {
@@ -54,18 +93,18 @@ describe('Response tests', function() {
                 expect(response).to.have.status(202)
                 expect(response.body).to.be.jsonSchema(tokenResponseSchema)
                 authToken = response.body.token
+                idTestUser = response.body.idUser
             })
             .catch(error => {
                 throw error
             })
         })
     })
-
     describe('Check user info', function() {
-        it('should return a valid JSON object', async function() {
+        it('should be able to get own info', async function() {
             // Lähetetään http-pyyntö
             await chai.request(testURL)
-            .get('/users/b2xsaS5vc3RhamFAcG9zdGkuY29t')
+            .get(`/users/${idTestUser}`)
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(200)
@@ -75,9 +114,9 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        it('should return 401 for other users\' info', async function() {
+        it('should not be able to get other user\'s info', async function() {
             await chai.request(testURL)
-            .get('/users/1')
+            .get('/users/b2xsaS5vc3RhamFAcG9zdGkuY29t')
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(401)
@@ -87,35 +126,16 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        it('should return an array of user\'s own postings', async function() {
-            await chai.request(testURL)
-            .get('/users/b2xsaS5vc3RhamFAcG9zdGkuY29t/items')
-            .set('Authorization', `Bearer ${authToken}`)
-            .then(response => {
-                expect(response).to.have.status(200)
-                expect(response.body).to.be.jsonSchema(itemListSchema)
-            })
-            .catch(error => {
-                throw error
-            })
-        })
-        it('should return 401 for other users\' item listing', async function() {
-            await chai.request(testURL)
-            .get('/users/1')
-            .set('Authorization', `Bearer ${authToken}`)
-            .then(response => {
-                expect(response).to.have.status(401)
-                expect(response.body).to.be.jsonSchema(statusSchema)
-            })
-            .catch(error => {
-                throw error
-            })
-        })
-
     })
 
+})
+
+
+
+describe('Item listing, posting and modifying', function() {
+
     describe('Test item listing and posting', function() {
-        it('should return an array of "Item" JSON objects', async function() {
+        it('should be able to list items', async function() {
             // Lähetetään http-pyyntö
             await chai.request(testURL)
             .get('/items')
@@ -127,7 +147,7 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        it('should return a filtered array of "Item" JSON objects', async function() {
+        it('should be able to filter the items list', async function() {
             await chai.request(testURL)
             .get('/items')
             .query({
@@ -158,7 +178,7 @@ describe('Response tests', function() {
                     throw error
                 })
             })
-        it('should return a 201 JSON object when posting items', async function() {
+        it('should be able to post items', async function() {
             await chai.request(testURL)
                 .post('/items')
                 .set('Authorization', `Bearer ${authToken}`)
@@ -200,32 +220,22 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        it('should be able to delete items', async function() {
-            nItems -= 1
+        it('should be able to list own posted items', async function() {
             await chai.request(testURL)
-            .delete('/items/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgcGFpbnRpbmc=')
+            .get(`/users/${idTestUser}/items`)
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
-                expect(response).to.have.status(202)
-                expect(response.body).to.be.jsonSchema(statusSchema)
+                expect(response).to.have.status(200)
+                expect(response.body).to.be.jsonSchema(itemListSchema)
+                testItem = response.body[0]
             })
             .catch(error => {
                 throw error
             })
         })
-        it('should actually delete items', async function() {
+        it('should return 401 for when trying to list other user\'s items', async function() {
             await chai.request(testURL)
-            .get('/items')
-            .then(response => {
-                expect(response.body.length).to.equal(nItems)
-            })
-            .catch(error => {
-                throw error
-            })
-        })
-        it('should not be able to delete other user\'s items', async function() {
-            await chai.request(testURL)
-            .delete('/items/YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==')
+            .get('/users/bXl5QG15eW50aS5uZXQ=')
             .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(401)
@@ -235,12 +245,14 @@ describe('Response tests', function() {
                 throw error
             })
         })
+    })
+    describe('Test item modifying and image uploading', function() {
         it('should be able to modify items', async function() {
             await chai.request(testURL)
-            .put('/items/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')
+            .put(`/items/${testItem.idItem}`)
             .set('Authorization', `Bearer ${authToken}`)
             .send({
-                "description": "A very modified collar"
+                "description": "The object is obviously modified somehow"
             })
             .then(response => {
                 expect(response).to.have.status(202)
@@ -250,13 +262,13 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        it('should actually modify items', async function() {
-            await chai.request(testURL)
-            .get('/items')
-            .query({
-                category: 'Clothing',
-                location: 'Oulu'
-            })
+        it('wait 1 second to let timestamps be different in the next phase..', function(done) {
+            setTimeout(done, 1000)
+        })
+        it('should actually modify items', function() {         
+            chai.request(testURL)
+            .get(`/users/${idTestUser}/items`)
+            .set('Authorization', `Bearer ${authToken}`)
             .then(response => {
                 expect(response).to.have.status(200)
                 expect(response.body[0].dateModified).to.not.equal(response.body[0].datePosted)
@@ -277,68 +289,17 @@ describe('Response tests', function() {
                 throw error
             })
         })
-        
-    })
-
-    describe('Test user registration', function() {
-        it('should return a status 200 JSON object', async function() {
-            nUsers += 1
-            await chai.request(testURL)
-            .post('/users')
-            .send({
-                email: 'chai@tests.com',
-                password: 'salasana'
-            })
-            .then(response => {
-                expect(response).to.have.status(201)
-                expect(response.body).to.be.jsonSchema(statusSchema)
-            })
-            .catch(error => {
-                throw error
-            })
-        })
-        it('should actually create a user', async function() {
-            await chai.request(testURL)
-            .get('/users')
-            .then(response => {
-                expect(response).to.have.status(200)
-                expect(response.body.length).to.equal(nUsers)
-            })
-            .catch(error => {
-                throw error
-            })
-        })
-        it('should return a 400 JSON object with an invalid request', async function() {
-            await chai.request(testURL)
-            .post('/users')
-            .set('Authorization', `Bearer ${authToken}`)
-            .send({
-                email: 'chai@tests.com',
-                password: 1234
-            })
-            .then(response => {
-                expect(response).to.have.status(400)
-                expect(response.body).to.be.jsonSchema(statusSchema)
-            })
-            .catch(error => {
-                throw error
-            })
-        })
-    })
-
-    describe('Test file upload', function() {
         it('should be able to upload files', async function() {
             await chai.request(testURL)
-            .post('/upload/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy')
+            .post(`/upload/${testItem.idItem}`)
             .set('Authorization', `Bearer ${authToken}`)
-            // .set('Content-Type', 'multipart/form-data; boundary=' + boundary)
             .attach('uploads', './test/testimage.png')
             .then(response => {
                 expect(response).to.have.status(201)
                 expect(response.body).to.have.jsonSchema(statusSchema)
-                expect(dir('./uploads/b2xsaS5vc3RhamFAcG9zdGkuY29t/')).to.exist
-                expect(file('./uploads/b2xsaS5vc3RhamFAcG9zdGkuY29t/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy.1.png')).to.exist
-                expect(file('./uploads/b2xsaS5vc3RhamFAcG9zdGkuY29t/YjJ4c2FTNXZjM1JoYW1GQWNHOXpkR2t1WTI5dEEgZG9nJ3MgY29sbGFy.1.png'))
+                expect(dir(`./uploads/${idTestUser}`)).to.exist
+                expect(file(`./uploads/${idTestUser}/${testItem.idItem}.1.png`)).to.exist
+                expect(file(`./uploads/${idTestUser}/${testItem.idItem}.1.png`))
                 .to.equal(file('./test/testimage.png'))
             })
             .catch(error => {
@@ -360,7 +321,77 @@ describe('Response tests', function() {
             })
         })
     })
+    describe('Test deleting items', function() {
+        it('should be able to delete items', function() {
+            nItems -= 1
+            chai.request(testURL)
+            .delete(`/items/${testItem.idItem}`)
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(202)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should actually delete items', function() {
+            chai.request(testURL)
+            .get('/items')
+            .then(response => {
+                expect(response.body.length).to.equal(nItems)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+        it('should not be able to delete other user\'s items', function() {
+            chai.request(testURL)
+            .delete('/items/YlhsNVFHMTVlVzUwYVM1dVpYUT1PcGVsIENvcnNhLCBnb29kIGNvbmRpdGlvbg==')
+            .set('Authorization', `Bearer ${authToken}`)
+            .then(response => {
+                expect(response).to.have.status(401)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+
+        
+    })
+
+})
 
 
 
-});
+
+
+//     })
+
+    
+
+    
+
+
+
+
+describe('Error message test', function() {
+
+
+
+    describe('Check 404 response format', function() {
+        it('should return 404 JSON object', async function() {
+            await chai.request(testURL)
+            .get('/thisroutedoesnotexist')
+            .then(response => {
+                expect(response).to.have.status(404)
+                expect(response.body).to.be.jsonSchema(statusSchema)
+            })
+            .catch(error => {
+                throw error
+            })
+        })
+    })
+    
+})
