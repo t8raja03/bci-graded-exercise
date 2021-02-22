@@ -267,6 +267,12 @@ app.post('/users', (req, res) => {
         return
     }
 
+    // Jos sähköpostiosoitteella löytyy jo käyttäjä
+    if (users.find( ({ email }) => email === req.body.email ) !== undefined) {
+        statusCode = 409
+        res.status(statusCode).json(statusMessage(statusCode, 'A user with that email already exists'))
+    }
+
     // Date().valueOf() palauttaa millisekunteja UNIX epochista,
     // joten jotta saadaan varsinainen UNIX epoch-aika, täytyy
     // jakaa 1000 ja pyöristää alaspäin
