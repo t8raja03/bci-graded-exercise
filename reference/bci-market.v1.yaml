@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: bci-market
-  version: 0.7.0
+  version: 0.7.1
   contact:
     name: Jarno Rankinen
     email: t8raja03@students.oamk.fi
@@ -50,10 +50,23 @@ paths:
                   value:
                     status: 400
                     message: Invalid request
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+              examples:
+                example-1:
+                  value:
+                    status: 409
+                    message: A user with that email already exists
       description: |-
         Register a new user.
 
         In the request body, only `email` and `password` fields are required. `idUser`, `dateCreated` and `dateModified` are generated automatically and are not required.
+
+        The same email address cannot be assigned to multiple users.
       requestBody:
         content:
           application/json:
