@@ -275,7 +275,7 @@ app.post('/users', (req, res) => {
 
     // Luodaan uusi user-objekti johon esitäytetään pakolliset arvot
     var newUser = {
-        id: Buffer.from(req.body.email).toString('base64'),
+        idUser: Buffer.from(req.body.email).toString('base64'),
         firstName: '',
         lastName: '',
         email: req.body.email,
@@ -310,13 +310,12 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
         (req, res) => {
 
             // Haetaan ensin käyttäjän idUser sähköpostiosoitteen perusteella
-            var userIndex = users.findIndex( ({email}) => email === req.user.email)
-            var idUser = users[userIndex].idUser
+            var loginUser = users.find( ({email}) => email === req.user.email)
 
             // Muodostetaan token
             const body = {
-                email: req.user.email,
-                idUser: idUser
+                email: loginUser.email,
+                idUser: loginUser.idUser
             }
 
             const payload = {
@@ -333,7 +332,7 @@ app.get('/users/login', passport.authenticate('basic', { session: false }),
             res.status(202)
             return res.json({ 
                 "token": tkn,
-                "idUser": idUser
+                "idUser": loginUser.idUser
             })
         })
 
@@ -545,7 +544,8 @@ app.post('/items', passport.authenticate('jwt', { session: false }), (req, res) 
         datePosted: epoch,
         dateModified: epoch,
         canShip: Boolean(req.body.canShip),
-        idUser: idUser
+        idUser: idUser,
+        images: []
     }
     
     items.push(newItem)     // Lisätään newUser users-arrayhin
